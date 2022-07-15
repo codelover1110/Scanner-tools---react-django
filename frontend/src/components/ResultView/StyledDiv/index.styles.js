@@ -48,17 +48,17 @@ export const useStyles = makeStyles(() => ({
         marginRight : "15px"
     },
     minimum : {
-        width : '12px',
+        width : '13px',
         height : '3px',
         background : 'rgba(58,55,55,1)',
     },
     normalize : {
-        width : '12px',
+        width : '13px',
         height : '7px',
         background : 'rgba(58,55,55,1)',
     },
     maximum : {
-        width : '12px',
+        width : '13px',
         height : '13px',
         background : 'rgba(58,55,55,1)',
     },

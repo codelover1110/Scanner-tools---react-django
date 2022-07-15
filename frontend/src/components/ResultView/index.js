@@ -110,7 +110,7 @@ const ResultView = (props) => {
                                 <Box className={classes.resultSize} onClick={() => handleChangeResultHeight(250)}>
                                     <Box className={classes.normalize}></Box>
                                 </Box>
-                                <Box className={classes.resultSize} onClick={() => handleChangeResultHeight(window.screen.height)}>
+                                <Box className={classes.resultSize} onClick={() => handleChangeResultHeight(window.innerHeight - 37)}>
                                     <Box className={classes.maximum}></Box>
                                 </Box>
                                 <BuildIcon 
