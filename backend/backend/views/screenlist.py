@@ -17,7 +17,7 @@ class ScreenlistViewSet(viewsets.ModelViewSet):
     def screen_list(request):
         if request.method == 'GET':
             screenlist = Screenlist.objects.all()
-            serializer = ScreenlistSerializer(screenlist, many=True)
+            serializer = ScreenlistSerializer(screenlist, many=True)            
             return Response(serializer.data)
 
         elif request.method == 'POST':

@@ -2,9 +2,6 @@
 
 const ActionTypes = {
    
-    // auth action types
-    SignInAdmin : "SignInAdmin",
-    SignInUser : "SignInUser" ,
     
     AddNewStock : "AddNewStock",
 
@@ -17,7 +14,10 @@ const ActionTypes = {
     UpdateResultViewHeight : "UpdateResultViewHeight",
     BeginResultViewResize : "BeginResultViewResize",
     FinishResultViewResize : "FinishResultViewResize",
-    StoreBeginValues : "StoreBeginValues"
+    StoreBeginValues : "StoreBeginValues",
+
+    // Get TempData
+    GetTempData : "GetTempData"
 }
 
 export default ActionTypes ;

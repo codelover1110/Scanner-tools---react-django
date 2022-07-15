@@ -12,7 +12,8 @@ import MSTool from "../pages/MSTool";
 const Routing = () => {
     return (
         <Routes>
-            <Route path="/mstool/*" element={<MSTool />} />
+            <Route path="/*" element={<MSTool />} />
+            {/* <Route path="/mstool/*" element={<MSTool />} /> */}
         </Routes>
     );
 }

@@ -95,3 +95,17 @@ export const InitialResultViewPoint = (resultViewHeight) => async dispatch => {
         return false ;
     }
 }
+
+export const ChangeBeginStartHeight = (initialHeight) => async dispatch => {
+    try {
+        await dispatch({
+            type : ActionTypes.ChangeBeginStartHeight,
+            payload : initialHeight
+        });
+        
+        return true;
+    } catch(err) {
+        console.log(err);
+        return false;
+    }
+} 

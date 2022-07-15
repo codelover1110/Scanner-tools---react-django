@@ -11,9 +11,6 @@ import theme from './utils/theme' ;
 // Global Style
 // import GlobalStyles from "./utils/globalstyles";
 
-// Language 
-import { LanguageProvider } from "./utils/Language";
-
 // Pace
 // import Pace from "./utils/Pace";
 
@@ -30,12 +27,9 @@ const MainComponent = lazy(() => import('./components/Main')) ;
 const App = () => {
   return (
     <BrowserRouter>
-      <LanguageProvider>
         <Provider store={store}>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            {/* <GlobalStyles /> */}
-            {/* <Pace color={theme.palette.primary.light} /> */}
             <Suspense fallback={<Fragment />} >
               <Routes>
                   <Route path="*" element={<MainComponent />} />
@@ -43,7 +37,6 @@ const App = () => {
             </Suspense>
           </ThemeProvider>
         </Provider>
-      </LanguageProvider>
     </BrowserRouter>
   );
 }

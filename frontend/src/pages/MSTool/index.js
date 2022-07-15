@@ -23,13 +23,13 @@ const MSTool = () => {
         setSelectedTab(selectedTab) ;
         switch(selectedTab) {
             case "screens" :
-                navigate('/mstool/screens') ;
+                navigate('/screens') ;
                 return ;
             case "alerts" :
-                navigate('/mstool/alerts') ;
+                navigate('/alerts') ;
                 return ;
             case "notes" :
-                navigate('/mstool/notes') ;
+                navigate('/notes') ;
                 return ;
             default :
                 break ;

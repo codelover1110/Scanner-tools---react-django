@@ -10,7 +10,12 @@ export const useStyles = makeStyles(() => ({
 
         width : '100vw',
         height : props => props.height,
-        background : 'white'
+        background : 'white',
+
+        "& .MuiSvgIcon-root" : {
+            width : '20px',
+            height : '20px',
+        }
     },
     toolbarDiv : {
         display : 'flex', justifyContent : 'space-between', alignItems : 'center', 
@@ -28,9 +33,34 @@ export const useStyles = makeStyles(() => ({
         display : 'flex',alignItems : 'center', gap : 10
     },
     statusDiv : {
+        width : '100%',
         paddingLeft :20,
+        paddingRight : 100,
 
-        display : 'flex', alignItems : 'center', gap : 10
+        display : 'flex', justifyContent : 'space-between', alignItems : 'center', gap : 10
+    },
+    resultSize : {
+        width : '15px',
+        height : '15px',
+        display : 'flex', alignItems : 'flex-end',
+        background : 'white',
+        padding : '1px',
+        marginRight : "15px"
+    },
+    minimum : {
+        width : '12px',
+        height : '3px',
+        background : 'rgba(58,55,55,1)',
+    },
+    normalize : {
+        width : '12px',
+        height : '7px',
+        background : 'rgba(58,55,55,1)',
+    },
+    maximum : {
+        width : '12px',
+        height : '13px',
+        background : 'rgba(58,55,55,1)',
     },
     resizeButtonCss : {
         position : 'absolute',
