@@ -62,6 +62,7 @@ const MSTool = () => {
                 </Grid>
                 <Grid item xs={11}>
                     <Routes>
+                        <Route path='/*' element={<ScreenView />} />
                         <Route path="/screens" element={<ScreenView />} />
                     </Routes>
                 </Grid>

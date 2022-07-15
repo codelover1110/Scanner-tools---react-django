@@ -3,11 +3,11 @@ import ActionTypes from "../actions/actionTypes";
 const INITIAL_STATE = {
     selectedMenuItem : 'screen_result',
     status  : null,
-    resultViewHeight : 250,
+    resultViewHeight : 37,
 
     isBeginResize : false,
     beginStartPoint : 0,
-    beginStartHeight : 250,
+    beginStartHeight : 37,
 }
 
 export default (state = INITIAL_STATE , action) => {

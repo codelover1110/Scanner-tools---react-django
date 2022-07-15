@@ -104,7 +104,7 @@ const ResultView = (props) => {
                                 &nbsp; { status && 'Upload : Today 12 : 40 PM ET'}
                             </Box>
                             <Box sx={{display : 'flex', alignItems : 'center'}}>
-                                <Box className={classes.resultSize} onClick={() => handleChangeResultHeight(30)}>
+                                <Box className={classes.resultSize} onClick={() => handleChangeResultHeight(37)}>
                                     <Box className={classes.minimum}></Box>
                                 </Box>
                                 <Box className={classes.resultSize} onClick={() => handleChangeResultHeight(250)}>

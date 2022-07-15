@@ -90,7 +90,7 @@ const Summary = (props) => {
                     <Box className={classes.buttonDiv}>
                         <Button variant='contained' className={classes.buttonCss}
                             onClick={async () => {
-                                await InitialResultViewPoint(250) ;
+                                await InitialResultViewPoint(37) ;
                             }}
                         >
                             View Screen Results
