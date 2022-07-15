@@ -1,6 +1,6 @@
 import imp
 from django.contrib import admin
-from django.urls import path
+from django.urls import path , re_path
 from backend.views import user,screenlist,frontend
 
 # router = routers.DefaultRouter()
@@ -11,7 +11,7 @@ from backend.views import user,screenlist,frontend
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', frontend.front, name="front"),
+    re_path(r".*", frontend.front, name="front"),
     # path('user/',user.UserViewSet.as_view(), name="user"),
     path('screenlist/', screenlist.ScreenlistViewSet.screen_list, name="screenlist"),
 ]
