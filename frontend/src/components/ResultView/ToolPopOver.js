@@ -100,8 +100,7 @@ const ToolPopOver = (props) => {
                             onClick={handleCsvPopOver}
                         >
                             <Box> Export list </Box>
-                            <PlayArrowIcon 
-                            />
+                            <PlayArrowIcon />
                         </Box>
                     </ListItemButton>
                     <ListItemButton>
