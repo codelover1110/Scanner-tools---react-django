@@ -99,7 +99,7 @@ const EarningForm = () => {
                                 
                                 />
                             }
-                            label={<span>{'Include stocks iwth negative comparison quarter'}</span>}
+                            label={<span>{'Include stocks with negative comparison quarter'}</span>}
                         />
                     </FormGroup>
                 </Box>
@@ -131,7 +131,7 @@ const EarningForm = () => {
                                 
                                 />
                             }
-                            label={<span>{'Include stocks iwth negative comparison quarter'}</span>}
+                            label={<span>{'Include stocks with negative comparison quarter'}</span>}
                         />
                     </FormGroup>
                 </Box>
@@ -213,7 +213,7 @@ const EarningForm = () => {
                                 
                                 />
                             }
-                            label={<span>{'Include stocks iwth negative comparison quarter'}</span>}
+                            label={<span>{'Include stocks with negative comparison quarter'}</span>}
                         />
                     </FormGroup>
                 </Box>
@@ -246,7 +246,7 @@ const EarningForm = () => {
                                 
                                 />
                             }
-                            label={<span>{'Include stocks iwth negative comparison quarter'}</span>}
+                            label={<span>{'Include stocks with negative comparison quarter'}</span>}
                         />
                     </FormGroup>
                 </Box>
@@ -269,7 +269,7 @@ const EarningForm = () => {
                 <Box className={classes.liDiv}>
                     9
                     <StarBorderIcon />
-                    <Box className={classes.underLineDiv}>Earnings Acceleration - Last 3 Qtrs</Box>
+                    <Box className={classes.underLineDiv}>EPS % Change - Last Reported Quarter {'>'} Last 3 Quarters</Box>
                 </Box>
                 <Box sx={{display : 'flex', justifyContent : 'flex-end'}}>
                     <FormGroup row >
@@ -619,7 +619,7 @@ const EarningForm = () => {
                 <Box className={classes.liDiv}>
                     24
                     <StarBorderIcon />
-                    <Box className={classes.underLineDiv}>EPS % Growth Rate - Last 5 Years</Box>
+                    <Box className={classes.underLineDiv}>EPS % Growth Rate - Last 5 Years Percential Rank</Box>
                 </Box>
                 <Box className={classes.rangeDiv}>
                     <TextField
@@ -639,7 +639,7 @@ const EarningForm = () => {
                 <Box className={classes.liDiv}>
                     25
                     <StarBorderIcon />
-                    <Box className={classes.underLineDiv}>EPS % Growth Rate - Projected...</Box>
+                    <Box className={classes.underLineDiv}>EPS % Growth Rate - Projected Sustainable Growth</Box>
                 </Box>
                 <Box className={classes.rangeDiv}>
                     <TextField
@@ -679,26 +679,6 @@ const EarningForm = () => {
             <Box className={classes.listItemDiv}>
                 <Box className={classes.liDiv}>
                     27
-                    <StarBorderIcon />
-                    <Box className={classes.underLineDiv}>EPS - 1 Years Ago</Box>
-                </Box>
-                <Box className={classes.rangeDiv}>
-                    <TextField
-                        type={'number'}
-                        placeholder={'Min'}
-                        size={'small'}
-                    />%
-                    <Box >to</Box>
-                    <TextField
-                        type={'number'}
-                        placeholder={'Max'}
-                        size={'small'}
-                    />%
-                </Box>
-            </Box>
-            <Box className={classes.listItemDiv}>
-                <Box className={classes.liDiv}>
-                    28
                     <StarBorderIcon />
                     <Box className={classes.underLineDiv}>EPS - 1 Years Ago</Box>
                 </Box>

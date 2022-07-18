@@ -15,6 +15,7 @@ import {
 
 import { makeStyles } from '@mui/styles';
 import CSVPopOver from './CSVPopOver';
+import CustomizeColumnModal from './CustomizeColumnModal';
 // import NewStockModal from './NewStockModal';
 
 const useStyles = makeStyles((theme) => ({
@@ -49,23 +50,24 @@ const useStyles = makeStyles((theme) => ({
 
 const ToolPopOver = (props) => {
 
-    const classes = useStyles() ;
-    const anchorRef1 = React.useRef(null);
-
-    const [ isCsvOpenPop , setCsvOpenNewPop ] = React.useState(false) ;
-
     const {
         open , anchorEl , handlePopOver,
     } = props ;
 
-    // const [openNewStockModal, setOpenNewStockModal] = React.useState(false) ;
+    const classes = useStyles() ;
+    const anchorRef1 = React.useRef(null);
 
-    // const handleOpenNewStockModal = () => {
-    //     setOpenNewStockModal(true) ;
-    // }
-    // const handleCloseNewStockModal = () => {
-    //     setOpenNewStockModal(false) ;
-    // }
+    const [ isCsvOpenPop , setCsvOpenNewPop ] = React.useState(false) ;
+    const [ customizeColumnOpen, setCustomizeColumnOpen ] = React.useState(false);
+
+
+    const handleOpenCustomizeColumn = () => {
+        setCustomizeColumnOpen(true) ;
+        handlePopOver();
+    }
+    const handleCloseCustomizeColumn = () => {
+        setCustomizeColumnOpen(false) ;
+    }
 
     const handleCsvPopOver = () => {
         setCsvOpenNewPop(!isCsvOpenPop);
@@ -107,7 +109,9 @@ const ToolPopOver = (props) => {
                         <Box>Importing Lists</Box>
                     </ListItemButton>
                     <ListItemButton>
-                        <Box>Customize Column Layout</Box>
+                        <Box onClick={handleOpenCustomizeColumn}>
+                            Customize Column Layout
+                        </Box>
                     </ListItemButton>
                     <ListItemButton>
                         <Box>Select Column Layout</Box>
@@ -125,6 +129,11 @@ const ToolPopOver = (props) => {
                 open={isCsvOpenPop}
                 handleCsvPopOver={handleCsvPopOver}
                 anchorEl={anchorRef1 ? anchorRef1.current : null}
+            />
+
+            <CustomizeColumnModal
+                open={customizeColumnOpen}
+                handleClose={handleCloseCustomizeColumn}
             />
         </>
     )

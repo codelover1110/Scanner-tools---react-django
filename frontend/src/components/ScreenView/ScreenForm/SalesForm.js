@@ -244,6 +244,26 @@ const SalesForm = () => {
             </Box>
             <Box className={classes.listItemDiv}>
                 <Box className={classes.liDiv}>
+                    11
+                    <StarBorderIcon />
+                    <Box className={classes.underLineDiv}>Sales % Growth Rate - Last 5 Years</Box>
+                </Box>
+                <Box className={classes.rangeDiv}>
+                    <TextField
+                        type={'number'}
+                        placeholder={'Min'}
+                        size={'small'}
+                    />
+                    <Box >to</Box>
+                    <TextField
+                        type={'number'}
+                        placeholder={'Max'}
+                        size={'small'}
+                    />
+                </Box>
+            </Box>
+            <Box className={classes.listItemDiv}>
+                <Box className={classes.liDiv}>
                     12
                     <StarBorderIcon />
                     <Box className={classes.underLineDiv}>Total Annual Sales {`(mil)`} - Last Reported Year </Box>
