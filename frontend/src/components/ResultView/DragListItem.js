@@ -13,7 +13,7 @@ const DragListItem = ({ item, index }) => {
 
   return (
     
-    <Draggable draggableId={item.id} index={index}
+    <Draggable draggableId={item?.id} index={index}
     >
         {
             (provided, snapshot) => {
@@ -25,7 +25,7 @@ const DragListItem = ({ item, index }) => {
                         {...provided.dragHandleProps}
                     >
                         {
-                          item.field
+                          item?.field
                         }
                     </Box>
                 );

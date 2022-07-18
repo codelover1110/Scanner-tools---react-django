@@ -9,6 +9,9 @@ const ActionTypes = {
     SelectResultMenuItem : "SelectResultMenuItem",
     SetResultViewStatus : "SetResultViewStatus",
 
+    // Accordions Common
+    ExpandedItem : "ExpandedItem",
+
     // Draw actions
     InitialResultViewPoint : "InitialResultViewPoint",
     UpdateResultViewHeight : "UpdateResultViewHeight",

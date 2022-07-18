@@ -1,5 +1,5 @@
 import * as React from 'react' ;
-
+import { useEffect } from 'react';
 import { useMeasure } from 'react-use';
 import { useResultViewInfo } from '../../contexts/ResultViewContext' ;
 
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
     },
     accordionDiv : {
         height : '300px',
-        overflowY : 'auto',
+        overflowY : 'scroll',
         border : '3px solid lightgrey',
         borderTop : '3px solid #fd7b10',
         padding : '10px'
@@ -1235,45 +1235,41 @@ const CustomizeColumnModal = (props) => {
         return [removed, result];
     };
       
-    const addToList = (list, index, droppableId, element) => {
+    const addToList = (list, index, element) => {
         const result = Array.from(list);
         result.splice(index, 0, element);
         return result;
     };
 
+    const extractDroppableId = (raw_droppable_id) => {
+        return raw_droppable_id.split("_")[0] ;
+    }
     const onDragEnd = (result) => {
         console.log(result) ;
-        
+
         if (!result.destination) {
           return;
         }
 
-        // if(result.destination.droppableId !== 'preview') return ;
-        
-        console.log(result.destination) ;
-
         const listCopy = { ...elements };
-    
-        const sourceList = listCopy[result.source.droppableId];
+
+        const sourceList = listCopy[extractDroppableId(result.source.droppableId)];
     
         const [removedElement, newSourceList] = removeFromList(
             sourceList,
             result.source.index
         );
     
-        listCopy[result.source.droppableId] = newSourceList;
+        listCopy[extractDroppableId(result.source.droppableId)] = newSourceList;
 
-        const destinationList = listCopy[result.destination.droppableId];
+        const destinationList = listCopy[extractDroppableId(result.destination.droppableId)];
         
-        listCopy[result.destination.droppableId] = addToList(
+        listCopy[extractDroppableId(result.destination.droppableId)] = addToList(
             destinationList,
             result.destination.index,
-            result.destination.droppableId,
             removedElement
         );
     
-        console.log(listCopy) ;
-
         setElements({
             ...listCopy
         });
@@ -1309,6 +1305,7 @@ const CustomizeColumnModal = (props) => {
                                             key={index}
                                             droppableId={element.droppableId}
                                             title={element.title}
+                                            idx={index}
                                             context={element.context}
                                             draggableList={elements[Object.keys(elements)[index]]}
                                         />

@@ -5,7 +5,7 @@ export const useStyles = makeStyles(() => ({
 
     },
     itemDiv : {
-        minWidth : '150px !important', height : '60px !important', 
+        width : '170px !important', height : '60px !important', 
         background : 'white !important',
         color : 'black', 
         fontSize : 15,
