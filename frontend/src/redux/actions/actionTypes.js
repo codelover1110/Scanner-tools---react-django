@@ -20,7 +20,8 @@ const ActionTypes = {
     StoreBeginValues : "StoreBeginValues",
 
     // Get TempData
-    GetTempData : "GetTempData"
+    CustomizeColumnHeader : "CustomizeColumnHeader",
+    CustomizeColumnData : "CustomizeColumnData"
 }
 
 export default ActionTypes ;

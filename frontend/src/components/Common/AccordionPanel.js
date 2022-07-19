@@ -85,7 +85,9 @@ const AccordionPanel = (props) => {
         context,
         idx,
         droppableId,
-        draggableList
+        draggableList,
+
+        isDropDisabled
     } = props ;
 
     const [expanded , setExpaned] = React.useState(false) ;
@@ -159,6 +161,7 @@ const AccordionPanel = (props) => {
                                 <Droppable droppableId={droppableId + "_" + rowIndex}
                                     direction={'horizontal'}
                                     key={'row_'+rowIndex}
+                                    isDropDisabled={isDropDisabled}
                                 >
                                     {
                                         (provided) => (
@@ -184,11 +187,11 @@ const AccordionPanel = (props) => {
                             )
                         })
                     }
-
                     {
                         listModel.leftOverIndex < draggableList.length && 
                         <Droppable droppableId={droppableId + "_" + listModel.rowCount}
                             direction={'horizontal'}
+                            isDropDisabled={isDropDisabled}
                         >
                             {
                                 (provided) => (

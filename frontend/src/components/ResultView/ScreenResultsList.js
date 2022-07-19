@@ -1,4 +1,6 @@
 import * as React from 'react' ;
+import { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 
 import {
     Box, 
@@ -13,9 +15,60 @@ import {
 import { useStyles } from './StyledDiv/ScreenResult.styles';
 
 const ScreenResultsList = (props) => {
+    const {
+        customizeColumnHeader,
+        customizeColumnData
+    } = props;
     const classes =  useStyles(props) ;
 
-    const mockData = [
+    // const [ mockList, setMockList ] = React.useState([
+    //     {
+    //         key : 'comp_rating',
+    //         field : 'Comp Rating'
+    //     },
+    //     {
+    //         key : 'eps_rating',
+    //         field : "EPS Rating"
+    //     },
+    //     {
+    //         key : 'rs_rating',
+    //         field : 'RS Rating'
+    //     },
+    //     {
+    //         key : 'ind_group_rs',
+    //         field : 'Ind Group RS'
+    //     },
+    //     {
+    //         key : 'smr_rating',
+    //         field : 'SMR Rating'
+    //     },
+    //     {
+    //         key : 'a_d_rating',
+    //         field : 'A/D Rating'
+    //     },
+    //     {
+    //         key : 'eps_lst_rptd',
+    //         field : 'EPS Lst Rptd'
+    //     },
+    //     {
+    //         key : 'eps_chg_lst',
+    //         field : 'EPS Chg Lst'
+    //     },
+    //     {
+    //         key : 'eps_chg_1q',
+    //         field : 'EPS Chg 1Q'
+    //     },
+    //     {
+    //         key : 'eps_chg_2q',
+    //         field : 'EPS Chg 2Q'
+    //     },
+    //     {
+    //         key: 'eps_chg_3q',
+    //         field : 'EPS Chg 3Q'
+    //     },
+    // ])
+
+    const mockTempData = [
         {
             symbol : 'ASNX',
             name : "Axonics Modulation Tech",
@@ -408,24 +461,31 @@ const ScreenResultsList = (props) => {
         },
     ]
 
-    const headList = [
-        "P",
-        "#",
-        "Symbol",
-        "Name",
-        "Type",
-        "Comp Rating",
-        "EPS Rating",
-        "RS Rating",
-        "Ind Group RS",
-        "SMR Rating",
-        "A/D Rating",
-        "EPS Lst Rptd",
-        "EPS % Chg Last",
-        "EPS % Chg 1Q",
-        "EPS % Chg 2Q",
-        "EPS % Chg 3Q"
-    ]
+    // const mockTempData = [
+
+    // ]
+
+    const [ mockList, setMockList ] = useState([
+            'Comp Rating', "EPS Rating", 'RS Rating','Ind Group RS', 'SMR Rating', 'A/D Rating', 'EPS Lst Rptd', 'EPS Chg Lst', 'EPS Chg 1Q', 'EPS Chg 2Q', 'EPS Chg 3Q'
+    ])
+    
+    const [mockData, setMockData] = useState(null);
+
+    useEffect(() => {
+        if(customizeColumnHeader) {
+            setMockList(customizeColumnHeader);
+            console.log(customizeColumnHeader);
+
+        }
+    }, [customizeColumnHeader])
+
+    useEffect(() => {
+        if(customizeColumnData) {
+            setMockData(customizeColumnData);
+            console.log(customizeColumnData);
+        }
+    }, [customizeColumnData])
+
     
     return (
         <Box className={classes.root}>
@@ -433,8 +493,13 @@ const ScreenResultsList = (props) => {
                 <Table >
                     <TableHead>
                         <TableRow>
+                            <TableCell>{"p"}</TableCell>
+                            <TableCell>{"#"}</TableCell>
+                            <TableCell>{"Symbol"}</TableCell>
+                            <TableCell>{"Name"}</TableCell>
+                            <TableCell>{"Type"}</TableCell>
                             {
-                                headList.map((field, index) => {
+                                mockList.map((field, index) => {
                                     return (
                                         <TableCell key={index}>{field}</TableCell>
                                     )
@@ -443,11 +508,16 @@ const ScreenResultsList = (props) => {
                         </TableRow>
                     </TableHead>
                     <TableBody >
-                            {
-                                mockData.map((row, index) => {
-                                    return <TableRow key={index}>
+                            {/* {
+                                mockTempData && Object.entries(mockData).map(([id, row]) => {
+                                    return <TableRow key={id}>
+                                        {
+                                            mockData.map((element, index) => {
+                                                <TableCell> {element.value} </TableCell>
+                                            })
+                                        }
                                         <TableCell sx={{minWidth : '70px'}}></TableCell>
-                                        <TableCell>{index+1}</TableCell>
+                                        <TableCell>{Number(id)+1}</TableCell>
                                         <TableCell>{row.symbol}</TableCell>
                                         <TableCell>{row.name}</TableCell>
                                         <TableCell>
@@ -467,7 +537,54 @@ const ScreenResultsList = (props) => {
                                         <TableCell>{row.eps_chg_q_2}</TableCell>
                                         <TableCell>{row.eps_chg_q_3}</TableCell>
                                     </TableRow>
-                                })
+                                }) 
+                            } */}
+                            {
+                            mockData ? 
+                                mockTempData.map((row, index) => {
+                                        return <TableRow key={index}>
+                                            <TableCell sx={{minWidth : '70px'}}></TableCell>
+                                            <TableCell>{index}</TableCell>
+                                            <TableCell>{row.symbol}</TableCell>
+                                            <TableCell>{row.name}</TableCell>
+                                            <TableCell>
+                                                <Box className={classes.typeDiv}>
+                                                    <Box>S</Box>
+                                                </Box>
+                                            </TableCell>
+                                            {
+                                                mockData && Object.entries(mockData).map(([id, element]) => {
+                                                    return (
+                                                        <TableCell key={id}> {element.value} </TableCell>
+                                                    )
+                                                })
+                                            }
+                                        </TableRow>
+                                    }) :
+                                mockTempData.map((row, index) => {
+                                    return <TableRow key={index}>
+                                            <TableCell sx={{minWidth : '70px'}}></TableCell>
+                                            <TableCell>{index}</TableCell>
+                                            <TableCell>{row.symbol}</TableCell>
+                                            <TableCell>{row.name}</TableCell>
+                                            <TableCell>
+                                                <Box className={classes.typeDiv}>
+                                                    <Box>S</Box>
+                                                </Box>
+                                            </TableCell>
+                                            <TableCell>{row.comp_rating}</TableCell>
+                                            <TableCell>{row.eps_rating}</TableCell>
+                                            <TableCell>{row.rs_rating}</TableCell>
+                                            <TableCell>{row.ind_group_rs}</TableCell>
+                                            <TableCell>{row.smr_rating}</TableCell>
+                                            <TableCell>{row.a_d_rating}</TableCell>
+                                            <TableCell>{row.eps_lst_rptd}</TableCell>
+                                            <TableCell>{row.eps_chg_last}</TableCell>
+                                            <TableCell>{row.eps_chg_q_1}</TableCell>
+                                            <TableCell>{row.eps_chg_q_2}</TableCell>
+                                            <TableCell>{row.eps_chg_q_3}</TableCell>
+                                        </TableRow> 
+                                }) 
                             }
                     </TableBody>
                 </Table>
@@ -476,4 +593,10 @@ const ScreenResultsList = (props) => {
     )
 }
 
-export default ScreenResultsList ;
+const mapStateToProps = state => ({
+    customizeColumnHeader : state.column.customizeColumnHeader,
+    customizeColumnData : state.column.customizeColumnData
+})
+const mapDispatchToProps = {
+}
+export default connect(mapStateToProps, mapDispatchToProps)(ScreenResultsList) ;

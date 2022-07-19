@@ -1,9 +1,10 @@
 import * as React from 'react' ;
-import { useEffect } from 'react';
+
 import { useMeasure } from 'react-use';
 import { useResultViewInfo } from '../../contexts/ResultViewContext' ;
 
 import { connect } from 'react-redux';
+import { CustomizeColumnHeader, CustomizeColumnData } from '../../redux/actions/column';
 
 import { accordionContent } from '../Common/StaticData';
 import AccordionPanel from '../Common/AccordionPanel';
@@ -1208,6 +1209,8 @@ const CustomizeColumnModal = (props) => {
     const {
         open,
         handleClose,
+        CustomizeColumnHeader,
+        CustomizeColumnData,
     } = props ;
 
     const {
@@ -1215,6 +1218,7 @@ const CustomizeColumnModal = (props) => {
     } = useResultViewInfo() ;
 
     const [scrollDiv , {width, height}] = useMeasure() ;
+    const [isDropDisabled, setDropDisabled] = React.useState(false) ;
 
     const [elements, setElements] = React.useState({
         'smartSelect' : mockDataSmartSelect,
@@ -1244,8 +1248,14 @@ const CustomizeColumnModal = (props) => {
     const extractDroppableId = (raw_droppable_id) => {
         return raw_droppable_id.split("_")[0] ;
     }
+
+    const onDragStart = (result) => {
+        if(extractDroppableId(result.source.droppableId) !== 'preview') {
+            setDropDisabled(true) ;
+        }
+    }
+    
     const onDragEnd = (result) => {
-        console.log(result) ;
 
         if (!result.destination) {
           return;
@@ -1273,11 +1283,23 @@ const CustomizeColumnModal = (props) => {
         setElements({
             ...listCopy
         });
+
+        setDropDisabled(false) ;
     };
 
     const handleSaveCSV = () => {
+        let tempHeader = [] ;
+        let tempData = {} ;
 
+        elements.preview.map((item, index) => {
+            console.log(item.field);
+            tempHeader.push(item.field);
+            tempData[index] = item;
+        })
+        CustomizeColumnHeader(tempHeader);
+        CustomizeColumnData(tempData);
     }
+    
     return (
         <Box className={classes.root}>
             <Dialog
@@ -1296,7 +1318,7 @@ const CustomizeColumnModal = (props) => {
                         Add a column by dragging it to the preview container below
                     </Box>
                     
-                    <DragDropContext onDragEnd={onDragEnd}>
+                    <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
                         <Box className={classes.accordionDiv}>
                             {
                                 accordionContent.map((element, index) => {
@@ -1308,6 +1330,7 @@ const CustomizeColumnModal = (props) => {
                                             idx={index}
                                             context={element.context}
                                             draggableList={elements[Object.keys(elements)[index]]}
+                                            isDropDisabled={isDropDisabled}
                                         />
                                     )
                                 })
@@ -1421,5 +1444,7 @@ CustomizeColumnModal.propTypes = {
 const mapStateToProps = state => ({
 })
 const mapDispatchToProps = {
+    CustomizeColumnHeader,
+    CustomizeColumnData
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CustomizeColumnModal) ;

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react' ;
 
 import { connect } from 'react-redux';
-import { GetTempData } from '../../redux/actions/temp';
 
 import { CSVLink } from 'react-csv';
 
@@ -443,12 +442,8 @@ const CSVPopOver = (props) => {
     const classes = useStyles() ;
 
     const {
-        open , anchorEl , handleCsvPopOver, GetTempData, tempData
+        open , anchorEl , handleCsvPopOver
     } = props ;
-
-    useEffect(() => {
-        GetTempData();
-    }, [])
 
     return (
         <>
@@ -490,10 +485,8 @@ const CSVPopOver = (props) => {
 }
 
 const mapStateToProps = state => ({
-    tempData : state.temp.tempData
 }) ;
 const mapDispatchToProps = {
-    GetTempData
 } ;
 
 export default connect(mapStateToProps, mapDispatchToProps)(CSVPopOver) ;
