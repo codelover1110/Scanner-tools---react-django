@@ -89,12 +89,12 @@ const ToolPopOver = (props) => {
                 }}
             >
                 <List>
-                    <ListItemButton>
+                    {/* <ListItemButton>
                         <Box>View Details</Box>
                     </ListItemButton>
                     <ListItemButton>
                         <Box>Point List</Box>
-                    </ListItemButton>
+                    </ListItemButton> */}
                     <ListItemButton>
                         <Box
                             sx={{width : "100%", display : 'flex', justifyContent : 'space-between !important', alignItems : 'center'}}
@@ -105,15 +105,15 @@ const ToolPopOver = (props) => {
                             <PlayArrowIcon />
                         </Box>
                     </ListItemButton>
-                    <ListItemButton>
+                    {/* <ListItemButton>
                         <Box>Importing Lists</Box>
-                    </ListItemButton>
+                    </ListItemButton> */}
                     <ListItemButton>
                         <Box onClick={handleOpenCustomizeColumn}>
                             Customize Column Layout
                         </Box>
                     </ListItemButton>
-                    <ListItemButton>
+                    {/* <ListItemButton>
                         <Box>Select Column Layout</Box>
                     </ListItemButton>
                     <ListItemButton>
@@ -121,7 +121,7 @@ const ToolPopOver = (props) => {
                     </ListItemButton>
                     <ListItemButton>
                         <Box>Column Width Preference</Box>
-                    </ListItemButton>
+                    </ListItemButton> */}
                 </List>
             </Popover>
 
