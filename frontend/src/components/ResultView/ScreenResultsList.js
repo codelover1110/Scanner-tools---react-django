@@ -494,51 +494,20 @@ const ScreenResultsList = (props) => {
                     <TableHead>
                         <TableRow>
                             <TableCell>{"p"}</TableCell>
-                            <TableCell>{"#"}</TableCell>
-                            <TableCell>{"Symbol"}</TableCell>
-                            <TableCell>{"Name"}</TableCell>
-                            <TableCell>{"Type"}</TableCell>
+                            <TableCell sx={{minWidth : '30px'}}>{"#"}</TableCell>
+                            <TableCell >{"Symbol"}</TableCell>
+                            <TableCell sx={{minWidth : '150px'}}>{"Name"}</TableCell>
+                            <TableCell sx={{minWidth : '50px'}}>{"Type"}</TableCell>
                             {
                                 mockList.map((field, index) => {
                                     return (
-                                        <TableCell key={index}>{field}</TableCell>
+                                        <TableCell key={index} sx={{minWidth : '100px'}}>{field}</TableCell>
                                     )
                                 })
                             }
                         </TableRow>
                     </TableHead>
                     <TableBody >
-                            {/* {
-                                mockTempData && Object.entries(mockData).map(([id, row]) => {
-                                    return <TableRow key={id}>
-                                        {
-                                            mockData.map((element, index) => {
-                                                <TableCell> {element.value} </TableCell>
-                                            })
-                                        }
-                                        <TableCell sx={{minWidth : '70px'}}></TableCell>
-                                        <TableCell>{Number(id)+1}</TableCell>
-                                        <TableCell>{row.symbol}</TableCell>
-                                        <TableCell>{row.name}</TableCell>
-                                        <TableCell>
-                                            <Box className={classes.typeDiv}>
-                                                <Box>S</Box>
-                                            </Box>
-                                        </TableCell>
-                                        <TableCell>{row.comp_rating}</TableCell>
-                                        <TableCell>{row.eps_rating}</TableCell>
-                                        <TableCell>{row.rs_rating}</TableCell>
-                                        <TableCell>{row.ind_group_rs}</TableCell>
-                                        <TableCell>{row.smr_rating}</TableCell>
-                                        <TableCell>{row.a_d_rating}</TableCell>
-                                        <TableCell>{row.eps_lst_rptd}</TableCell>
-                                        <TableCell>{row.eps_chg_last}</TableCell>
-                                        <TableCell>{row.eps_chg_q_1}</TableCell>
-                                        <TableCell>{row.eps_chg_q_2}</TableCell>
-                                        <TableCell>{row.eps_chg_q_3}</TableCell>
-                                    </TableRow>
-                                }) 
-                            } */}
                             {
                             mockData ? 
                                 mockTempData.map((row, index) => {
@@ -547,7 +516,7 @@ const ScreenResultsList = (props) => {
                                             <TableCell>{index}</TableCell>
                                             <TableCell>{row.symbol}</TableCell>
                                             <TableCell>{row.name}</TableCell>
-                                            <TableCell>
+                                            <TableCell sx={{minWidth : '50px', display : 'flex', justifyContent : 'center'}}>
                                                 <Box className={classes.typeDiv}>
                                                     <Box>S</Box>
                                                 </Box>

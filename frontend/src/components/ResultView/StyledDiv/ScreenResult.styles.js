@@ -17,7 +17,6 @@ export const useStyles = makeStyles(( theme ) => ({
                 cursor : 'pointer',
             },
             "& .MuiTableCell-root" : {
-                padding : "0px" ,
                 paddingTop : 3,
                 paddingBottom : 3,
                 textAlign : 'center',
@@ -34,7 +33,6 @@ export const useStyles = makeStyles(( theme ) => ({
                 cursor : 'pointer',
             },
             "& .MuiTableCell-root" : {
-                padding : "0px" ,
                 paddingTop : 3,
                 paddingBottom : 3,
                 textAlign : 'center',

@@ -25,7 +25,8 @@ import  {
     TableRow,
     Paper,
     Button,
-    TableHead
+    TableHead,
+    DialogActions
 } from '@mui/material' ;
 
 import { makeStyles } from '@mui/styles' ;
@@ -44,6 +45,9 @@ const useStyles = makeStyles((theme) => ({
             textAlign : 'center',
             borderBottom : '1px solid grey'
         },
+        "& .MuiDialogActions-root" : {
+            justifyContent : 'center'
+        }
     },
     accordionDiv : {
         height : '300px',
@@ -1424,7 +1428,7 @@ const CustomizeColumnModal = (props) => {
                                         </Box>
                                         <Box sx={{display : 'flex', justifyContent : 'flex-end !important', alignItems : 'center'}}>
                                             Current Layout:&nbsp; <Box component={"span"} sx={{color : '#4680bd', fontSize : '14px'}}>Un-Saved</Box>
-                                            <Button variant="outlined" onClick={handleSaveCSV} sx={{ml : 2}}>
+                                            <Button variant="outlined" sx={{ml : 2}}>
                                                 Save As
                                             </Button>
                                         </Box>
@@ -1435,6 +1439,14 @@ const CustomizeColumnModal = (props) => {
                     </DragDropContext>
                     
                 </DialogContent>
+                <DialogActions>
+                    <Button variant="outlined" sx={{ml : 2}}>
+                        Cancel
+                    </Button>
+                    <Button variant="outlined" onClick={handleSaveCSV} sx={{ml : 2}}>
+                        Apply
+                    </Button>
+                </DialogActions>
             </Dialog>
         </Box>
     )

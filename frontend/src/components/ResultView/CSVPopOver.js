@@ -12,6 +12,7 @@ import {
 } from '@mui/material' ;
 
 import { makeStyles } from '@mui/styles';
+
 // import NewStockModal from './NewStockModal';
 
 const useStyles = makeStyles((theme) => ({
@@ -44,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const csvData = [
+const csv = [
     {
         symbol : 'ASNX',
         name : "Axonics Modulation Tech",
@@ -437,13 +438,33 @@ const csvData = [
     },
 ]
 
+let csvData = [];
+
 const CSVPopOver = (props) => {
 
     const classes = useStyles() ;
 
     const {
-        open , anchorEl , handleCsvPopOver
+        open , anchorEl , handleCsvPopOver, 
+        customizeColumnHeader,
+        customizeColumnData
     } = props ;
+
+    useEffect(() => {
+        if(customizeColumnHeader) {
+            Object.keys(csv).forEach(key => {
+                    let temp = {};
+                    temp['symbol'] = csv[key].symbol;
+                    temp['name'] = csv[key].name;
+                    Object.entries(customizeColumnData).map((row, index) => {
+                    temp[row[1].field] = row[1].value;
+                })
+                csvData.push(
+                    temp
+                );
+            })
+        }
+    }, [customizeColumnHeader])
 
     return (
         <>
@@ -466,7 +487,7 @@ const CSVPopOver = (props) => {
             >
                 <List>
                     <ListItemButton>
-                        <CSVLink data={csvData}>Comma Demited(.csv)</CSVLink>
+                        <CSVLink data={csvData.length === 0 ? csv : csvData}>Comma Demited(.csv)</CSVLink>
                     </ListItemButton>
                     <ListItemButton>
                         <Box>Excel 97-2003(.xls)</Box>
@@ -485,6 +506,8 @@ const CSVPopOver = (props) => {
 }
 
 const mapStateToProps = state => ({
+    customizeColumnHeader : state.column.customizeColumnHeader,
+    customizeColumnData : state.column.customizeColumnData
 }) ;
 const mapDispatchToProps = {
 } ;
