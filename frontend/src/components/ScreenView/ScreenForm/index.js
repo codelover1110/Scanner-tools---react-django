@@ -34,7 +34,8 @@ const ScreenForm = (props) => {
 
     const {
         currentCategory,
-        stockList
+        stockList,
+        selectedScreenList,
     } = props ;
 
     const [screenValue, setScreenValue] = useState('MM-loose 50');
@@ -55,10 +56,10 @@ const ScreenForm = (props) => {
                 onChange={(e) => handleChange(e)}
             >
                 {
-                    stockList.map((element, index) => {
+                    stockList && stockList.map((element, index) => {
                         return(
                             <MenuItem key={index} value={element.text}>
-                                {element.text}
+                                {element.title}
                             </MenuItem>
                         )
                     })
@@ -75,7 +76,7 @@ const ScreenForm = (props) => {
 
             <Grid container>
                 <Grid item xs={12}>
-                    <ScreenOption />
+                    <ScreenOption selectedScreenList={selectedScreenList}/>
                 </Grid>
             </Grid>
         </Box>

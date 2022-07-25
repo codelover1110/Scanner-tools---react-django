@@ -1,19 +1,29 @@
 import * as React from 'react' ;
 
+import { connect } from "react-redux";
+import { InsertScreenOptionData } from '../../../redux/actions/screenOption';
+
 import {
-    Box, 
-    Checkbox, 
-    FormControlLabel, 
-    FormGroup,
-    TextField
+    Box,
 } from '@mui/material' ;
 
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 
 import { useStyles } from './StyledDiv/Favorite.styles';
 
-const Favorite = () => {
+const Favorite = (props) => {
     const classes = useStyles() ;
+
+    const {
+        InsertScreenOptionData,
+        formData,
+    } = props;
+    
+    React.useEffect(async () => {
+
+        await InsertScreenOptionData(formData);
+
+    }, [formData])
 
     return (
         <Box className={classes.root}>
@@ -30,4 +40,10 @@ const Favorite = () => {
     )
 }
 
-export default Favorite ;
+const mapStateToProps = state => ({
+})
+const mapDispatchToProps = {
+    InsertScreenOptionData
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (Favorite) ;

@@ -287,21 +287,28 @@ const CustomizeColumnModal = (props) => {
             value : 35
         },
         {
-            id : 'eps_trailing',
+            id : 'eps_trailing_q_4',
             content : 'EPS - Trailing 4 Qtrs',
-            field : 'EPS Trailing > EPS Lst 4Y Ago',
+            field : 'EPS Trailing 4Q',
+            prefix : 'earnings',
+            value : 112
+        },
+        {
+            id : 'eps_trailing_q_4_is_bigger',
+            content : 'EPS - Trailing 4 Qtrs > EPS, 4Years Ago',
+            field : 'EPS Trailing 4Q > EPS Lst 4Y Ago',
             prefix : 'earnings',
             value : 'YES'
         },
         {
-            id : 'eps_trailing_lst_y_is_bigger',
+            id : 'eps_trailing_q_4_lst_y_is_bigger',
             content : 'EPS Trailing >= Last Year',
-            field : 'EPS Trailing >= Last Y',
+            field : 'EPS Trailing 4Q >= Last Y',
             prefix : 'earnings',
             value : 'NO'
         },
         {
-            id : 'eps_chg_lst rpty_vs_1y_ago',
+            id : 'eps_chg_lst_rpty_vs_1y_ago',
             content : 'EPS % Change - Last Reported Year vs. 1 Years Ago',
             field : 'EPS % Chg Lst RptY vs 1Y Ago',
             prefix : 'earnings',
@@ -698,7 +705,7 @@ const CustomizeColumnModal = (props) => {
             value : 392
         },
         {
-            id : 'price_chg_s&p_500_lst26w',
+            id : 'price_chg_sp_500_lst26w',
             content : `Price % Change - vs. S&P 500(Last 26 Weeks)`,
             field : 'Price Chg S&P 500 LST26W',
             prefix : 'priceVolume',
@@ -754,14 +761,14 @@ const CustomizeColumnModal = (props) => {
             value : 188
         },
         {
-            id : '10_d_21_d_50_d',
+            id : 'd_10_d_21_d_50',
             content : `10 Day > 21 Day > 50 Day`,
             field : '10D 21D 50D',
             prefix : 'priceVolume',
             value : "YES"
         },
         {
-            id : '50_d_150_d_200_d',
+            id : 'd_50_d_150_d_200',
             content : `50 Day > 150 Day > 200 Day`,
             field : '50D 150D 200D',
             prefix : 'priceVolume',
@@ -1098,7 +1105,7 @@ const CustomizeColumnModal = (props) => {
             content : `Total Liabilities/Total Assets < Industry Median`,
             field : 'Total Lia/Total Ass',
             prefix : 'margins',
-            value : 482
+            value : "YES"
         },
     ] ;
 
@@ -1118,7 +1125,7 @@ const CustomizeColumnModal = (props) => {
             value : 'YES'
         },
         {
-            id : 'etf_closed-end_fund',
+            id : 'etf_closed_end_fund',
             content : `ETF/Closed-End Fund`,
             field : 'ETF/Closed-End Fund',
             prefix : 'generalStock',
@@ -1191,7 +1198,7 @@ const CustomizeColumnModal = (props) => {
             value : 'YES'
         },
         {
-            id : 'ibd_85-85',
+            id : 'ibd_85',
             content : `IBD 85-85`,
             field : 'IBD 85-85',
             prefix : 'ibd',

@@ -19,9 +19,16 @@ const ActionTypes = {
     FinishResultViewResize : "FinishResultViewResize",
     StoreBeginValues : "StoreBeginValues",
 
-    // Get TempData
     CustomizeColumnHeader : "CustomizeColumnHeader",
-    CustomizeColumnData : "CustomizeColumnData"
+    CustomizeColumnData : "CustomizeColumnData",
+
+    GetScreenListData : "GetScreenListData",
+    GetScreenOptionData : "GetScreenOptionData",
+    InsertScreenOptionData : "InsertScreenOptionData",
+    
+    SetChangeDataResult : "SetChangeDataResult",
+    GetScreenResultData : "GetScreenResultData",
+    GetStockCount : "GetStockCount"
 }
 
 export default ActionTypes ;

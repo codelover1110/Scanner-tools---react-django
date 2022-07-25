@@ -8,16 +8,20 @@ import {
     FormControlLabel, 
     FormGroup,
     TextField,
-    NativeSelect
+    RadioGroup,
 } from '@mui/material' ;
 
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 
 import { useStyles } from './StyledDiv/Industry.styles';
 
-const IndustryForm = () => {
+const IndustryForm = (props) => {
     const classes = useStyles() ;
 
+    const {
+        formData,
+        setFormData
+    } = props;
     const mockData1 = [
         "Aerospace/Defense",
         "Agricultural Operations",
@@ -51,12 +55,18 @@ const IndustryForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = {formData.company_ids_g_r_min}
+                        onChange={(e) => setFormData({...formData, company_ids_g_r_min : e.target.value})}
+                        
                     />
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = {formData.company_ids_g_r_max}
+                        onChange={(e) => setFormData({...formData, company_ids_g_r_max : e.target.value})}
+                        
                     />
                 </Box>
             </Box>
@@ -70,30 +80,31 @@ const IndustryForm = () => {
                     <b>CTRL</b> or <b>SHIFT</b> to multi-select
                 </Box>
                 <Box sx={{display : 'flex', justifyContent : 'flex-end'}}>
-                    <FormGroup row >
+                    <RadioGroup row defaultValue="no" >
                         <FormControlLabel
+                            value="include"
                             control={
                                 <Radio
-                                
                                 />
                             }
                             label={<span>{'Include'}</span>}
                         />
-                    </FormGroup>
-                    <FormGroup row >
                         <FormControlLabel
+                            value="no"
                             control={
                                 <Radio
-                                
                                 />
                             }
                             label={<span>{'Exclude'}</span>}
                         />
-                    </FormGroup>
+                    </RadioGroup>
                 </Box>
                 <Box >
                     <TwoSelectBox 
                         baseItems={mockData1}
+                        setFormData={setFormData}
+                        formData = {formData}
+                        parent_value = "industry_g_n"
                     />
                 </Box>
             </Box>
@@ -107,30 +118,31 @@ const IndustryForm = () => {
                     <b>CTRL</b> or <b>SHIFT</b> to multi-select
                 </Box>
                 <Box sx={{display : 'flex', justifyContent : 'flex-end'}}>
-                    <FormGroup row >
+                    <RadioGroup row defaultValue="include" >
                         <FormControlLabel
+                            value="include"
                             control={
                                 <Radio
-                                
                                 />
                             }
                             label={<span>{'Include'}</span>}
                         />
-                    </FormGroup>
-                    <FormGroup row >
                         <FormControlLabel
+                            value="exclude"
                             control={
                                 <Radio
-                                
                                 />
                             }
                             label={<span>{'Exclude'}</span>}
                         />
-                    </FormGroup>
+                    </RadioGroup>
                 </Box>
                 <Box >
                     <TwoSelectBox 
                         baseItems={mockData2}
+                        setFormData={setFormData}
+                        formData = {formData}
+                        parent_value = "broad_sectors"
                     />
                 </Box>
             </Box>

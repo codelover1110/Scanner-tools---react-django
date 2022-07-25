@@ -1,4 +1,6 @@
 import ActionTypes from "./actionTypes";
+import axios from 'axios' ;
+import * as config from '../../static/constants';
 
 export const SelectResultMenuItem = (selectedMenuItem) => async dispatch => {
     try {
@@ -102,6 +104,54 @@ export const ChangeBeginStartHeight = (initialHeight) => async dispatch => {
             type : ActionTypes.ChangeBeginStartHeight,
             payload : initialHeight
         });
+        
+        return true;
+    } catch(err) {
+        console.log(err);
+        return false;
+    }
+} 
+
+
+export const SetChangeDataResult = (changeData) => async dispatch => {
+    try {
+        await dispatch({
+            type : ActionTypes.SetChangeDataResult,
+            payload : changeData
+        });
+        
+        return true;
+    } catch(err) {
+        console.log(err);
+        return false;
+    }
+} 
+
+export const GetScreenResultData = () => async dispatch => {
+    try {
+        let res = await axios.get(`${config.PRIVATE_MARKETSMITH_APIS}screenresult/` , {}) ;
+
+        if(res.status === 200) {
+            await dispatch({
+                type : ActionTypes.GetScreenResultData,
+                payload : res.data
+            });
+        }
+        
+        return true;
+    } catch(err) {
+        console.log(err);
+        return false;
+    }
+} 
+
+export const GetStockCount = (data) => async dispatch => {
+    try {
+            console.log(data.length, "aa")
+            await dispatch({
+                type : ActionTypes.GetStockCount,
+                payload : data.length
+            });
         
         return true;
     } catch(err) {

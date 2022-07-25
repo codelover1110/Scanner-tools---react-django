@@ -56,7 +56,7 @@ const Category = (props) => {
 
     const {
         setSelectedItem,
-        selectedItem
+        selectedItem,
     } = props ;
 
     const itemList = [

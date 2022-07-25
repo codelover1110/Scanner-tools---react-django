@@ -1,7 +1,7 @@
 import React from "react";
 
 import { connect } from "react-redux";
-import PropTypes from 'prop-types' ;
+import { GetScreenListData } from "../../redux/actions/screen";
 
 import {
     Box,
@@ -17,8 +17,6 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import TreeItem from '@mui/lab/TreeItem';
 import NewPopOver from "./NewPopOver";
 
-import swal from "sweetalert";
-
 import { useStyles } from "./StyledDiv/ListView.styles";
 
 const ListView = (props) => {
@@ -27,7 +25,10 @@ const ListView = (props) => {
 
     const {
         handleSelectCategory,
-        stockList
+        selectedScreenList,
+        setSelectedScreenList,
+        stockList,
+        GetScreenListData,
     } = props ;
     
     const [ isOpenPop , setOpenNewPop ] = React.useState(false) ;
@@ -36,6 +37,15 @@ const ListView = (props) => {
 
     const handlePopOver = () => {
         setOpenNewPop(!isOpenPop) ;
+    }
+
+    const handleScreenListBrowse = async () => {
+        await GetScreenListData()
+    }
+
+    const handleSelectScreenList = (stock, index) => {
+        handleSelectCategory(stock.text);
+        setSelectedScreenList(index + 1)
     }
 
     return (
@@ -58,7 +68,9 @@ const ListView = (props) => {
                     >
                         New Screen
                     </Button>
-                    <Button variant="outlined" >
+                    <Button variant="outlined"
+                        onClick={handleScreenListBrowse}
+                    >
                         Browse Screens
                     </Button>
                 </Box>
@@ -71,11 +83,15 @@ const ListView = (props) => {
                     <TreeItem nodeId="1" label="My Screens">
                         <List>
                             {
-                                stockList.map((stock, index) => {
+                                stockList && stockList.map((stock, index) => {
                                     return (
-                                        <ListItem key={index} onClick={() => handleSelectCategory(stock.text)}>
+                                        <ListItem
+                                            key={index}
+                                            onClick={() => handleSelectScreenList(stock, index)}
+                                            className={selectedScreenList === index + 1 ? classes.selectScreen : ''}
+                                        >
                                             <Box className={classes.checkBox}/>
-                                            <ListItemText primary={stock.text}/>
+                                            <ListItemText primary={stock.title}/>
                                         </ListItem>
                                     )
                                 })
@@ -114,6 +130,6 @@ const mapStateToProps = state => ({
     stockList : state.screen.stockList
 })
 const mapDispatchToProps = {
-
+    GetScreenListData
 }
 export default connect(mapStateToProps, mapDispatchToProps)(ListView) ;

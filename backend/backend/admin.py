@@ -1,6 +1,7 @@
 
 from django.contrib import admin
-from backend.models.screenlist import Screenlist
+# from backend.models.screenlist import Screenlist
+# from backend.models.screenlist import Screenoption
 
 # Register your models here
 # admin.site.register(News)

@@ -1,20 +1,37 @@
 import * as React from 'react' ;
 
+import { connect } from "react-redux";
+import { InsertScreenOptionData } from '../../../redux/actions/screenOption';
+
 import {
     Box, 
     Checkbox, 
     FormControlLabel, 
     FormGroup,
-    TextField
+    TextField,
+    RadioGroup,
+    Radio,
 } from '@mui/material' ;
 
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 
 import { useStyles } from './StyledDiv/Sales.styles';
 
-const SalesForm = () => {
+const SalesForm = (props) => {
     const classes = useStyles() ;
 
+    const {
+        formData,
+        setFormData,
+        InsertScreenOptionData
+    } = props;
+
+    React.useEffect(async () => {
+
+        await InsertScreenOptionData(formData);
+
+    }, [formData])
+    
     return (
         <Box className={classes.root}>
             <Box className={classes.bannderDiv}>
@@ -31,12 +48,16 @@ const SalesForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = {formData.sales_chg_lst_rpt_q_min}
+                        onChange={(e) => setFormData({...formData, sales_chg_lst_rpt_q_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = {formData.sales_chg_lst_rpt_q_max}
+                        onChange={(e) => setFormData({...formData, sales_chg_lst_rpt_q_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -51,12 +72,16 @@ const SalesForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = {formData.avg_sales_chg_lst_2_q_min}
+                        onChange={(e) => setFormData({...formData, avg_sales_chg_lst_2_q_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = {formData.avg_sales_chg_lst_2_q_max}                        
+                        onChange={(e) => setFormData({...formData, avg_sales_chg_lst_2_q_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -71,12 +96,17 @@ const SalesForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = {formData.avg_sales_chg_lst_3_q_min}
+                        
+                        onChange={(e) => setFormData({...formData, avg_sales_chg_lst_3_q_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = {formData.avg_sales_chg_lst_3_q_max}
+                        onChange={(e) => setFormData({...formData, avg_sales_chg_lst_3_q_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -90,13 +120,17 @@ const SalesForm = () => {
                     <TextField
                         type={'number'}
                         placeholder={'Min'}
+                        value = {formData.avg_sales_chg_lst_4_q_min}
                         size={'small'}
+                        onChange={(e) => setFormData({...formData, avg_sales_chg_lst_4_q_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
+                        value = {formData.avg_sales_chg_lst_4_q_max}
                         size={'small'}
+                        onChange={(e) => setFormData({...formData, avg_sales_chg_lst_4_q_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -109,14 +143,17 @@ const SalesForm = () => {
                 <Box className={classes.rangeDiv}>
                     <TextField
                         type={'number'}
+                        value = {formData.avg_sales_chg_lst_5_q_min}
                         placeholder={'Min'}
-                        size={'small'}
+                        onChange={(e) => setFormData({...formData, avg_sales_chg_lst_5_q_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
+                        value = {formData.avg_sales_chg_lst_5_q_max}
                         size={'small'}
+                        onChange={(e) => setFormData({...formData, avg_sales_chg_lst_5_q_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -130,13 +167,17 @@ const SalesForm = () => {
                     <TextField
                         type={'number'}
                         placeholder={'Min'}
+                        value = {formData.avg_sales_chg_lst_6_q_min}
                         size={'small'}
+                        onChange={(e) => setFormData({...formData, avg_sales_chg_lst_6_q_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
+                        value = {formData.avg_sales_chg_lst_6_q_max}
                         size={'small'}
+                        onChange={(e) => setFormData({...formData, avg_sales_chg_lst_6_q_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -148,26 +189,26 @@ const SalesForm = () => {
                     <Box className={classes.underLineDiv}>Sales Acceleration - Last 3 Qtrs</Box>
                 </Box>
                 <Box sx={{display : 'flex', justifyContent : 'flex-end'}}>
-                    <FormGroup row >
+                    <RadioGroup row value = { formData.sales_acc_lst_2_q } >
                         <FormControlLabel
+                            value="yes"
                             control={
-                                <Checkbox
-                                
+                                <Radio
+                                    onChange={() => setFormData({...formData, sales_acc_lst_2_q : "yes"})}
                                 />
                             }
                             label={<span>{'Yes'}</span>}
                         />
-                    </FormGroup>
-                    <FormGroup row >
                         <FormControlLabel
+                            value="no"
                             control={
-                                <Checkbox
-                                
+                                <Radio
+                                    onChange={() => setFormData({...formData, sales_acc_lst_2_q : "no"})}
                                 />
                             }
                             label={<span>{'No'}</span>}
                         />
-                    </FormGroup>
+                    </RadioGroup>
                 </Box>
             </Box>
             <Box className={classes.listItemDiv}>
@@ -177,26 +218,26 @@ const SalesForm = () => {
                     <Box className={classes.underLineDiv}>Sales Acceleration - Last 3 Qtrs</Box>
                 </Box>
                 <Box sx={{display : 'flex', justifyContent : 'flex-end'}}>
-                    <FormGroup row >
+                    <RadioGroup row value={ formData.sales_acc_lst_3_q} >
                         <FormControlLabel
+                            value="yes"
                             control={
-                                <Checkbox
-                                
+                                <Radio
+                                    onChange={() => setFormData({...formData, sales_acc_lst_3_q : "yes"})}
                                 />
                             }
                             label={<span>{'Yes'}</span>}
                         />
-                    </FormGroup>
-                    <FormGroup row >
                         <FormControlLabel
+                            value="no"
                             control={
-                                <Checkbox
-                                
+                                <Radio
+                                    onChange={() => setFormData({...formData, sales_acc_lst_3_q : "no"})}
                                 />
                             }
                             label={<span>{'No'}</span>}
                         />
-                    </FormGroup>
+                    </RadioGroup>
                 </Box>
             </Box>
             <Box className={classes.bannderDiv}>
@@ -213,12 +254,16 @@ const SalesForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = {formData.sales_chg_lst_rpt_y_min}
+                        onChange={(e) => setFormData({...formData, sales_chg_lst_rpt_y_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = {formData.sales_chg_lst_rpt_y_max}
+                        onChange={(e) => setFormData({...formData, sales_chg_lst_rpt_y_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -233,12 +278,16 @@ const SalesForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = {formData.sales_growth_rate_lst_3_y_min}
+                        onChange={(e) => setFormData({...formData, sales_growth_rate_lst_3_y_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = {formData.sales_growth_rate_lst_3_y_max}
+                        onChange={(e) => setFormData({...formData, sales_growth_rate_lst_3_y_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -253,12 +302,16 @@ const SalesForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = {formData.sales_growth_rate_lst_5_y_min}
+                        onChange={(e) => setFormData({...formData, sales_growth_rate_lst_5_y_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = {formData.sales_growth_rate_lst_5_y_max}
+                        onChange={(e) => setFormData({...formData, sales_growth_rate_lst_5_y_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -273,12 +326,16 @@ const SalesForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = {formData.tot_ann_sales_lst_rpt_y_min}
+                        onChange={(e) => setFormData({...formData, tot_ann_sales_lst_rpt_y_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = {formData.tot_ann_sales_lst_rpt_y_max}
+                        onChange={(e) => setFormData({...formData, tot_ann_sales_lst_rpt_y_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -286,4 +343,10 @@ const SalesForm = () => {
     )
 }
 
-export default SalesForm ;
+const mapStateToProps = state => ({
+})
+const mapDispatchToProps = {
+    InsertScreenOptionData
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (SalesForm) ;

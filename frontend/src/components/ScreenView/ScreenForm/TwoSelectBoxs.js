@@ -18,13 +18,22 @@ export const TwoSelectBox = (props) => {
     const theme = useTheme() ;
 
     const {
+        formData,
+        setFormData,
+        parent_value,
+    } = props;
+
+    const {
         baseItems 
     } = props ;
 
+    // initial_data = formData[]
+
     const [selectedItems, setSelectedItems] = React.useState([]);
     const [exportedItems, setExportedItems] = React.useState([]) ;
-    const [tempItems, setTempItems] = React.useState([]) ;
-
+    const [tempItems, setTempItems] = React.useState( formData[parent_value] ) ;
+    
+    // 
     const handleChangeMultiple = (e, which) => {
         const { options } = e.target;
         const value  = [];
@@ -34,8 +43,8 @@ export const TwoSelectBox = (props) => {
                 value.push(options[i].value);
             }
         }
-        if(which === 'selected') setSelectedItems(value);
-        if(which === 'exported') setExportedItems(value) ;
+        if(which === 'selected') setSelectedItems(value) ;
+        if(which === 'exported') setExportedItems(value) ;        
     };
 
     const handleTempItems = (selectedItems) => {
@@ -45,7 +54,20 @@ export const TwoSelectBox = (props) => {
             value.push(selectedItems[i]);
         }
 
-        setTempItems([...value]) ;
+        setTempItems([...value]) ;        
+        
+        Object.keys( formData ).forEach( key => {
+            if ( key == parent_value ){
+                
+                formData[key] = value;
+                setFormData({
+                    ...formData                    
+                })
+                console.log( formData ,'sss')                
+            }
+        })
+        // setFormData( {...formData, parent_value: value } ) ;
+      
     }
     return (
         <>
@@ -77,7 +99,7 @@ export const TwoSelectBox = (props) => {
                         multiple
                         native
                         onChange={(e) => handleChangeMultiple(e, 'exported')}
-                        value={exportedItems}
+                        value={exportedItems}                        
                         inputProps={{
                             id: 'select-multiple-native',
                         }}

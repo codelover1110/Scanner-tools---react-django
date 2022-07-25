@@ -1,6 +1,8 @@
 import * as React from 'react' ;
 import { useState, useEffect } from 'react';
+
 import { connect } from 'react-redux';
+import { GetScreenResultData, GetStockCount } from '../../redux/actions/result';
 
 import {
     Box, 
@@ -17,9 +19,22 @@ import { useStyles } from './StyledDiv/ScreenResult.styles';
 const ScreenResultsList = (props) => {
     const {
         customizeColumnHeader,
-        customizeColumnData
+        customizeColumnData,
+        changeData,
+        screenResultData,
+        GetScreenResultData,
+        GetStockCount
     } = props;
     const classes =  useStyles(props) ;
+
+    const convertFieldList = {
+        "rs" : 'eps_rating',
+        "bband_gap" : 'rs_rating',
+        "will_r" : "comp_rating",
+        "er" : "erns_lst_rpt_date",
+        "c" : "eps_chg_lst_rpt_q",
+        "v" : "eps_chg_q_1"
+    }
 
     // const [ mockList, setMockList ] = React.useState([
     //     {
@@ -461,9 +476,6 @@ const ScreenResultsList = (props) => {
         },
     ]
 
-    // const mockTempData = [
-
-    // ]
 
     const [ mockList, setMockList ] = useState([
             'Comp Rating', "EPS Rating", 'RS Rating','Ind Group RS', 'SMR Rating', 'A/D Rating', 'EPS Lst Rptd', 'EPS Chg Lst', 'EPS Chg 1Q', 'EPS Chg 2Q', 'EPS Chg 3Q'
@@ -471,10 +483,57 @@ const ScreenResultsList = (props) => {
     
     const [mockData, setMockData] = useState(null);
 
+    const [filterList, setFilterList] = useState(null);
+
+    const filterCond = async (row) => {
+        if(!changeData) return true ;
+
+        let cond = true ;
+
+        for(let [id, item] of Object.entries(row)) {
+            let min = Number(changeData[convertFieldList[id] + "_min"]) ;
+            let max = Number(changeData[convertFieldList[id] + "_max"]) ;
+            let val = Number(item) ;
+
+            if(changeData[convertFieldList[id] + "_min"] && changeData[convertFieldList[id] + "_max"]) {
+                cond = ( val > min && val< max );
+
+                if(!cond) break ;
+            } else if(changeData[convertFieldList[id]+"_min"]) {
+
+                cond =  val > min ;
+
+                console.log(item, changeData[convertFieldList[id] + "_min"], cond) ;
+
+                if(!cond) break ;
+            } else if (changeData[convertFieldList[id]+"_max"]) {
+                cond =  val < max ;
+
+               if(!cond) break ;
+            } 
+        }
+        return cond ;
+    }
+
+    useEffect(async () => {
+        if(screenResultData){
+            let temp = [] ;
+
+            await Promise.all(
+                screenResultData.map(async row => {
+                    let cond = await filterCond(row) ;
+                    if(cond) {
+                        temp.push(row) ;
+                    }
+                })
+            )
+            setFilterList([...temp]) ;
+        }
+    }, [screenResultData , changeData])
+
     useEffect(() => {
         if(customizeColumnHeader) {
             setMockList(customizeColumnHeader);
-            console.log(customizeColumnHeader);
 
         }
     }, [customizeColumnHeader])
@@ -482,10 +541,19 @@ const ScreenResultsList = (props) => {
     useEffect(() => {
         if(customizeColumnData) {
             setMockData(customizeColumnData);
-            console.log(customizeColumnData);
         }
     }, [customizeColumnData])
 
+    useEffect(async () => {
+        await GetScreenResultData();
+    }, [])
+    
+    useEffect(async () => {
+        if(filterList){
+            console.log(filterList.length, "aa")
+            await GetStockCount(filterList);
+        }
+    }, [filterList])
     
     return (
         <Box className={classes.root}>
@@ -495,65 +563,51 @@ const ScreenResultsList = (props) => {
                         <TableRow>
                             <TableCell>{"p"}</TableCell>
                             <TableCell sx={{minWidth : '30px'}}>{"#"}</TableCell>
-                            <TableCell >{"Symbol"}</TableCell>
-                            <TableCell sx={{minWidth : '150px'}}>{"Name"}</TableCell>
-                            <TableCell sx={{minWidth : '50px'}}>{"Type"}</TableCell>
-                            {
+                            <TableCell >{"ticker_symbol"}</TableCell>
+                            <TableCell sx={{minWidth : '150px'}}>{"date_populated"}</TableCell>
+                            {/* {
+                                !changeData ?
                                 mockList.map((field, index) => {
                                     return (
                                         <TableCell key={index} sx={{minWidth : '100px'}}>{field}</TableCell>
                                     )
+                                }) :
+                                changeData && Object.entries(changeData).map((element, index) => {
+                                    return (
+                                        <TableCell key={index}> {element[0]} </TableCell>
+                                    )
                                 })
-                            }
+                            } */}
+                            <TableCell sx={{minWidth : '50px'}}>{"eps_rating"}</TableCell>
+                            <TableCell sx={{minWidth : '50px'}}>{"rs_rating"}</TableCell>
+                            <TableCell sx={{minWidth : '50px'}}>{"comp_rating"}</TableCell>
+                            <TableCell sx={{minWidth : '50px'}}>{"erns_lst_rpt_date"}</TableCell>
+                            <TableCell sx={{minWidth : '50px'}}>{"erns_dued"}</TableCell>
+                            <TableCell sx={{minWidth : '50px'}}>{"eps_chg_lst_rpt_q"}</TableCell>
+                            <TableCell sx={{minWidth : '50px'}}>{"eps_chg_q_1"}</TableCell>
+                            <TableCell sx={{minWidth : '50px'}}>{"erns_stability"}</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody >
                             {
-                            mockData ? 
-                                mockTempData.map((row, index) => {
+                                
+                            filterList &&
+                                filterList.map((row, index) => {
                                         return <TableRow key={index}>
                                             <TableCell sx={{minWidth : '70px'}}></TableCell>
                                             <TableCell>{index}</TableCell>
-                                            <TableCell>{row.symbol}</TableCell>
-                                            <TableCell>{row.name}</TableCell>
-                                            <TableCell sx={{minWidth : '50px', display : 'flex', justifyContent : 'center'}}>
-                                                <Box className={classes.typeDiv}>
-                                                    <Box>S</Box>
-                                                </Box>
-                                            </TableCell>
-                                            {
-                                                mockData && Object.entries(mockData).map(([id, element]) => {
-                                                    return (
-                                                        <TableCell key={id}> {element.value} </TableCell>
-                                                    )
-                                                })
-                                            }
+                                            <TableCell>{row.ticker_symbol}</TableCell>
+                                            <TableCell>{row.date_populated}</TableCell>
+                                            <TableCell>{row.rs}</TableCell>
+                                            <TableCell>{row.bband_gap}</TableCell>
+                                            <TableCell>{row.will_r}</TableCell>
+                                            <TableCell>{row.er}</TableCell>
+                                            <TableCell>{row.grade}</TableCell>
+                                            <TableCell>{row.events}</TableCell>
+                                            <TableCell>{row.c}</TableCell>
+                                            <TableCell>{row.v}</TableCell>
                                         </TableRow>
-                                    }) :
-                                mockTempData.map((row, index) => {
-                                    return <TableRow key={index}>
-                                            <TableCell sx={{minWidth : '70px'}}></TableCell>
-                                            <TableCell>{index}</TableCell>
-                                            <TableCell>{row.symbol}</TableCell>
-                                            <TableCell>{row.name}</TableCell>
-                                            <TableCell>
-                                                <Box className={classes.typeDiv}>
-                                                    <Box>S</Box>
-                                                </Box>
-                                            </TableCell>
-                                            <TableCell>{row.comp_rating}</TableCell>
-                                            <TableCell>{row.eps_rating}</TableCell>
-                                            <TableCell>{row.rs_rating}</TableCell>
-                                            <TableCell>{row.ind_group_rs}</TableCell>
-                                            <TableCell>{row.smr_rating}</TableCell>
-                                            <TableCell>{row.a_d_rating}</TableCell>
-                                            <TableCell>{row.eps_lst_rptd}</TableCell>
-                                            <TableCell>{row.eps_chg_last}</TableCell>
-                                            <TableCell>{row.eps_chg_q_1}</TableCell>
-                                            <TableCell>{row.eps_chg_q_2}</TableCell>
-                                            <TableCell>{row.eps_chg_q_3}</TableCell>
-                                        </TableRow> 
-                                }) 
+                                    }) 
                             }
                     </TableBody>
                 </Table>
@@ -564,8 +618,12 @@ const ScreenResultsList = (props) => {
 
 const mapStateToProps = state => ({
     customizeColumnHeader : state.column.customizeColumnHeader,
-    customizeColumnData : state.column.customizeColumnData
+    customizeColumnData : state.column.customizeColumnData,
+    changeData : state.result.changeData,
+    screenResultData : state.result.screenResultData
 })
 const mapDispatchToProps = {
+    GetScreenResultData,
+    GetStockCount,
 }
 export default connect(mapStateToProps, mapDispatchToProps)(ScreenResultsList) ;

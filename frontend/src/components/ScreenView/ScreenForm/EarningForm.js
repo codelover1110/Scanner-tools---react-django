@@ -1,27 +1,28 @@
 import * as React from 'react' ;
 
+import { connect } from "react-redux";
+
 import {
     Box, 
     Checkbox, 
     FormControlLabel, 
     FormGroup,
-    TextField
+    TextField,
+    RadioGroup,
+    Radio
 } from '@mui/material' ;
 
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 
 import { useStyles } from './StyledDiv/Earning.styles';
 
-const EarningForm = () => {
+const EarningForm = (props) => {
     const classes = useStyles() ;
 
-    const charItems = [
-        "A",
-        "B",
-        "C",
-        "D",
-        "E"
-    ]
+    const {
+        formData,
+        setFormData,
+    } = props;
 
     return (
         <Box className={classes.root}>
@@ -36,7 +37,9 @@ const EarningForm = () => {
                         <TextField
                             type={'date'}
                             size={'small'}
-                            defaultValue={new Date().toLocaleDateString()}
+                            value = { formData.erns_lst_rpt_date_min }
+                            defaultValue={ new Date().toISOString().substring(0, 10) }
+                            onChange={(e) => setFormData({...formData, erns_lst_rpt_date_min : e.target.value})}
                         />
                         <Box sx={{fontSize : '13px', textAlign : 'right'}}>Date</Box>
                     </Box>
@@ -45,7 +48,9 @@ const EarningForm = () => {
                         <TextField
                             type={'date'}
                             size={'small'}
-                            defaultValue={new Date().toLocaleDateString()}
+                            value = { formData.erns_lst_rpt_date_max}
+                            defaultValue={ new Date().toISOString().substring(0, 10)}
+                            onChange={(e) => setFormData({...formData, erns_lst_rpt_date_max : e.target.value})}
                         />
                         <Box sx={{fontSize : '13px', textAlign : 'right'}}>Date</Box>
                     </Box>
@@ -67,7 +72,9 @@ const EarningForm = () => {
                         <TextField
                             type={'date'}
                             size={'small'}
-                            defaultValue={new Date().toLocaleDateString()}
+                            defaultValue={new Date().toISOString().substring(0, 10)}
+                            value = { formData.erns_dued_min}
+                            onChange={(e) => setFormData({...formData, erns_dued_min : e.target.value})}
                         />
                         <Box sx={{fontSize : '13px', textAlign : 'right'}}>Date</Box>
                     </Box>
@@ -76,7 +83,9 @@ const EarningForm = () => {
                         <TextField
                             type={'date'}
                             size={'small'}
-                            defaultValue={new Date().toLocaleDateString()}
+                            defaultValue={new Date().toISOString().substring(0, 10) }
+                            value = { formData.erns_dued_max}
+                            onChange={(e) => setFormData({...formData, erns_dued_max : e.target.value})}
                         />
                         <Box sx={{fontSize : '13px', textAlign : 'right'}}>Date</Box>
                     </Box>
@@ -108,12 +117,16 @@ const EarningForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = { formData.eps_chg_lst_rpt_q_min}
+                        onChange={(e) => setFormData({...formData, eps_chg_lst_rpt_q_min : e.target.value})}
                     />%
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
+                        value = { formData.eps_chg_lst_rpt_q_max}
                         size={'small'}
+                        onChange={(e) => setFormData({...formData, eps_chg_lst_rpt_q_max : e.target.value})}
                     />%
                 </Box>
             </Box>
@@ -139,13 +152,17 @@ const EarningForm = () => {
                     <TextField
                         type={'number'}
                         placeholder={'Min'}
+                        value = { formData.eps_chg_q_1_min}
                         size={'small'}
+                        onChange={(e) => setFormData({...formData, eps_chg_q_1_min : e.target.value})}
                     />%
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
+                        value = { formData.eps_chg_q_1_max}
                         size={'small'}
+                        onChange={(e) => setFormData({...formData, eps_chg_q_1_max : e.target.value})}
                     />%
                 </Box>
             </Box>
@@ -156,26 +173,26 @@ const EarningForm = () => {
                     <Box className={classes.underLineDiv}>Earnings Acceleration - Last 3 Qtrs</Box>
                 </Box>
                 <Box sx={{display : 'flex', justifyContent : 'flex-end'}}>
-                    <FormGroup row >
+                    <RadioGroup row value={ formData.erns_acce_lst_q_3} >
                         <FormControlLabel
+                            value="yes"
                             control={
-                                <Checkbox
-                                
+                                <Radio
+                                    onChange={() => setFormData({...formData, erns_acce_lst_q_3 : "yes"})}
                                 />
                             }
                             label={<span>{'Yes'}</span>}
                         />
-                    </FormGroup>
-                    <FormGroup row >
                         <FormControlLabel
+                            value="no"
                             control={
-                                <Checkbox
-                                
+                                <Radio
+                                    onChange={() => setFormData({...formData, erns_acce_lst_q_3 : "no"})}
                                 />
                             }
                             label={<span>{'No'}</span>}
                         />
-                    </FormGroup>
+                    </RadioGroup>
                 </Box>
             </Box>
             <Box className={classes.listItemDiv}>
@@ -188,13 +205,17 @@ const EarningForm = () => {
                     <TextField
                         type={'number'}
                         placeholder={'Min'}
+                        value = { formData.erns_stability_min}
                         size={'small'}
+                        onChange={(e) => setFormData({...formData, erns_stability_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
+                        value = { formData.erns_stability_max}
                         size={'small'}
+                        onChange={(e) => setFormData({...formData, erns_stability_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -210,7 +231,6 @@ const EarningForm = () => {
                         <FormControlLabel
                             control={
                                 <Checkbox
-                                
                                 />
                             }
                             label={<span>{'Include stocks with negative comparison quarter'}</span>}
@@ -221,13 +241,17 @@ const EarningForm = () => {
                     <TextField
                         type={'number'}
                         placeholder={'Min'}
+                        value = { formData.eps_chg_q_2_min}
                         size={'small'}
+                        onChange={(e) => setFormData({...formData, eps_chg_q_2_min : e.target.value})}
                     />%
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = { formData.eps_chg_q_2_max}
+                        onChange={(e) => setFormData({...formData, eps_chg_q_2_max : e.target.value})}
                     />%
                 </Box>
             </Box>
@@ -255,12 +279,16 @@ const EarningForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = { formData.eps_chg_q_3_min}
+                        onChange={(e) => setFormData({...formData, eps_chg_q_3_min : e.target.value})}
                     />%
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = { formData.eps_chg_q_3_max}
+                        onChange={(e) => setFormData({...formData, eps_chg_q_3_max : e.target.value})}
                     />%
                 </Box>
             </Box>
@@ -272,26 +300,26 @@ const EarningForm = () => {
                     <Box className={classes.underLineDiv}>EPS % Change - Last Reported Quarter {'>'} Last 3 Quarters</Box>
                 </Box>
                 <Box sx={{display : 'flex', justifyContent : 'flex-end'}}>
-                    <FormGroup row >
+                    <RadioGroup row value={ formData.eps_chg_lst_rpt_q_eps_chg_lst_q_3_is_bigger} >
                         <FormControlLabel
+                            value="yes"
                             control={
-                                <Checkbox
-                                
+                                <Radio
+                                    onChange={(e) => setFormData({...formData, eps_chg_lst_rpt_q_eps_chg_lst_q_3_is_bigger : "yes"})}
                                 />
                             }
                             label={<span>{'Yes'}</span>}
                         />
-                    </FormGroup>
-                    <FormGroup row >
                         <FormControlLabel
+                            value="no"
                             control={
-                                <Checkbox
-                                
+                                <Radio
+                                    onChange={(e) => setFormData({...formData, eps_chg_lst_rpt_q_eps_chg_lst_q_3_is_bigger : "no"})}
                                 />
                             }
                             label={<span>{'No'}</span>}
                         />
-                    </FormGroup>
+                    </RadioGroup>
                 </Box>
             </Box>
             <Box className={classes.listItemDiv}>
@@ -305,12 +333,16 @@ const EarningForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = { formData.avg_eps_chg_lst_q_2_min}
+                        onChange={(e) => setFormData({...formData, avg_eps_chg_lst_q_2_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = { formData.avg_eps_chg_lst_q_2_max}
+                        onChange={(e) => setFormData({...formData, avg_eps_chg_lst_q_2_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -325,12 +357,16 @@ const EarningForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = { formData.avg_eps_chg_lst_q_3_min}
+                        onChange={(e) => setFormData({...formData, avg_eps_chg_lst_q_3_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = { formData.avg_eps_chg_lst_q_3_max}
+                        onChange={(e) => setFormData({...formData, avg_eps_chg_lst_q_3_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -345,12 +381,16 @@ const EarningForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = { formData.avg_eps_chg_lst_q_4_min}
+                        onChange={(e) => setFormData({...formData, avg_eps_chg_lst_q_4_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = { formData.avg_eps_chg_lst_q_4_max}
+                        onChange={(e) => setFormData({...formData, avg_eps_chg_lst_q_4_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -365,12 +405,16 @@ const EarningForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = { formData.avg_eps_chg_lst_q_5_min}
+                        onChange={(e) => setFormData({...formData, avg_eps_chg_lst_q_5_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = { formData.avg_eps_chg_lst_q_5_max}
+                        onChange={(e) => setFormData({...formData, avg_eps_chg_lst_q_5_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -385,12 +429,16 @@ const EarningForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = { formData.avg_eps_chg_lst_q_6_min}
+                        onChange={(e) => setFormData({...formData, avg_eps_chg_lst_q_6_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = { formData.avg_eps_chg_lst_q_6_max}
+                        onChange={(e) => setFormData({...formData, avg_eps_chg_lst_q_6_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -405,12 +453,16 @@ const EarningForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = { formData.eps_trailing_q_4_min}
+                        onChange={(e) => setFormData({...formData, eps_trailing_q_4_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = { formData.eps_trailing_q_4_max}
+                        onChange={(e) => setFormData({...formData, eps_trailing_q_4_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -423,26 +475,26 @@ const EarningForm = () => {
                     <Box className={classes.underLineDiv}>EPS - Trailing 4 Qtrs {`>`} EPS, 4 Years Ago</Box>
                 </Box>
                 <Box sx={{display : 'flex', justifyContent : 'flex-end'}}>
-                    <FormGroup row >
+                    <RadioGroup row value={ formData.eps_trailing_q_4_is_bigger} >
                         <FormControlLabel
+                            value="yes"
                             control={
-                                <Checkbox
-                                
+                                <Radio
+                                    onChange={() => setFormData({...formData, eps_trailing_q_4_is_bigger : "yes"})}
                                 />
                             }
                             label={<span>{'Yes'}</span>}
                         />
-                    </FormGroup>
-                    <FormGroup row >
                         <FormControlLabel
+                            value="no"
                             control={
-                                <Checkbox
-                                
+                                <Radio
+                                    onChange={() => setFormData({...formData, eps_trailing_q_4_is_bigger : "no"})}
                                 />
                             }
                             label={<span>{'No'}</span>}
                         />
-                    </FormGroup>
+                    </RadioGroup>
                 </Box>
             </Box>
             <Box className={classes.listItemDiv}>
@@ -452,26 +504,26 @@ const EarningForm = () => {
                     <Box className={classes.underLineDiv}>EPS - Trailing 4 Qtrs {`>=`} Last Year</Box>
                 </Box>
                 <Box sx={{display : 'flex', justifyContent : 'flex-end'}}>
-                    <FormGroup row >
+                    <RadioGroup row  value={ formData.eps_trailing_q_4_lst_y_is_bigger}>
                         <FormControlLabel
+                            value="yes"
                             control={
-                                <Checkbox
-                                
+                                <Radio
+                                    onChange={() => setFormData({...formData, eps_trailing_q_4_lst_y_is_bigger : "yes"})}
                                 />
                             }
                             label={<span>{'Yes'}</span>}
                         />
-                    </FormGroup>
-                    <FormGroup row >
                         <FormControlLabel
+                            value="no"
                             control={
-                                <Checkbox
-                                
+                                <Radio
+                                    onChange={() => setFormData({...formData, eps_trailing_q_4_lst_y_is_bigger : "no"})}
                                 />
                             }
                             label={<span>{'No'}</span>}
                         />
-                    </FormGroup>
+                    </RadioGroup>
                 </Box>
             </Box>
 
@@ -490,12 +542,16 @@ const EarningForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = { formData.eps_chg_lst_rpty_vs_1y_ago_min}
+                        onChange={(e) => setFormData({...formData, eps_chg_lst_rpty_vs_1y_ago_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = { formData.eps_chg_lst_rpty_vs_1y_ago_max}
+                        onChange={(e) => setFormData({...formData, eps_chg_lst_rpty_vs_1y_ago_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -511,12 +567,16 @@ const EarningForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = { formData.eps_chg_lst_rpty_vs_2y_ago_min}
+                        onChange={(e) => setFormData({...formData, eps_chg_lst_rpty_vs_2y_ago_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = { formData.eps_chg_lst_rpty_vs_2y_ago_max}
+                        onChange={(e) => setFormData({...formData, eps_chg_lst_rpty_vs_2y_ago_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -532,12 +592,16 @@ const EarningForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = { formData.eps_chg_lst_y_min}
+                        onChange={(e) => setFormData({...formData, eps_chg_lst_y_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = { formData.eps_chg_lst_y_max}
+                        onChange={(e) => setFormData({...formData, eps_chg_lst_y_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -554,12 +618,16 @@ const EarningForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = { formData.eps_grow_rate_lst_3y_min}
+                        onChange={(e) => setFormData({...formData, eps_grow_rate_lst_3y_min : e.target.value})}
                     />%
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = { formData.eps_grow_rate_lst_3y_max}
+                        onChange={(e) => setFormData({...formData, eps_grow_rate_lst_3y_max : e.target.value})}
                     />%
                 </Box>
             </Box>
@@ -575,12 +643,16 @@ const EarningForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = { formData.eps_grow_rate_lst_5y_min}
+                        onChange={(e) => setFormData({...formData, eps_grow_rate_lst_5y_min : e.target.value})}
                     />%
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = { formData.eps_grow_rate_lst_5y_max}
+                        onChange={(e) => setFormData({...formData, eps_grow_rate_lst_5y_max : e.target.value})}
                     />%
                 </Box>
             </Box>
@@ -593,26 +665,26 @@ const EarningForm = () => {
                     <Box className={classes.underLineDiv}>EPS % Growth Rate - Last 3 Years {`>=`} 5 Years</Box>
                 </Box>
                 <Box sx={{display : 'flex', justifyContent : 'flex-end'}}>
-                    <FormGroup row >
+                    <RadioGroup row value={ formData.eps_grow_rate_lst_3y_5y_is_bigger}>
                         <FormControlLabel
+                            value="yes"
                             control={
-                                <Checkbox
-                                
+                                <Radio
+                                    onChange={() => setFormData({...formData, eps_grow_rate_lst_3y_5y_is_bigger : "yes"})}
                                 />
                             }
                             label={<span>{'Yes'}</span>}
                         />
-                    </FormGroup>
-                    <FormGroup row >
                         <FormControlLabel
+                            value="no"
                             control={
-                                <Checkbox
-                                
+                                <Radio
+                                    onChange={() => setFormData({...formData, eps_grow_rate_lst_3y_5y_is_bigger : "no"})}
                                 />
                             }
                             label={<span>{'No'}</span>}
                         />
-                    </FormGroup>
+                    </RadioGroup>
                 </Box>
             </Box>
             <Box className={classes.listItemDiv}>
@@ -626,12 +698,16 @@ const EarningForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = { formData.eps_grow_rate_lst_5y_percent_rnk_min}
+                        onChange={(e) => setFormData({...formData, eps_grow_rate_lst_5y_percent_rnk_min : e.target.value})}
                     />%
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = { formData.eps_grow_rate_lst_5y_percent_rnk_max}
+                        onChange={(e) => setFormData({...formData, eps_grow_rate_lst_5y_percent_rnk_max : e.target.value})}
                     />%
                 </Box>
             </Box>
@@ -646,12 +722,16 @@ const EarningForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = { formData.eps_grow_rate_projected_sus_growth_min}
+                        onChange={(e) => setFormData({...formData, eps_grow_rate_projected_sus_growth_min : e.target.value})}
                     />%
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = { formData.eps_grow_rate_projected_sus_growth_max}
+                        onChange={(e) => setFormData({...formData, eps_grow_rate_projected_sus_growth_max : e.target.value})}
                     />%
                 </Box>
             </Box>
@@ -666,12 +746,16 @@ const EarningForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = { formData.eps_lst_rpty_min}
+                        onChange={(e) => setFormData({...formData, eps_lst_rpty_min : e.target.value})}
                     />%
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = { formData.eps_lst_rpty_max}
+                        onChange={(e) => setFormData({...formData, eps_lst_rpty_max : e.target.value})}
                     />%
                 </Box>
             </Box>
@@ -687,12 +771,16 @@ const EarningForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = { formData.eps_1y_ago_min}
+                        onChange={(e) => setFormData({...formData, eps_1y_ago_min : e.target.value})}
                     />%
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = { formData.eps_1y_ago_max}
+                        onChange={(e) => setFormData({...formData, eps_1y_ago_max : e.target.value})}
                     />%
                 </Box>
             </Box>
@@ -707,12 +795,16 @@ const EarningForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = { formData.eps_2y_ago_min}
+                        onChange={(e) => setFormData({...formData, eps_2y_ago_min : e.target.value})}
                     />%
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = { formData.eps_2y_ago_max}
+                        onChange={(e) => setFormData({...formData, eps_2y_ago_max : e.target.value})}
                     />%
                 </Box>
             </Box>
@@ -727,12 +819,16 @@ const EarningForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = { formData.eps_3y_ago_min}
+                        onChange={(e) => setFormData({...formData, eps_3y_ago_min : e.target.value})}
                     />%
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = { formData.eps_3y_ago_max}
+                        onChange={(e) => setFormData({...formData, eps_3y_ago_max : e.target.value})}
                     />%
                 </Box>
             </Box>
@@ -747,12 +843,16 @@ const EarningForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = { formData.eps_4y_ago_min}
+                        onChange={(e) => setFormData({...formData, eps_4y_ago_min : e.target.value})}
                     />%
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = { formData.eps_4y_ago_max}
+                        onChange={(e) => setFormData({...formData, eps_4y_ago_max : e.target.value})}
                     />%
                 </Box>
             </Box>
@@ -767,12 +867,16 @@ const EarningForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = { formData.eps_5y_ago_min}
+                        onChange={(e) => setFormData({...formData, eps_5y_ago_min : e.target.value})}
                     />%
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = { formData.eps_5y_ago_max}
+                        onChange={(e) => setFormData({...formData, eps_5y_ago_max : e.target.value})}
                     />%
                 </Box>
             </Box>
@@ -787,12 +891,16 @@ const EarningForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = { formData.eps_6y_ago_min}
+                        onChange={(e) => setFormData({...formData, eps_6y_ago_min : e.target.value})}
                     />%
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = { formData.eps_6y_ago_max}
+                        onChange={(e) => setFormData({...formData, eps_6y_ago_max : e.target.value})}
                     />%
                 </Box>
             </Box>
@@ -803,26 +911,26 @@ const EarningForm = () => {
                     <Box className={classes.underLineDiv}>EPS - Last Reported Year {`>`} 4 Years Ago</Box>
                 </Box>
                 <Box sx={{display : 'flex', justifyContent : 'flex-end'}}>
-                    <FormGroup row >
+                    <RadioGroup row value={ formData.eps_lst_rpty_4y_is_bigger}>
                         <FormControlLabel
+                            value="yes"
                             control={
-                                <Checkbox
-                                
+                                <Radio
+                                    onChange={() => setFormData({...formData, eps_lst_rpty_4y_is_bigger : "yes"})}
                                 />
                             }
                             label={<span>{'Yes'}</span>}
                         />
-                    </FormGroup>
-                    <FormGroup row >
                         <FormControlLabel
+                            value="no"
                             control={
-                                <Checkbox
-                                
+                                <Radio
+                                    onChange={() => setFormData({...formData, eps_lst_rpty_4y_is_bigger : "no"})}
                                 />
                             }
                             label={<span>{'No'}</span>}
                         />
-                    </FormGroup>
+                    </RadioGroup>
                 </Box>
             </Box>
 
@@ -841,12 +949,16 @@ const EarningForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = { formData.eps_est_erns_surp_min}
+                        onChange={(e) => setFormData({...formData, eps_est_erns_surp_min : e.target.value})}
                     />%
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = { formData.eps_est_erns_surp_max}
+                        onChange={(e) => setFormData({...formData, eps_est_erns_surp_max : e.target.value})}
                     />%
                 </Box>
             </Box>
@@ -861,12 +973,16 @@ const EarningForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = { formData.eps_est_chg_next_q_min}
+                        onChange={(e) => setFormData({...formData, eps_est_chg_next_q_min : e.target.value})}
                     />%
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = { formData.eps_est_chg_next_q_max}
+                        onChange={(e) => setFormData({...formData, eps_est_chg_next_q_max : e.target.value})}
                     />%
                 </Box>
             </Box>
@@ -881,12 +997,16 @@ const EarningForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = { formData.eps_est_chg_cur_y_min}
+                        onChange={(e) => setFormData({...formData, eps_est_chg_cur_y_min : e.target.value})}
                     />%
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
+                        value = { formData.eps_est_chg_cur_y_max}
                         size={'small'}
+                        onChange={(e) => setFormData({...formData, eps_est_chg_cur_y_max : e.target.value})}
                     />%
                 </Box>
             </Box>
@@ -901,12 +1021,16 @@ const EarningForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = { formData.eps_est_chg_1y_forward_vs_min}
+                        onChange={(e) => setFormData({...formData, eps_est_chg_1y_forward_vs_min : e.target.value})}
                     />%
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = { formData.eps_est_chg_1y_forward_vs_max}
+                        onChange={(e) => setFormData({...formData, eps_est_chg_1y_forward_vs_max : e.target.value})}
                     />%
                 </Box>
             </Box>
@@ -914,4 +1038,9 @@ const EarningForm = () => {
     )
 }
 
-export default EarningForm ;
+const mapStateToProps = state => ({
+})
+const mapDispatchToProps = {
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (EarningForm) ;

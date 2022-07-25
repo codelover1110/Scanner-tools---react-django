@@ -1,20 +1,40 @@
 import * as React from 'react' ;
 
+import { connect } from "react-redux";
+
+// import { InsertScreenOptionData } from '../../../redux/actions/screenOption';
+
 import {
     Box, 
     Checkbox, 
     FormControlLabel, 
     FormGroup,
-    TextField
+    TextField,
+    RadioGroup,
+    Radio
 } from '@mui/material' ;
 
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 
 import { useStyles } from './StyledDiv/Sharing.styles';
 
-const SharingForm = () => {
+const SharingForm = (props) => {
     const classes = useStyles() ;
+    
+    const {
+        formData,
+        setFormData,
+        // InsertScreenOptionData
+    } = props;
 
+    React.useEffect(async () => {
+
+        // await InsertScreenOptionData(formData);
+
+        console.log(formData.sponsorship_rating) ;
+
+    }, [formData])
+    
     const charItems = [
         "A",
         "B",
@@ -36,12 +56,16 @@ const SharingForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = {formData.shares_outstanding_min}
+                        onChange={(e) => setFormData({...formData, shares_outstanding_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = {formData.shares_outstanding_max}
+                        onChange={(e) => setFormData({...formData, shares_outstanding_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -56,12 +80,16 @@ const SharingForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = {formData.shares_in_float_min}
+                        onChange={(e) => setFormData({...formData, shares_in_float_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = {formData.shares_in_float_max}
+                        onChange={(e) => setFormData({...formData, shares_in_float_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -76,12 +104,16 @@ const SharingForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = {formData.market_capitialization_min}
+                        onChange={(e) => setFormData({...formData, market_capitialization_min : e.target.value})}
                     />
                     <Box >to</Box>
                     $<TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = {formData.market_capitialization_max}
+                        onChange={(e) => setFormData({...formData, market_capitialization_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -96,12 +128,16 @@ const SharingForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = {formData.enterprise_value_min}
+                        onChange={(e) => setFormData({...formData, enterprise_value_min : e.target.value})}
                     />
                     <Box >to</Box>
                     $<TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = {formData.enterprise_value_max}
+                        onChange={(e) => setFormData({...formData, enterprise_value_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -119,7 +155,25 @@ const SharingForm = () => {
                                     <FormControlLabel
                                         control={
                                             <Checkbox
-                                            
+                                                onChange={(e, id) => 
+                                                    {
+                                                        console.log(e.target.value) ;
+                                                        if(e.target.checked) {
+                                                            setFormData({
+                                                                ...formData,
+                                                                sponsorship_rating : formData.sponsorship_rating+','+char
+                                                            })
+                                                        } else {
+                                                            setFormData({
+                                                                ...formData,
+                                                                sponsorship_rating : formData.sponsorship_rating.split(',').filter(value => 
+                                                                    value !== char
+                                                                ).join(',')
+                                                            })
+                                                        }
+                                                    }
+                                                }
+                                                checked={formData.sponsorship_rating.split(',').includes(char)} 
                                             />
                                         }
                                         label={<span>{char}</span>}
@@ -141,12 +195,16 @@ const SharingForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = {formData.funds_min}
+                        onChange={(e) => setFormData({...formData, funds_min : e.target.value})}
                     />%
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = {formData.funds_max}
+                        onChange={(e) => setFormData({...formData, funds_max : e.target.value})}
                     />%
                 </Box>
             </Box>
@@ -162,12 +220,16 @@ const SharingForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = {formData.funds_increase_min}
+                        onChange={(e) => setFormData({...formData, funds_increase_min : e.target.value})}
                     />%
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = {formData.funds_increase_max}
+                        onChange={(e) => setFormData({...formData, funds_increase_max : e.target.value})}
                     />%
                 </Box>
             </Box>
@@ -182,12 +244,16 @@ const SharingForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = {formData.number_of_fund_min}
+                        onChange={(e) => setFormData({...formData, number_of_fund_min : e.target.value})}
                     />%
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = {formData.number_of_fund_max}
+                        onChange={(e) => setFormData({...formData, number_of_fund_max : e.target.value})}
                     />%
                 </Box>
             </Box>
@@ -202,12 +268,16 @@ const SharingForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = {formData.management_min}
+                        onChange={(e) => setFormData({...formData, management_min : e.target.value})}
                     />%
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
                         size={'small'}
+                        value = {formData.management_max}
+                        onChange={(e) => setFormData({...formData, management_max : e.target.value})}
                     />%
                 </Box>
             </Box>
@@ -218,30 +288,37 @@ const SharingForm = () => {
                     <Box className={classes.underLineDiv}>Institutional Ownership {`<`} Median</Box>
                 </Box>
                 <Box sx={{display : 'flex', justifyContent : 'flex-end'}}>
-                    <FormGroup row  >
+                    <RadioGroup row value={ formData.institutional_ownership } >
                         <FormControlLabel
+                            value="yes"
                             control={
-                                <Checkbox
-                                
+                                <Radio
+                                    onChange={() => setFormData({...formData, institutional_ownership : "yes"})}
                                 />
                             }
                             label={<span>{'Yes'}</span>}
                         />
-                    </FormGroup>
-                    <FormGroup row  >
                         <FormControlLabel
+                            value="no"
                             control={
-                                <Checkbox
-                                
+                                <Radio
+                                    onChange={() => setFormData({...formData, institutional_ownership : "no"})}
                                 />
                             }
                             label={<span>{'No'}</span>}
                         />
-                    </FormGroup>
+                    </RadioGroup>
                 </Box>
             </Box>
         </Box>
     )
 }
 
-export default SharingForm ;
+
+const mapStateToProps = state => ({
+})
+const mapDispatchToProps = {
+    // InsertScreenOptionData
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (SharingForm) ;

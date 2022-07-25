@@ -1,5 +1,8 @@
 import * as React from "react";
 
+import { connect } from "react-redux";
+import { GetScreenOptionData } from "../../../redux/actions/screenOption";
+
 import SmartForm from "./SmartForm";
 import EarningForm from './EarningForm' ;
 import SalesForm from './SalesForm' ;
@@ -45,46 +48,61 @@ const Criteria = (props) => {
     const classes = useStyles();
 
     const {
-        selectedItem
+        selectedItem,
+        stateFormData,
+        setStateFormData,
+        selectedScreenList,
+        GetScreenOptionData
     } = props ;
-
+ 
+    React.useEffect(async () => {
+        console.log(selectedScreenList);
+        await GetScreenOptionData(selectedScreenList)
+    }, [selectedScreenList])
+    
     return (
         <Box className={classes.root}>
             <Box className={classes.title}>
                 CRITERIA
             </Box>
             {
-                selectedItem === 'smart' && <SmartForm />
+                selectedItem === 'smart' && <SmartForm formData={stateFormData} setFormData={setStateFormData}/>
             }
             {
-                selectedItem === 'earning' && <EarningForm />
+                selectedItem === 'earning' && <EarningForm formData={stateFormData} setFormData={setStateFormData}/>
             }
             {
-                selectedItem === 'sales' && <SalesForm />
+                selectedItem === 'sales' && <SalesForm formData={stateFormData} setFormData={setStateFormData}/>
             }
             {
-                selectedItem === 'industry' && <IndustryForm />
+                selectedItem === 'industry' && <IndustryForm formData={stateFormData} setFormData={setStateFormData}/>
             }
             {
-                selectedItem === 'sharing' && <SharingForm />
+                selectedItem === 'sharing' && <SharingForm  formData={stateFormData} setFormData={setStateFormData}/>
             }
             {
-                selectedItem === 'pricevolume' && <PriceVolumeForm />
+                selectedItem === 'pricevolume' && <PriceVolumeForm formData={stateFormData} setFormData={setStateFormData}/>
             }
             {
-                selectedItem === 'margins' && <MarginsForm />
+                selectedItem === 'margins' && <MarginsForm formData={stateFormData} setFormData={setStateFormData}/>
             }
             {
-                selectedItem === 'general' && <GeneralForm />
+                selectedItem === 'general' && <GeneralForm formData={stateFormData} setFormData={setStateFormData}/>
             }
             {
-                selectedItem === 'idb' && <IDB />
+                selectedItem === 'idb' && <IDB formData={stateFormData} setFormData={setStateFormData}/>
             }
             {
-                selectedItem === 'favorite' && <Favorite />
+                selectedItem === 'favorite' && <Favorite  formData={stateFormData}/>
             }
         </Box>
     );
 }
 
-export default Criteria;
+const mapStateToProps = state => ({
+})
+const mapDispatchToProps = {
+    GetScreenOptionData
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (Criteria)  ;

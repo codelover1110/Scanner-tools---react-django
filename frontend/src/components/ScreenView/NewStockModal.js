@@ -2,7 +2,7 @@ import * as React from 'react' ;
 
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types' ;
-import { AddNewStock } from '../../redux/actions/screen';
+import { AddNewStock, InsertScreenListData } from '../../redux/actions/screen';
 
 import  {
     Dialog,
@@ -65,7 +65,7 @@ const NewStockModal = (props) => {
         open,
         handleClose,
 
-        AddNewStock,
+        InsertScreenListData,
         stockList
     } = props ;
 
@@ -89,7 +89,7 @@ const NewStockModal = (props) => {
             text : newStockName
         }, ...temp] ;
 
-        await AddNewStock(temp) ;
+        await InsertScreenListData(newStockName);
 
         handleClose() ;
     }
@@ -135,12 +135,12 @@ const NewStockModal = (props) => {
     )
 }
 NewStockModal.propTypes = {
-    AddNewStock : PropTypes.func.isRequired
+    // AddNewStock : PropTypes.func.isRequired
 }
 const mapStateToProps = state => ({
     stockList : state.screen.stockList
 })
 const mapDispatchToProps = {
-    AddNewStock
+    InsertScreenListData
 }
 export default connect(mapStateToProps, mapDispatchToProps)(NewStockModal) ;

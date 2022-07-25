@@ -8,6 +8,9 @@ const INITIAL_STATE = {
     isBeginResize : false,
     beginStartPoint : 0,
     beginStartHeight : 37,
+
+    changeData : null,
+    screenResultData : null,
 }
 
 export default (state = INITIAL_STATE , action) => {
@@ -50,6 +53,16 @@ export default (state = INITIAL_STATE , action) => {
                 ...state,
                 beginStartHeight : action.payload,
                 resultViewHeight : action.payload
+            });
+        case ActionTypes.SetChangeDataResult :
+            return ({
+                ...state,
+                changeData : action.payload
+            });
+        case ActionTypes.GetScreenResultData :
+            return ({
+                ...state,
+                screenResultData : action.payload
             });
         default :
             return state ;

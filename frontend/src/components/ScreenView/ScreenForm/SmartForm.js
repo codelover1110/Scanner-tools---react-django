@@ -12,8 +12,13 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 
 import { useStyles } from './StyledDiv/Smart.styles';
 
-const SmartForm = () => {
+const SmartForm = (props) => {
     const classes = useStyles() ;
+
+    const {
+        formData,
+        setFormData
+    } = props;
 
     const charItems = [
         "A",
@@ -22,6 +27,10 @@ const SmartForm = () => {
         "D",
         "E"
     ]
+    
+    React.useEffect(() => {
+        console.log(formData);
+    }, [formData])
 
     return (
         <Box className={classes.root}>
@@ -36,12 +45,16 @@ const SmartForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = { formData.eps_rating_min }
+                        onChange={(e) => setFormData({...formData, eps_rating_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
+                        value = { formData.eps_rating_max }
                         size={'small'}
+                        onChange={(e) => setFormData({...formData, eps_rating_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -56,12 +69,16 @@ const SmartForm = () => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
+                        value = { formData.rs_rating_min }
+                        onChange={(e) => setFormData({...formData, rs_rating_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
+                        value = { formData.rs_rating_max }
                         size={'small'}
+                        onChange={(e) => setFormData({...formData, rs_rating_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -78,8 +95,27 @@ const SmartForm = () => {
                                 <FormGroup row key={index} >
                                     <FormControlLabel
                                         control={
-                                            <Checkbox
-                                            
+                                            <Checkbox     
+                                                onChange={(e, id) => 
+                                                    {
+                                                        console.log(e.target.value) ;
+                                                        if(e.target.checked) {
+                                                            setFormData({
+                                                                ...formData,
+                                                                smr_rating : formData.smr_rating+','+char
+                                                            })
+                                                        } else {
+                                                            setFormData({
+                                                                ...formData,
+                                                                smr_rating : formData.smr_rating.split(',').filter(value => 
+                                                                    value !== char
+                                                                ).join(',')
+                                                            })
+                                                        }
+                                                    }
+                                                }
+                                                // value={formData.smr_rating.split(',').includes(char)} 
+                                                checked={formData.smr_rating.split(',').includes(char)}
                                             />
                                         }
                                         label={<span>{char}</span>}
@@ -104,6 +140,25 @@ const SmartForm = () => {
                                     <FormControlLabel
                                         control={
                                             <Checkbox
+                                                onChange={(e, id) => 
+                                                    {
+                                                        console.log(e.target.value) ;
+                                                        if(e.target.checked) {
+                                                            setFormData({
+                                                                ...formData,
+                                                                ad_rating : formData.ad_rating+','+char
+                                                            })
+                                                        } else {
+                                                            setFormData({
+                                                                ...formData,
+                                                                ad_rating : formData.ad_rating.split(',').filter(value => 
+                                                                    value !== char
+                                                                ).join(',')
+                                                            })
+                                                        }
+                                                    }
+                                                }
+                                                checked={formData.ad_rating.split(',').includes(char)}
                                             
                                             />
                                         }
@@ -125,13 +180,17 @@ const SmartForm = () => {
                     <TextField
                         type={'number'}
                         placeholder={'Min'}
+                        value = { formData.comp_rating_min }
                         size={'small'}
+                        onChange={(e) => setFormData({...formData, comp_rating_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
                         type={'number'}
                         placeholder={'Max'}
+                        value = { formData.comp_rating_max }
                         size={'small'}
+                        onChange={(e) => setFormData({...formData, comp_rating_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -149,7 +208,25 @@ const SmartForm = () => {
                                     <FormControlLabel
                                         control={
                                             <Checkbox
-                                            
+                                                onChange={(e, id) => 
+                                                    {
+                                                        console.log(e.target.value) ;
+                                                        if(e.target.checked) {
+                                                            setFormData({
+                                                                ...formData,
+                                                                ind_group_rs_rating : formData.ind_group_rs_rating+','+char
+                                                            })
+                                                        } else {
+                                                            setFormData({
+                                                                ...formData,
+                                                                ind_group_rs_rating : formData.ind_group_rs_rating.split(',').filter(value => 
+                                                                    value !== char
+                                                                ).join(',')
+                                                            })
+                                                        }
+                                                    }
+                                                }
+                                                checked={formData.ind_group_rs_rating.split(',').includes(char)}                         
                                             />
                                         }
                                         label={<span>{char}</span>}
