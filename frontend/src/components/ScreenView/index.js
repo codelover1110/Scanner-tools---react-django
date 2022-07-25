@@ -27,7 +27,7 @@ const ScreenView = () => {
     } = useResultViewInfo () ;
 
     const [currentCategory, setCurrentCategory] = React.useState('MM-loose 50') ;
-    const [ selectedScreenList, setSelectedScreenList ] = React.useState(1);
+    const [ selectedScreenList, setSelectedScreenList ] = React.useState(0);
 
     const handleSelectCategory = (selectedCategory) => {
         setCurrentCategory(selectedCategory) ;

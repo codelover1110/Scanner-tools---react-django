@@ -550,11 +550,10 @@ const ScreenResultsList = (props) => {
     
     useEffect(async () => {
         if(filterList){
-            console.log(filterList.length, "aa")
             await GetStockCount(filterList);
         }
     }, [filterList])
-    
+
     return (
         <Box className={classes.root}>
             <TableContainer >

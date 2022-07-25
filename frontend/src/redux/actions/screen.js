@@ -4,9 +4,7 @@ import * as config from '../../static/constants';
 
 export const GetScreenListData = () => async dispatch => {
     try {
-        console.log("asdf");
         let res = await axios.get(`${config.PRIVATE_MARKETSMITH_API}screenlist/` , {}) ;
-        console.log(res.data);
         if(res.status === 200){
             await dispatch({
                 type : ActionTypes.GetScreenListData,

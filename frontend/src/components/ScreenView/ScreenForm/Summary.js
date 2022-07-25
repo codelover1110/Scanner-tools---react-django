@@ -43,29 +43,25 @@ const Summary = (props) => {
 
         if(stateFormData !== oldStateFormData){
             Object.keys(stateFormData).forEach( element => {
-                let temp_new = JSON.stringify( stateFormData[element] ) ;
-                let temp_old = JSON.stringify( oldStateFormData[element] ) ;
-                // console.log( temp_new, temp_old, element,'"sldf"')
+                if(element !== 'screen_id'){
 
-                // if(typeof(stateFormData[element]) === 'object')
-                //     console.log( element ,'element' )
-                //     console.log(temp_new, temp_old, temp_new === temp_old , 'check')
-
-                if( ( temp_new != temp_old ) ) {
-                    console.log( element , 'element')
-                    console.log(stateFormData[element], oldStateFormData[element], 'not equeal');
-                    changeData[element] = stateFormData[element]
-                    setChangeData({...changeData})
-                    console.log(changeData);
-
-                    Object.entries(stateFormData).map((row, index) => {
-                        if(row[0] === element)
-                            temp.push(row[0])
-                    })
-                    setChangeField(temp)
+                    let temp_new = JSON.stringify( stateFormData[element] ) ;
+                    let temp_old = JSON.stringify( oldStateFormData[element] ) ;
+                    if( ( temp_new != temp_old)) {
+                        changeData[element] = stateFormData[element]
+                        setChangeData({...changeData})
+    
+                        Object.entries(stateFormData).map((row, index) => {
+                            if(row[0] === element)
+                                temp.push(row[0])
+                        })
+                        setChangeField(temp)
+                    }
                 }
+                
             });
         }
+        console.log(changeData);
 
     }, [stateFormData])
 
@@ -103,7 +99,7 @@ const Summary = (props) => {
                                 </TableRow>
                                 
                                 {
-                                    Object.entries(changeData).map( (element, index) => {
+                                    changeData && Object.entries(changeData).map( (element, index) => {
                                         return (
                                             <TableRow key={index}>
                                             {
@@ -147,11 +143,11 @@ const Summary = (props) => {
                                                         (element[1] === "yes" || element[1] === "no") &&
                                                         <>
                                                             <TableCell>{element[0]}</TableCell>
-                                                            <TableCell>
-                                                                {
-                                                                        <Box> { element[1] } </Box>
-                                                                }
-                                                            </TableCell>
+                                                                <TableCell>
+                                                                    {
+                                                                            <Box> { element[1] } </Box>
+                                                                    }
+                                                                </TableCell>
                                                             <TableCell>164</TableCell>
                                                         </>
                                                     }
