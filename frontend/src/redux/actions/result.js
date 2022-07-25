@@ -129,7 +129,7 @@ export const SetChangeDataResult = (changeData) => async dispatch => {
 
 export const GetScreenResultData = () => async dispatch => {
     try {
-        let res = await axios.get(`${config.PRIVATE_MARKETSMITH_APIS}screenresult/` , {}) ;
+        let res = await axios.get(`${config.PRIVATE_MARKETSMITH_API}screenresult/` , {}) ;
 
         if(res.status === 200) {
             await dispatch({
