@@ -17,7 +17,7 @@ import {
 } from '@mui/material' ;
 
 import { useStyles } from './StyledDiv/Summary.styles';
-import { element } from 'prop-types';
+// import { element } from 'prop-types';
 
 const Summary = (props) => {
     const classes = useStyles() ;
@@ -30,6 +30,7 @@ const Summary = (props) => {
         selectedItem,
         stateFormData,
         oldStateFormData,
+        selectedScreenList,
         SetChangeDataResult
     } = props ;
 
@@ -40,15 +41,25 @@ const Summary = (props) => {
     let temp = [];
 
     React.useEffect(() => {
+        setChangeData({});        
+    }, [selectedScreenList])
+    
+    React.useEffect(() => {
 
-        if(stateFormData !== oldStateFormData){
+        if(stateFormData !== oldStateFormData){            
+            
             Object.keys(stateFormData).forEach( element => {
                 if(element !== 'screen_id'){
 
+
                     let temp_new = JSON.stringify( stateFormData[element] ) ;
                     let temp_old = JSON.stringify( oldStateFormData[element] ) ;
-                    if( ( temp_new != temp_old)) {
+                    
+                    if( ( temp_new != temp_old)) {                        
+                        console.log( temp_new, temp_old, element, 'tempn e')
+
                         changeData[element] = stateFormData[element]
+                        
                         setChangeData({...changeData})
     
                         Object.entries(stateFormData).map((row, index) => {
@@ -60,24 +71,28 @@ const Summary = (props) => {
                 }
                 
             });
+            console.log(changeData);
         }
-        console.log(changeData);
+
+        else{
+            setChangeData('');
+        }
 
     }, [stateFormData])
 
     const getCount = (value) => {
-        
         let count = 0;
         changeField && changeField.map((element, index) => {
             if(element.slice(0,-4) === value)
                 count ++ ;
         })
+        
         return count;
     }
 
     return (
         <Box className={classes.root}>
-            {
+            {                
                 selectedItem === 'favorite' && <>
                     <Box className={classes.titleDiv}>
                         Screen Summary
@@ -99,7 +114,11 @@ const Summary = (props) => {
                                 </TableRow>
                                 
                                 {
-                                    changeData && Object.entries(changeData).map( (element, index) => {
+                                    
+                                    Object.keys(changeData) != 0 && Object.entries(changeData).map( (element, index) => {
+                                        
+                                        element[1] = element[1].toString()
+                                        
                                         return (
                                             <TableRow key={index}>
                                             {
@@ -114,7 +133,6 @@ const Summary = (props) => {
                                                                     (getCount(element[0].slice(0,-4)) === 2) ?
                                                                         <TableCell>
                                                                             {
-                                                                                element[0].includes("min") &&
                                                                                     <Box> { element[1]} {"-"} {stateFormData[element[0].slice(0,-4) + '_max']}</Box>
                                                                             }
                                                                         </TableCell>

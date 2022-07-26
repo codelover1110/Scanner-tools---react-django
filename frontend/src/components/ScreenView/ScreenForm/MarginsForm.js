@@ -776,7 +776,10 @@ const MarginsForm = (props) => {
                     <Box className={classes.underLineDiv}>Total Liabilities/Total Assets {`<`} Industry Median</Box>
                 </Box>
                 <Box sx={{display : 'flex', justifyContent : 'flex-end'}}>
-                    <RadioGroup row value={formData.tot_lia_tot_assn} >
+                    <RadioGroup 
+                        row defaultValue="no" 
+                        value = { formData.tot_lia_tot_assn }
+                    >
                         <FormControlLabel
                             value="yes"
                             control={

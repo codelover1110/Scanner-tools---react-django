@@ -1,7 +1,6 @@
 import * as React from 'react' ;
 
 import { connect } from "react-redux";
-import { InsertScreenOptionData } from '../../../redux/actions/screenOption';
 
 import {
     Box, 
@@ -23,14 +22,9 @@ const SalesForm = (props) => {
     const {
         formData,
         setFormData,
-        InsertScreenOptionData
     } = props;
 
-    React.useEffect(async () => {
-
-        await InsertScreenOptionData(formData);
-
-    }, [formData])
+    
     
     return (
         <Box className={classes.root}>
@@ -346,7 +340,6 @@ const SalesForm = (props) => {
 const mapStateToProps = state => ({
 })
 const mapDispatchToProps = {
-    InsertScreenOptionData
 }
 
 export default connect(mapStateToProps, mapDispatchToProps) (SalesForm) ;

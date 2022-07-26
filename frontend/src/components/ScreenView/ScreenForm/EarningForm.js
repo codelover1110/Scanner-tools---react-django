@@ -38,7 +38,7 @@ const EarningForm = (props) => {
                             type={'date'}
                             size={'small'}
                             value = { formData.erns_lst_rpt_date_min }
-                            defaultValue={ new Date().toISOString().substring(0, 10) }
+                            // defaultValue={ new Date().toISOString().substring(0, 10) }
                             onChange={(e) => setFormData({...formData, erns_lst_rpt_date_min : e.target.value})}
                         />
                         <Box sx={{fontSize : '13px', textAlign : 'right'}}>Date</Box>
@@ -49,7 +49,7 @@ const EarningForm = (props) => {
                             type={'date'}
                             size={'small'}
                             value = { formData.erns_lst_rpt_date_max}
-                            defaultValue={ new Date().toISOString().substring(0, 10)}
+                            // defaultValue={ new Date().toISOString().substring(0, 10)}
                             onChange={(e) => setFormData({...formData, erns_lst_rpt_date_max : e.target.value})}
                         />
                         <Box sx={{fontSize : '13px', textAlign : 'right'}}>Date</Box>
@@ -72,7 +72,7 @@ const EarningForm = (props) => {
                         <TextField
                             type={'date'}
                             size={'small'}
-                            defaultValue={new Date().toISOString().substring(0, 10)}
+                            // defaultValue={new Date().toISOString().substring(0, 10)}
                             value = { formData.erns_dued_min}
                             onChange={(e) => setFormData({...formData, erns_dued_min : e.target.value})}
                         />
@@ -83,7 +83,7 @@ const EarningForm = (props) => {
                         <TextField
                             type={'date'}
                             size={'small'}
-                            defaultValue={new Date().toISOString().substring(0, 10) }
+                            // defaultValue={new Date().toISOString().substring(0, 10) }
                             value = { formData.erns_dued_max}
                             onChange={(e) => setFormData({...formData, erns_dued_max : e.target.value})}
                         />

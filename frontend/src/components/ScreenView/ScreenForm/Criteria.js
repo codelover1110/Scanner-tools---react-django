@@ -56,8 +56,9 @@ const Criteria = (props) => {
     } = props ;
  
     React.useEffect(async () => {
-        console.log(selectedScreenList);
+        
         await GetScreenOptionData(selectedScreenList)
+        
     }, [selectedScreenList])
     
     return (

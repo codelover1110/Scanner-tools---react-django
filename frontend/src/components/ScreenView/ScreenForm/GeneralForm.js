@@ -213,7 +213,7 @@ const GeneralForm = ( props ) => {
                         <TextField
                             type={'date'}
                             size={'small'}
-                            defaultValue={new Date().toISOString().substring(0, 10)}
+                            // defaultValue={new Date().toISOString().substring(0, 10)}
                             value = { formData.ipo_date_min }
                             onChange={(e) => setFormData({...formData, ipo_date_min : e.target.value})}
                         />
@@ -224,7 +224,7 @@ const GeneralForm = ( props ) => {
                         <TextField
                             type={'date'}
                             size={'small'}
-                            defaultValue={new Date().toISOString().substring(0, 10)}
+                            // defaultValue={new Date().toISOString().substring(0, 10)}
                             value = { formData.ipo_date_max }
                             onChange={(e) => setFormData({...formData, ipo_date_max : e.target.value})}
                         />
@@ -243,9 +243,9 @@ const GeneralForm = ( props ) => {
                         <TextField
                             type={'date'}
                             size={'small'}
-                            defaultValue={new Date().toISOString().substring(0, 10)}
+                            // defaultValue={new Date().toISOString().substring(0, 10)}
                             value = { formData.incorporation_date_min }
-                            onChange={(e) => setFormData({...formData, incorporation_date_min : e.target.value})}
+                            // onChange={(e) => setFormData({...formData, incorporation_date_min : e.target.value})}
 
                         />
                         <Box sx={{fontSize : '13px', textAlign : 'right'}}>Date</Box>
@@ -255,7 +255,6 @@ const GeneralForm = ( props ) => {
                         <TextField
                             type={'date'}
                             size={'small'}
-                            defaultValue={new Date().toISOString().substring(0, 10)}
                             value = { formData.incorporation_date_max }
                             onChange={(e) => setFormData({...formData, incorporation_date_max : e.target.value})}
                         />

@@ -274,7 +274,7 @@ const ScreenOption = (props) => {
         epr_val_free_cash_flow_max : 0,
         long_term_debit_work_cap_min : 0,
         long_term_debit_work_cap_max : 0,
-        tot_lia_tot_assn : false,
+        tot_lia_tot_assn : 'no',
         exchange : [],
         adr : 'no',
         etf_closed_end_fund : 'no',
@@ -536,7 +536,7 @@ const ScreenOption = (props) => {
         epr_val_free_cash_flow_max : 0,
         long_term_debit_work_cap_min : 0,
         long_term_debit_work_cap_max : 0,
-        tot_lia_tot_assn : false,
+        tot_lia_tot_assn : 'no',
         exchange : [],
         adr : 'no',
         etf_closed_end_fund : 'no',
@@ -585,18 +585,20 @@ const ScreenOption = (props) => {
                 } )
 
                 setOldStateFormData( { 
-                    ...formData, 
-                    industry_g_n: _industry_g_n,
-                    exchange: _exchange,
-                    headquarters_city: _headquarters_city,
-                    broad_sectors: _broad_sectors,                    
+                    ...oldStateFormData,
+                    erns_lst_rpt_date_min : formData.erns_lst_rpt_date_min,
+                    erns_lst_rpt_date_max : formData.erns_lst_rpt_date_max,
+                    erns_dued_min : formData.erns_dued_min,
+                    erns_dued_max : formData.erns_dued_max,
+                    ipo_date_min : formData.ipo_date_min,
+                    ipo_date_max : formData.ipo_date_max,
+                    incorporation_date_min : formData.incorporation_date_min,
+                    incorporation_date_max : formData.incorporation_date_max
                 } )
-                console.log( ' called');
+                
             }
-        }
-    }, [formData])
-    
-    React.useEffect(() => {
+        } else {   
+                     
         setStateFormData({
             screen_id : selectedScreenList,
             eps_rating_min : 0,
@@ -841,7 +843,7 @@ const ScreenOption = (props) => {
             epr_val_free_cash_flow_max : 0,
             long_term_debit_work_cap_min : 0,
             long_term_debit_work_cap_max : 0,
-            tot_lia_tot_assn : false,
+            tot_lia_tot_assn : 'no',
             exchange : [],
             adr : 'no',
             etf_closed_end_fund : 'no',
@@ -858,7 +860,8 @@ const ScreenOption = (props) => {
             ibd_new_america : 'no',
             ibd_85 : 'no',
             ibd_big_cap_20 : 'no',
-        })
+        })              
+        
         setOldStateFormData({
             screen_id : selectedScreenList,
             eps_rating_min : 0,
@@ -1103,7 +1106,7 @@ const ScreenOption = (props) => {
             epr_val_free_cash_flow_max : 0,
             long_term_debit_work_cap_min : 0,
             long_term_debit_work_cap_max : 0,
-            tot_lia_tot_assn : false,
+            tot_lia_tot_assn : 'no',
             exchange : [],
             adr : 'no',
             etf_closed_end_fund : 'no',
@@ -1121,9 +1124,9 @@ const ScreenOption = (props) => {
             ibd_85 : 'no',
             ibd_big_cap_20 : 'no',
         })
-
-    }, [selectedScreenList])
-
+        }           
+    }, [formData])
+    
 
     return (
         <Box className={classes.root}>
@@ -1151,6 +1154,7 @@ const ScreenOption = (props) => {
                         selectedItem={selectedItem}
                         stateFormData={stateFormData}
                         oldStateFormData={oldStateFormData}
+                        selectedScreenList={selectedScreenList}
                     />
                 </Grid>
             </Grid>

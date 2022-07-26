@@ -22,8 +22,11 @@ const Favorite = (props) => {
     React.useEffect(async () => {
 
         await InsertScreenOptionData(formData);
+        console.log( formData, '[ tobacked')
+        console.log( 'to backedn');
 
     }, [formData])
+
 
     return (
         <Box className={classes.root}>
