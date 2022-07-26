@@ -48,6 +48,10 @@ const ListView = (props) => {
         setSelectedScreenList(index + 1)
     }
 
+    React.useEffect(async () => {
+        await GetScreenListData()
+    }, [])
+    
     return (
         <>
             <Box className={classes.root}>
