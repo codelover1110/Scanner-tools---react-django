@@ -185,6 +185,7 @@ class ScreenoptionViewSet(viewsets.ModelViewSet):
                     number_of_fund_max = request.data['formData']['number_of_fund_max'],
                     management_min = request.data['formData']['management_min'],
                     management_max = request.data['formData']['management_max'],
+                    institutional_ownership = request.data['formData']['institutional_ownership'],
                     price_min = request.data['formData']['price_min'],
                     price_max = request.data['formData']['price_max'],
                     price_vs_52_week_high_min = request.data['formData']['price_vs_52_week_high_min'],
