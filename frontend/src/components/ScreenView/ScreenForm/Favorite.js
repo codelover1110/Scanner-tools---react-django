@@ -1,7 +1,7 @@
 import * as React from 'react' ;
 
 import { connect } from "react-redux";
-import { InsertScreenOptionData } from '../../../redux/actions/screenOption';
+import { InsertScreenOptionData,GetScreenOptionData } from '../../../redux/actions/screenOption';
 
 import {
     Box,
@@ -16,14 +16,20 @@ const Favorite = (props) => {
 
     const {
         InsertScreenOptionData,
+        selectedScreenList,
         formData,
+        GetScreenOptionData
     } = props;
     
     React.useEffect(async () => {
 
-        await InsertScreenOptionData(formData);
-        console.log( formData, '[ tobacked')
-        console.log( 'to backedn');
+        // if(selectedScreenList !== 0) {
+
+            await InsertScreenOptionData(formData);
+            // await GetScreenOptionData(selectedScreenList);
+            console.log( formData, '[ tobacked')
+            console.log( 'to backedn');
+        // }
 
     }, [formData])
 
@@ -46,7 +52,8 @@ const Favorite = (props) => {
 const mapStateToProps = state => ({
 })
 const mapDispatchToProps = {
-    InsertScreenOptionData
+    InsertScreenOptionData,
+    GetScreenOptionData
 }
 
 export default connect(mapStateToProps, mapDispatchToProps) (Favorite) ;

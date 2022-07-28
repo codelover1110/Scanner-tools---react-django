@@ -162,7 +162,7 @@ const EarningForm = (props) => {
                         placeholder={'Max'}
                         value = { formData.eps_chg_q_1_max}
                         size={'small'}
-                        onChange={(e) => setFormData({...formData, eps_chg_q_1_max : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, eps_chg_q_1_max : e.target.value})}
                     />%
                 </Box>
             </Box>
@@ -207,7 +207,7 @@ const EarningForm = (props) => {
                         placeholder={'Min'}
                         value = { formData.erns_stability_min}
                         size={'small'}
-                        onChange={(e) => setFormData({...formData, erns_stability_min : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, erns_stability_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
@@ -215,7 +215,7 @@ const EarningForm = (props) => {
                         placeholder={'Max'}
                         value = { formData.erns_stability_max}
                         size={'small'}
-                        onChange={(e) => setFormData({...formData, erns_stability_max : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, erns_stability_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -243,7 +243,7 @@ const EarningForm = (props) => {
                         placeholder={'Min'}
                         value = { formData.eps_chg_q_2_min}
                         size={'small'}
-                        onChange={(e) => setFormData({...formData, eps_chg_q_2_min : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, eps_chg_q_2_min : e.target.value})}
                     />%
                     <Box >to</Box>
                     <TextField
@@ -251,7 +251,7 @@ const EarningForm = (props) => {
                         placeholder={'Max'}
                         size={'small'}
                         value = { formData.eps_chg_q_2_max}
-                        onChange={(e) => setFormData({...formData, eps_chg_q_2_max : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, eps_chg_q_2_max : e.target.value})}
                     />%
                 </Box>
             </Box>
@@ -280,7 +280,7 @@ const EarningForm = (props) => {
                         placeholder={'Min'}
                         size={'small'}
                         value = { formData.eps_chg_q_3_min}
-                        onChange={(e) => setFormData({...formData, eps_chg_q_3_min : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, eps_chg_q_3_min : e.target.value})}
                     />%
                     <Box >to</Box>
                     <TextField
@@ -288,7 +288,7 @@ const EarningForm = (props) => {
                         placeholder={'Max'}
                         size={'small'}
                         value = { formData.eps_chg_q_3_max}
-                        onChange={(e) => setFormData({...formData, eps_chg_q_3_max : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, eps_chg_q_3_max : e.target.value})}
                     />%
                 </Box>
             </Box>
@@ -334,7 +334,7 @@ const EarningForm = (props) => {
                         placeholder={'Min'}
                         size={'small'}
                         value = { formData.avg_eps_chg_lst_q_2_min}
-                        onChange={(e) => setFormData({...formData, avg_eps_chg_lst_q_2_min : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, avg_eps_chg_lst_q_2_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
@@ -342,7 +342,7 @@ const EarningForm = (props) => {
                         placeholder={'Max'}
                         size={'small'}
                         value = { formData.avg_eps_chg_lst_q_2_max}
-                        onChange={(e) => setFormData({...formData, avg_eps_chg_lst_q_2_max : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, avg_eps_chg_lst_q_2_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -358,7 +358,7 @@ const EarningForm = (props) => {
                         placeholder={'Min'}
                         size={'small'}
                         value = { formData.avg_eps_chg_lst_q_3_min}
-                        onChange={(e) => setFormData({...formData, avg_eps_chg_lst_q_3_min : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, avg_eps_chg_lst_q_3_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
@@ -366,7 +366,7 @@ const EarningForm = (props) => {
                         placeholder={'Max'}
                         size={'small'}
                         value = { formData.avg_eps_chg_lst_q_3_max}
-                        onChange={(e) => setFormData({...formData, avg_eps_chg_lst_q_3_max : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, avg_eps_chg_lst_q_3_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -382,7 +382,7 @@ const EarningForm = (props) => {
                         placeholder={'Min'}
                         size={'small'}
                         value = { formData.avg_eps_chg_lst_q_4_min}
-                        onChange={(e) => setFormData({...formData, avg_eps_chg_lst_q_4_min : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, avg_eps_chg_lst_q_4_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
@@ -390,7 +390,7 @@ const EarningForm = (props) => {
                         placeholder={'Max'}
                         size={'small'}
                         value = { formData.avg_eps_chg_lst_q_4_max}
-                        onChange={(e) => setFormData({...formData, avg_eps_chg_lst_q_4_max : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, avg_eps_chg_lst_q_4_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -406,7 +406,7 @@ const EarningForm = (props) => {
                         placeholder={'Min'}
                         size={'small'}
                         value = { formData.avg_eps_chg_lst_q_5_min}
-                        onChange={(e) => setFormData({...formData, avg_eps_chg_lst_q_5_min : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, avg_eps_chg_lst_q_5_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
@@ -414,7 +414,7 @@ const EarningForm = (props) => {
                         placeholder={'Max'}
                         size={'small'}
                         value = { formData.avg_eps_chg_lst_q_5_max}
-                        onChange={(e) => setFormData({...formData, avg_eps_chg_lst_q_5_max : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, avg_eps_chg_lst_q_5_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -430,7 +430,7 @@ const EarningForm = (props) => {
                         placeholder={'Min'}
                         size={'small'}
                         value = { formData.avg_eps_chg_lst_q_6_min}
-                        onChange={(e) => setFormData({...formData, avg_eps_chg_lst_q_6_min : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, avg_eps_chg_lst_q_6_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
@@ -438,7 +438,7 @@ const EarningForm = (props) => {
                         placeholder={'Max'}
                         size={'small'}
                         value = { formData.avg_eps_chg_lst_q_6_max}
-                        onChange={(e) => setFormData({...formData, avg_eps_chg_lst_q_6_max : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, avg_eps_chg_lst_q_6_min : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -454,7 +454,7 @@ const EarningForm = (props) => {
                         placeholder={'Min'}
                         size={'small'}
                         value = { formData.eps_trailing_q_4_min}
-                        onChange={(e) => setFormData({...formData, eps_trailing_q_4_min : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, eps_trailing_q_4_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
@@ -462,7 +462,7 @@ const EarningForm = (props) => {
                         placeholder={'Max'}
                         size={'small'}
                         value = { formData.eps_trailing_q_4_max}
-                        onChange={(e) => setFormData({...formData, eps_trailing_q_4_max : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, eps_trailing_q_4_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -543,7 +543,7 @@ const EarningForm = (props) => {
                         placeholder={'Min'}
                         size={'small'}
                         value = { formData.eps_chg_lst_rpty_vs_1y_ago_min}
-                        onChange={(e) => setFormData({...formData, eps_chg_lst_rpty_vs_1y_ago_min : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, eps_chg_lst_rpty_vs_1y_ago_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
@@ -551,7 +551,7 @@ const EarningForm = (props) => {
                         placeholder={'Max'}
                         size={'small'}
                         value = { formData.eps_chg_lst_rpty_vs_1y_ago_max}
-                        onChange={(e) => setFormData({...formData, eps_chg_lst_rpty_vs_1y_ago_max : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, eps_chg_lst_rpty_vs_1y_ago_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -568,7 +568,7 @@ const EarningForm = (props) => {
                         placeholder={'Min'}
                         size={'small'}
                         value = { formData.eps_chg_lst_rpty_vs_2y_ago_min}
-                        onChange={(e) => setFormData({...formData, eps_chg_lst_rpty_vs_2y_ago_min : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, eps_chg_lst_rpty_vs_2y_ago_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
@@ -576,7 +576,7 @@ const EarningForm = (props) => {
                         placeholder={'Max'}
                         size={'small'}
                         value = { formData.eps_chg_lst_rpty_vs_2y_ago_max}
-                        onChange={(e) => setFormData({...formData, eps_chg_lst_rpty_vs_2y_ago_max : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, eps_chg_lst_rpty_vs_2y_ago_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -593,7 +593,7 @@ const EarningForm = (props) => {
                         placeholder={'Min'}
                         size={'small'}
                         value = { formData.eps_chg_lst_y_min}
-                        onChange={(e) => setFormData({...formData, eps_chg_lst_y_min : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, eps_chg_lst_y_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
@@ -601,7 +601,7 @@ const EarningForm = (props) => {
                         placeholder={'Max'}
                         size={'small'}
                         value = { formData.eps_chg_lst_y_max}
-                        onChange={(e) => setFormData({...formData, eps_chg_lst_y_max : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, eps_chg_lst_y_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -619,7 +619,7 @@ const EarningForm = (props) => {
                         placeholder={'Min'}
                         size={'small'}
                         value = { formData.eps_grow_rate_lst_3y_min}
-                        onChange={(e) => setFormData({...formData, eps_grow_rate_lst_3y_min : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, eps_grow_rate_lst_3y_min : e.target.value})}
                     />%
                     <Box >to</Box>
                     <TextField
@@ -627,7 +627,7 @@ const EarningForm = (props) => {
                         placeholder={'Max'}
                         size={'small'}
                         value = { formData.eps_grow_rate_lst_3y_max}
-                        onChange={(e) => setFormData({...formData, eps_grow_rate_lst_3y_max : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, eps_grow_rate_lst_3y_max : e.target.value})}
                     />%
                 </Box>
             </Box>
@@ -644,7 +644,7 @@ const EarningForm = (props) => {
                         placeholder={'Min'}
                         size={'small'}
                         value = { formData.eps_grow_rate_lst_5y_min}
-                        onChange={(e) => setFormData({...formData, eps_grow_rate_lst_5y_min : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, eps_grow_rate_lst_5y_min : e.target.value})}
                     />%
                     <Box >to</Box>
                     <TextField
@@ -652,7 +652,7 @@ const EarningForm = (props) => {
                         placeholder={'Max'}
                         size={'small'}
                         value = { formData.eps_grow_rate_lst_5y_max}
-                        onChange={(e) => setFormData({...formData, eps_grow_rate_lst_5y_max : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, eps_grow_rate_lst_5y_max : e.target.value})}
                     />%
                 </Box>
             </Box>
@@ -699,7 +699,7 @@ const EarningForm = (props) => {
                         placeholder={'Min'}
                         size={'small'}
                         value = { formData.eps_grow_rate_lst_5y_percent_rnk_min}
-                        onChange={(e) => setFormData({...formData, eps_grow_rate_lst_5y_percent_rnk_min : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, eps_grow_rate_lst_5y_percent_rnk_min : e.target.value})}
                     />%
                     <Box >to</Box>
                     <TextField
@@ -707,7 +707,7 @@ const EarningForm = (props) => {
                         placeholder={'Max'}
                         size={'small'}
                         value = { formData.eps_grow_rate_lst_5y_percent_rnk_max}
-                        onChange={(e) => setFormData({...formData, eps_grow_rate_lst_5y_percent_rnk_max : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, eps_grow_rate_lst_5y_percent_rnk_max : e.target.value})}
                     />%
                 </Box>
             </Box>
@@ -723,7 +723,7 @@ const EarningForm = (props) => {
                         placeholder={'Min'}
                         size={'small'}
                         value = { formData.eps_grow_rate_projected_sus_growth_min}
-                        onChange={(e) => setFormData({...formData, eps_grow_rate_projected_sus_growth_min : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, eps_grow_rate_projected_sus_growth_min : e.target.value})}
                     />%
                     <Box >to</Box>
                     <TextField
@@ -731,7 +731,7 @@ const EarningForm = (props) => {
                         placeholder={'Max'}
                         size={'small'}
                         value = { formData.eps_grow_rate_projected_sus_growth_max}
-                        onChange={(e) => setFormData({...formData, eps_grow_rate_projected_sus_growth_max : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, eps_grow_rate_projected_sus_growth_max : e.target.value})}
                     />%
                 </Box>
             </Box>
@@ -747,7 +747,7 @@ const EarningForm = (props) => {
                         placeholder={'Min'}
                         size={'small'}
                         value = { formData.eps_lst_rpty_min}
-                        onChange={(e) => setFormData({...formData, eps_lst_rpty_min : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, eps_lst_rpty_min : e.target.value})}
                     />%
                     <Box >to</Box>
                     <TextField
@@ -755,7 +755,7 @@ const EarningForm = (props) => {
                         placeholder={'Max'}
                         size={'small'}
                         value = { formData.eps_lst_rpty_max}
-                        onChange={(e) => setFormData({...formData, eps_lst_rpty_max : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, eps_lst_rpty_max : e.target.value})}
                     />%
                 </Box>
             </Box>
@@ -772,7 +772,7 @@ const EarningForm = (props) => {
                         placeholder={'Min'}
                         size={'small'}
                         value = { formData.eps_1y_ago_min}
-                        onChange={(e) => setFormData({...formData, eps_1y_ago_min : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, eps_1y_ago_min : e.target.value})}
                     />%
                     <Box >to</Box>
                     <TextField
@@ -780,7 +780,7 @@ const EarningForm = (props) => {
                         placeholder={'Max'}
                         size={'small'}
                         value = { formData.eps_1y_ago_max}
-                        onChange={(e) => setFormData({...formData, eps_1y_ago_max : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, eps_1y_ago_max : e.target.value})}
                     />%
                 </Box>
             </Box>
@@ -796,7 +796,7 @@ const EarningForm = (props) => {
                         placeholder={'Min'}
                         size={'small'}
                         value = { formData.eps_2y_ago_min}
-                        onChange={(e) => setFormData({...formData, eps_2y_ago_min : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, eps_2y_ago_min : e.target.value})}
                     />%
                     <Box >to</Box>
                     <TextField
@@ -804,7 +804,7 @@ const EarningForm = (props) => {
                         placeholder={'Max'}
                         size={'small'}
                         value = { formData.eps_2y_ago_max}
-                        onChange={(e) => setFormData({...formData, eps_2y_ago_max : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, eps_2y_ago_max : e.target.value})}
                     />%
                 </Box>
             </Box>
@@ -820,7 +820,7 @@ const EarningForm = (props) => {
                         placeholder={'Min'}
                         size={'small'}
                         value = { formData.eps_3y_ago_min}
-                        onChange={(e) => setFormData({...formData, eps_3y_ago_min : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, eps_3y_ago_min : e.target.value})}
                     />%
                     <Box >to</Box>
                     <TextField
@@ -828,7 +828,7 @@ const EarningForm = (props) => {
                         placeholder={'Max'}
                         size={'small'}
                         value = { formData.eps_3y_ago_max}
-                        onChange={(e) => setFormData({...formData, eps_3y_ago_max : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, eps_3y_ago_max : e.target.value})}
                     />%
                 </Box>
             </Box>
@@ -844,7 +844,7 @@ const EarningForm = (props) => {
                         placeholder={'Min'}
                         size={'small'}
                         value = { formData.eps_4y_ago_min}
-                        onChange={(e) => setFormData({...formData, eps_4y_ago_min : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, eps_4y_ago_min : e.target.value})}
                     />%
                     <Box >to</Box>
                     <TextField
@@ -852,7 +852,7 @@ const EarningForm = (props) => {
                         placeholder={'Max'}
                         size={'small'}
                         value = { formData.eps_4y_ago_max}
-                        onChange={(e) => setFormData({...formData, eps_4y_ago_max : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, eps_4y_ago_min : e.target.value})}
                     />%
                 </Box>
             </Box>

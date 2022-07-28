@@ -28,9 +28,7 @@ const SmartForm = (props) => {
         "E"
     ]
     
-    React.useEffect(() => {
-        console.log(formData);
-    }, [formData])
+    
 
     return (
         <Box className={classes.root}>
@@ -45,7 +43,7 @@ const SmartForm = (props) => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
-                        value = { formData.eps_rating_min }
+                        value = { formData.eps_rating_min ? formData.eps_rating_min : '' }
                         onChange={(e) => setFormData({...formData, eps_rating_min : e.target.value})}
                     />
                     <Box >to</Box>
@@ -54,7 +52,7 @@ const SmartForm = (props) => {
                         placeholder={'Max'}
                         value = { formData.eps_rating_max }
                         size={'small'}
-                        onChange={(e) => setFormData({...formData, eps_rating_max : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, eps_rating_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -70,7 +68,7 @@ const SmartForm = (props) => {
                         placeholder={'Min'}
                         size={'small'}
                         value = { formData.rs_rating_min }
-                        onChange={(e) => setFormData({...formData, rs_rating_min : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, rs_rating_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
@@ -78,7 +76,7 @@ const SmartForm = (props) => {
                         placeholder={'Max'}
                         value = { formData.rs_rating_max }
                         size={'small'}
-                        onChange={(e) => setFormData({...formData, rs_rating_max : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, rs_rating_max : e.target.value})}
                     />
                 </Box>
             </Box>
@@ -182,7 +180,7 @@ const SmartForm = (props) => {
                         placeholder={'Min'}
                         value = { formData.comp_rating_min }
                         size={'small'}
-                        onChange={(e) => setFormData({...formData, comp_rating_min : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, comp_rating_min : e.target.value})}
                     />
                     <Box >to</Box>
                     <TextField
@@ -190,7 +188,7 @@ const SmartForm = (props) => {
                         placeholder={'Max'}
                         value = { formData.comp_rating_max }
                         size={'small'}
-                        onChange={(e) => setFormData({...formData, comp_rating_max : e.target.value})}
+                        onChange={(e) =>setFormData({...formData, comp_rating_max : e.target.value})}
                     />
                 </Box>
             </Box>

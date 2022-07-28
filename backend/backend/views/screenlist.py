@@ -53,6 +53,7 @@ class ScreenoptionViewSet(viewsets.ModelViewSet):
             print(index)
             screenoption = Screenoption.objects.filter(screen_id = index)
             serializer = ScreenoptionSerializer(screenoption, many=True)
+            # Screenoption.objects.all().delete()
 
             return Response(serializer.data)
 
@@ -330,7 +331,7 @@ class ScreenoptionViewSet(viewsets.ModelViewSet):
                 return Response(serializer.data,status=status.HTTP_201_CREATED)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class ScreenresultViewSet(viewsets.ModelViewSet):
+class ScreenresultViewSet(viewsets.ModelViewSet):                                                                                                                                                                                                                                                                                                                                                           
     queryset = Indicators.objects.all()
 
     @api_view(['GET', 'POST'])

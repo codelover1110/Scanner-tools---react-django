@@ -56,8 +56,10 @@ const Criteria = (props) => {
     } = props ;
  
     React.useEffect(async () => {
-        
-        await GetScreenOptionData(selectedScreenList)
+        if(selectedScreenList !== 0){
+            console.log('get the data')
+            await GetScreenOptionData(selectedScreenList);
+        }
         
     }, [selectedScreenList])
     
@@ -94,7 +96,7 @@ const Criteria = (props) => {
                 selectedItem === 'idb' && <IDB formData={stateFormData} setFormData={setStateFormData}/>
             }
             {
-                selectedItem === 'favorite' && <Favorite  formData={stateFormData}/>
+                selectedItem === 'favorite' && <Favorite  formData={stateFormData} selectedScreenList={selectedScreenList}/>
             }
         </Box>
     );

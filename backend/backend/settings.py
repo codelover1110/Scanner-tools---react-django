@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-cv@reqp$5%=n()p*z-=qc+mjne*p8_fx5l)36-o)5a$-es17$&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -120,9 +120,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
-ALLOWED_HOSTS = [
-    "127.0.0.1", 
-]
 
 CORS_ALLOW_CREDENTIALS = False
 
