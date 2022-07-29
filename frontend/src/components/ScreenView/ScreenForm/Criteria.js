@@ -12,6 +12,7 @@ import PriceVolumeForm from "./PriceVolumeForm";
 import MarginsForm from "./MarginsForm";
 import GeneralForm from "./GeneralForm";
 import IDB from "./IDB";
+import Loading from "../../Common/Loading";
 
 import {
     Box,
@@ -54,51 +55,62 @@ const Criteria = (props) => {
         selectedScreenList,
         GetScreenOptionData
     } = props ;
+
+    const [ loading, setLoading ] = React.useState(false);
  
     React.useEffect(async () => {
         if(selectedScreenList !== 0){
+            setLoading(true);
             console.log('get the data')
             await GetScreenOptionData(selectedScreenList);
+            setLoading(false);
         }
         
     }, [selectedScreenList])
     
     return (
-        <Box className={classes.root}>
-            <Box className={classes.title}>
-                CRITERIA
+        <>
+            <Box className={classes.root}>
+                <Box className={classes.title}>
+                    CRITERIA
+                </Box>
+                {
+                    selectedItem === 'smart' && <SmartForm formData={stateFormData} setFormData={setStateFormData}/>
+                }
+                {
+                    selectedItem === 'earning' && <EarningForm formData={stateFormData} setFormData={setStateFormData}/>
+                }
+                {
+                    selectedItem === 'sales' && <SalesForm formData={stateFormData} setFormData={setStateFormData}/>
+                }
+                {
+                    selectedItem === 'industry' && <IndustryForm formData={stateFormData} setFormData={setStateFormData}/>
+                }
+                {
+                    selectedItem === 'sharing' && <SharingForm  formData={stateFormData} setFormData={setStateFormData}/>
+                }
+                {
+                    selectedItem === 'pricevolume' && <PriceVolumeForm formData={stateFormData} setFormData={setStateFormData}/>
+                }
+                {
+                    selectedItem === 'margins' && <MarginsForm formData={stateFormData} setFormData={setStateFormData}/>
+                }
+                {
+                    selectedItem === 'general' && <GeneralForm formData={stateFormData} setFormData={setStateFormData}/>
+                }
+                {
+                    selectedItem === 'idb' && <IDB formData={stateFormData} setFormData={setStateFormData}/>
+                }
+                {
+                    selectedItem === 'favorite' && <Favorite  formData={stateFormData} selectedScreenList={selectedScreenList}/>
+                }
             </Box>
             {
-                selectedItem === 'smart' && <SmartForm formData={stateFormData} setFormData={setStateFormData}/>
+                loading && <Loading 
+                    status={"Get setdata from database"}
+                />
             }
-            {
-                selectedItem === 'earning' && <EarningForm formData={stateFormData} setFormData={setStateFormData}/>
-            }
-            {
-                selectedItem === 'sales' && <SalesForm formData={stateFormData} setFormData={setStateFormData}/>
-            }
-            {
-                selectedItem === 'industry' && <IndustryForm formData={stateFormData} setFormData={setStateFormData}/>
-            }
-            {
-                selectedItem === 'sharing' && <SharingForm  formData={stateFormData} setFormData={setStateFormData}/>
-            }
-            {
-                selectedItem === 'pricevolume' && <PriceVolumeForm formData={stateFormData} setFormData={setStateFormData}/>
-            }
-            {
-                selectedItem === 'margins' && <MarginsForm formData={stateFormData} setFormData={setStateFormData}/>
-            }
-            {
-                selectedItem === 'general' && <GeneralForm formData={stateFormData} setFormData={setStateFormData}/>
-            }
-            {
-                selectedItem === 'idb' && <IDB formData={stateFormData} setFormData={setStateFormData}/>
-            }
-            {
-                selectedItem === 'favorite' && <Favorite  formData={stateFormData} selectedScreenList={selectedScreenList}/>
-            }
-        </Box>
+        </>
     );
 }
 

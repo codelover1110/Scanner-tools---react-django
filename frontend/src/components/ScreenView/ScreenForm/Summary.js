@@ -1,9 +1,11 @@
 import * as React from 'react' ;
 
 import { connect } from "react-redux";
-import { SetChangeDataResult } from '../../../redux/actions/result';
+import { GetMyScreenData,SetChangeDataResult } from '../../../redux/actions/result';
 
 import { useResultViewInfo } from '../../../contexts/ResultViewContext';
+import { SetTreeViewType } from '../../../redux/actions/screen';
+import Loading from '../../Common/Loading';
 
 import {
     Box,
@@ -31,18 +33,20 @@ const Summary = (props) => {
         stateFormData,
         oldStateFormData,
         selectedScreenList,
+        GetMyScreenData,
         SetChangeDataResult,
+        SetTreeViewType,
         stockCount
     } = props ;
 
     const [ changeData, setChangeData ] = React.useState({});
     const [ changeField, setChangeField ] = React.useState({});
+    const [ loading, setLoading ] = React.useState(false);
 
-    let count = 0;
     let temp = [];
 
-    React.useEffect(() => {
-        setChangeData({});        
+    React.useEffect(async() => {
+        setChangeData({});
     }, [selectedScreenList])
     
     React.useEffect(() => {
@@ -91,141 +95,154 @@ const Summary = (props) => {
         return count;
     }
 
+    const handleViewResult = async() => {
+        setLoading(true);
+
+        await InitialResultViewPoint(250) ;
+        await SetChangeDataResult(changeData);
+        await GetMyScreenData();
+        await SetTreeViewType("my screen");
+
+        setLoading(false);
+    }
     return (
-        <Box className={classes.root}>
-            {                
-                selectedItem === 'favorite' && <>
-                    <Box className={classes.titleDiv}>
-                        Screen Summary
-                    </Box>
-                    <TableContainer >
-                        <Table >
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell>CRITERIA</TableCell>
-                                    <TableCell>VALUES</TableCell>
-                                    <TableCell>REMAINING</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody >
-                                <TableRow>
-                                    <TableCell colSpan={3}>
-                                        Screen from : MarketSmith Database
-                                    </TableCell>
-                                </TableRow>
-                                
-                                {
+        <>
+            <Box className={classes.root}>
+                {                
+                    selectedItem === 'favorite' && <>
+                        <Box className={classes.titleDiv}>
+                            Screen Summary
+                        </Box>
+                        <TableContainer >
+                            <Table >
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>CRITERIA</TableCell>
+                                        <TableCell>VALUES</TableCell>
+                                        <TableCell>REMAINING</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody >
+                                    <TableRow>
+                                        <TableCell colSpan={3}>
+                                            Screen from : MarketSmith Database
+                                        </TableCell>
+                                    </TableRow>
                                     
-                                    Object.keys(changeData) != 0 && Object.entries(changeData).map( (element, index) => {
+                                    {
                                         
-                                        element[1] = element[1].toString()
-                                        
-                                        return (
-                                            <TableRow key={index}>
-                                            {
-                                                <>
-                                                    {
-                                                        (element[0].includes('min') || element[0].includes('max')) &&
-                                                        
-                                                            !(getCount(element[0].slice(0,-4)) === 2 && element[0].includes("max")) &&
+                                        Object.keys(changeData) != 0 && Object.entries(changeData).map( (element, index) => {
+                                            
+                                            element[1] = element[1].toString()
+                                            
+                                            return (
+                                                <TableRow key={index}>
+                                                {
+                                                    <>
+                                                        {
+                                                            (element[0].includes('min') || element[0].includes('max')) &&
+                                                            
+                                                                !(getCount(element[0].slice(0,-4)) === 2 && element[0].includes("max")) &&
+                                                                <>
+                                                                    <TableCell>{element[0].slice(0,-4)}</TableCell>
+                                                                    {
+                                                                        (getCount(element[0].slice(0,-4)) === 2) ?
+                                                                            <TableCell>
+                                                                                {
+                                                                                        <Box> { element[1]} {"-"} {stateFormData[element[0].slice(0,-4) + '_max']}</Box>
+                                                                                }
+                                                                            </TableCell>
+                                                                            :
+                                                                            <>
+                                                                                {
+                                                                                    element[0].includes("min") ?
+                                                                                        <TableCell>
+                                                                                                {
+                                                                                                    <Box> {">="} { element[1]} </Box>
+                                                                                                }
+                                                                                        </TableCell>
+                                                                                        :
+                                                                                        <TableCell>
+                                                                                                {
+                                                                                                    <Box> {"<="} { element[1]} </Box>
+                                                                                                }
+                                                                                        </TableCell>
+                                                                                }
+                                                                            </>
+                                                                    }
+                                                                    <TableCell>{stockCount}</TableCell>
+                                                                </> 
+                                                        }
+                                                        {
+                                                            (element[1] === "yes" || element[1] === "no") &&
                                                             <>
-                                                                <TableCell>{element[0].slice(0,-4)}</TableCell>
-                                                                {
-                                                                    (getCount(element[0].slice(0,-4)) === 2) ?
-                                                                        <TableCell>
-                                                                            {
-                                                                                    <Box> { element[1]} {"-"} {stateFormData[element[0].slice(0,-4) + '_max']}</Box>
-                                                                            }
-                                                                        </TableCell>
-                                                                        :
-                                                                        <>
-                                                                            {
-                                                                                element[0].includes("min") ?
-                                                                                    <TableCell>
-                                                                                            {
-                                                                                                <Box> {">="} { element[1]} </Box>
-                                                                                            }
-                                                                                    </TableCell>
-                                                                                    :
-                                                                                    <TableCell>
-                                                                                            {
-                                                                                                <Box> {"<="} { element[1]} </Box>
-                                                                                            }
-                                                                                    </TableCell>
-                                                                            }
-                                                                        </>
-                                                                }
+                                                                <TableCell>{element[0]}</TableCell>
+                                                                    <TableCell>
+                                                                        {
+                                                                                <Box> { element[1] } </Box>
+                                                                        }
+                                                                    </TableCell>
                                                                 <TableCell>{stockCount}</TableCell>
-                                                            </> 
-                                                    }
-                                                    {
-                                                        (element[1] === "yes" || element[1] === "no") &&
-                                                        <>
-                                                            <TableCell>{element[0]}</TableCell>
+                                                            </>
+                                                        }
+                                                        {
+                                                            (element[1].includes(',')) &&
+                                                            <>
+                                                                <TableCell>{element[0]}</TableCell>
                                                                 <TableCell>
                                                                     {
-                                                                            <Box> { element[1] } </Box>
+                                                                            <Box> { element[1].split(',') } </Box>
                                                                     }
                                                                 </TableCell>
-                                                            <TableCell>{stockCount}</TableCell>
-                                                        </>
-                                                    }
-                                                    {
-                                                        (element[1].includes(',')) &&
-                                                        <>
-                                                            <TableCell>{element[0]}</TableCell>
-                                                            <TableCell>
-                                                                {
-                                                                        <Box> { element[1].split(',') } </Box>
-                                                                }
-                                                            </TableCell>
-                                                            <TableCell>{stockCount}</TableCell>
-                                                        </>
-                                                    }
-                                                    {
-                                                        typeof(element[1]) === 'object' &&
-                                                        <>
-                                                            <TableCell>{element[0]}</TableCell>
-                                                            <TableCell>
-                                                                {
-                                                                    element[1].map((row, index) => {
-                                                                        return(
-                                                                            <Box component={'span'} key={index}>
-                                                                                {
-                                                                                    index !== 0  &&  <Box component={'span'}>{","}</Box>
-                                                                                }
-                                                                                <Box component={'span'}> { row } </Box>
-                                                                            </Box>
-                                                                        )
-                                                                    })
-                                                                }
-                                                            </TableCell>
-                                                            <TableCell>{stockCount}</TableCell>
-                                                        </>
-                                                    }
-                                                </>
-                                            }
-                                            </TableRow>
-                                        )                               
-                                    })
-                                
-                                }
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                    <Box className={classes.buttonDiv}>
-                        <Button variant='contained' className={classes.buttonCss}
-                            onClick={async () => {
-                                await InitialResultViewPoint(250) ;
-                                await SetChangeDataResult(changeData);
-                            }}
-                        >
-                            View Screen Results
-                        </Button>
-                    </Box>
-                </>
+                                                                <TableCell>{stockCount}</TableCell>
+                                                            </>
+                                                        }
+                                                        {
+                                                            typeof(element[1]) === 'object' &&
+                                                            <>
+                                                                <TableCell>{element[0]}</TableCell>
+                                                                <TableCell>
+                                                                    {
+                                                                        element[1].map((row, index) => {
+                                                                            return(
+                                                                                <Box component={'span'} key={index}>
+                                                                                    {
+                                                                                        index !== 0  &&  <Box component={'span'}>{","}</Box>
+                                                                                    }
+                                                                                    <Box component={'span'}> { row } </Box>
+                                                                                </Box>
+                                                                            )
+                                                                        })
+                                                                    }
+                                                                </TableCell>
+                                                                <TableCell>{stockCount}</TableCell>
+                                                            </>
+                                                        }
+                                                    </>
+                                                }
+                                                </TableRow>
+                                            )                               
+                                        })
+                                    
+                                    }
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                        <Box className={classes.buttonDiv}>
+                            <Button variant='contained' className={classes.buttonCss}
+                                onClick={() => handleViewResult()}
+                            >
+                                View Screen Results
+                            </Button>
+                        </Box>
+                    </>
+                }
+            </Box>
+            {
+                loading &&
+                <Loading />
             }
-        </Box>
+        </>
     )
 }
 
@@ -234,7 +251,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-    SetChangeDataResult
+    SetChangeDataResult,
+    GetMyScreenData,
+    SetTreeViewType
 }
 
 export default connect(mapStateToProps, mapDispatchToProps) (Summary) ;

@@ -2,6 +2,10 @@ import React from "react";
 
 import { connect } from "react-redux";
 import { GetScreenListData } from "../../redux/actions/screen";
+import { GetTrendWideData, GetPowerPlayData } from "../../redux/actions/result";
+
+import { useResultViewInfo } from '../../contexts/ResultViewContext';
+import Loading from '../Common/Loading';
 
 import {
     Box,
@@ -24,16 +28,24 @@ const ListView = (props) => {
     const classes = useStyles();
 
     const {
+        InitialResultViewPoint,
+    } = useResultViewInfo() ;
+
+    const {
         handleSelectCategory,
         selectedScreenList,
         setSelectedScreenList,
         stockList,
+        setTreeViewId,
         GetScreenListData,
+        GetTrendWideData,
+        GetPowerPlayData,
     } = props ;
     
     const [ isOpenPop , setOpenNewPop ] = React.useState(false) ;
 
     const anchorRef = React.useRef(null) ;
+    const [ loading, setLoading ] = React.useState(false);
 
     const handlePopOver = () => {
         setOpenNewPop(!isOpenPop) ;
@@ -83,7 +95,7 @@ const ListView = (props) => {
                     defaultExpandIcon={<ChevronRightIcon />}
                     sx={{ flexGrow: 1, maxWidth: 400, maxHeight : 'calc(100vh - 200px)',overflowY: 'auto' }}
                 >
-                    <TreeItem nodeId="1" label="My Screens">
+                    <TreeItem nodeId="1" label="My Screens" onClick={() => setTreeViewId(1)}>
                         <List>
                             {
                                 stockList && stockList.map((stock, index) => {
@@ -101,19 +113,28 @@ const ListView = (props) => {
                             }
                         </List>
                     </TreeItem>
-                    <TreeItem nodeId="2" label="MarketSmith Stock Screens">
+                    <TreeItem nodeId="2" label="Trend Template" onClick={() => setTreeViewId(2)}>
                         
                     </TreeItem>
-                    <TreeItem nodeId="3" label="MarketSmith Fund Screens">
+                    <TreeItem nodeId="3" label="Trend Template Wide" onClick={async() => 
+                        {
+                            setLoading(true);
+                            setTreeViewId(3);
+                            await InitialResultViewPoint(250) ;
+                            await GetTrendWideData()
+                            setLoading(false);
+                        }
+                    }>
                         
                     </TreeItem>
-                    <TreeItem nodeId="4" label="Tracked Screens">
-                        
-                    </TreeItem>
-                    <TreeItem nodeId="5" label="Favorite Screens">
-                        
-                    </TreeItem>
-                    <TreeItem nodeId="6" label="Stock Guide">
+                    <TreeItem nodeId="4" label="Power Play" onClick={async() => 
+                        {
+                            setLoading(true);
+                            setTreeViewId(4);
+                            await GetPowerPlayData()
+                            setLoading(false);
+                        }
+                    }>
                         
                     </TreeItem>
                 </TreeView>
@@ -123,6 +144,10 @@ const ListView = (props) => {
                 handlePopOver={handlePopOver}
                 anchorEl={anchorRef ? anchorRef.current : null}
             />
+            {
+                loading &&
+                <Loading />
+            }
         </>
     );
 }
@@ -133,6 +158,8 @@ const mapStateToProps = state => ({
     stockList : state.screen.stockList
 })
 const mapDispatchToProps = {
-    GetScreenListData
+    GetScreenListData,
+    GetTrendWideData,
+    GetPowerPlayData,
 }
 export default connect(mapStateToProps, mapDispatchToProps)(ListView) ;

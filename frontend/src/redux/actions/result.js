@@ -127,13 +127,67 @@ export const SetChangeDataResult = (changeData) => async dispatch => {
     }
 } 
 
-export const GetScreenResultData = () => async dispatch => {
+export const GetMyScreenData = () => async dispatch => {
     try {
         let res = await axios.get(`${config.PRIVATE_MARKETSMITH_API}screenresult/` , {}) ;
 
         if(res.status === 200) {
             await dispatch({
-                type : ActionTypes.GetScreenResultData,
+                type : ActionTypes.GetMyScreenData,
+                payload : res.data
+            });
+        }
+        
+        return true;
+    } catch(err) {
+        console.log(err);
+        return false;
+    }
+} 
+
+export const GetTrendData = () => async dispatch => {
+    try {
+        let res = await axios.get(`${config.PRIVATE_MARKETSMITH_API}screenresult/trend/` , {}) ;
+
+        if(res.status === 200) {
+            await dispatch({
+                type : ActionTypes.GetTrendData,
+                payload : res.data
+            });
+        }
+        
+        return true;
+    } catch(err) {
+        console.log(err);
+        return false;
+    }
+} 
+
+export const GetTrendWideData = () => async dispatch => {
+    try {
+        let res = await axios.get(`${config.PRIVATE_MARKETSMITH_API}screenresult/trendwide/` , {}) ;
+
+        if(res.status === 200) {
+            await dispatch({
+                type : ActionTypes.GetTrendWideData,
+                payload : res.data
+            });
+        }
+        
+        return true;
+    } catch(err) {
+        console.log(err);
+        return false;
+    }
+} 
+
+export const GetPowerPlayData = () => async dispatch => {
+    try {
+        let res = await axios.get(`${config.PRIVATE_MARKETSMITH_API}screenresult/powerplay/` , {}) ;
+
+        if(res.status === 200) {
+            await dispatch({
+                type : ActionTypes.GetPowerPlayData,
                 payload : res.data
             });
         }

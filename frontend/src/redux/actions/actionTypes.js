@@ -23,12 +23,17 @@ const ActionTypes = {
     CustomizeColumnData : "CustomizeColumnData",
 
     GetScreenListData : "GetScreenListData",
+    SetTreeViewType : "SetTreeViewType",
+    
     GetScreenOptionData : "GetScreenOptionData",
     InsertScreenOptionData : "InsertScreenOptionData",
     
     SetChangeDataResult : "SetChangeDataResult",
-    GetScreenResultData : "GetScreenResultData",
-    GetStockCount : "GetStockCount"
+    GetMyScreenData : "GetMyScreenData",
+    GetTrendData : "GetTrendData",
+    GetTrendWideData : "GetTrendWideData",
+    GetPowerPlayData : "GetPowerPlayData",
+    GetStockCount : "GetStockCount",
 }
 
 export default ActionTypes ;

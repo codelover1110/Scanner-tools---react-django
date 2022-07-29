@@ -2,6 +2,7 @@ import ActionTypes from "../actions/actionTypes";
 
 const INITIAL_STATE = {
     stockList : [],
+    treeViewType : null,
 }
 
 export default (state = INITIAL_STATE , action) => {
@@ -12,10 +13,11 @@ export default (state = INITIAL_STATE , action) => {
                 ...state,
                 stockList : action.payload
             })
-        case ActionTypes.AddNewStock : 
-            return ({
+        case ActionTypes.SetTreeViewType : 
+            console.log(action.payload);
+            return({
                 ...state,
-                stockList : action.payload
+                treeViewType : action.payload
             })
 
         default :

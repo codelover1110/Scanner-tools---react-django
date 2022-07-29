@@ -28,6 +28,7 @@ const ScreenView = () => {
 
     const [currentCategory, setCurrentCategory] = React.useState('MM-loose 50') ;
     const [ selectedScreenList, setSelectedScreenList ] = React.useState(0);
+    const [ treeViewId, setTreeViewId ] = React.useState(1);
 
     const handleSelectCategory = (selectedCategory) => {
         setCurrentCategory(selectedCategory) ;
@@ -42,12 +43,14 @@ const ScreenView = () => {
                         handleSelectCategory={handleSelectCategory}
                         selectedScreenList={selectedScreenList}
                         setSelectedScreenList={setSelectedScreenList}
+                        setTreeViewId={setTreeViewId}
                     />
                 </Grid>
                 <Grid item xs={9.6}>
                     <ScreenForm 
                         currentCategory={currentCategory}
                         selectedScreenList={selectedScreenList}
+                        treeViewId={treeViewId}
                     />
                 </Grid>
             </Grid>

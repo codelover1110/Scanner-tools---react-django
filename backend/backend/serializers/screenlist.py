@@ -1,6 +1,9 @@
 from backend.models.screenlist import Screenlist
 from backend.models.screenlist import Screenoption
 from backend.models.models import Indicators
+from backend.models.models import Trend
+from backend.models.models import TrendWide
+from backend.models.models import PowerPlay
 from rest_framework import serializers
 
 
@@ -20,3 +23,18 @@ class ScreenresultSerializer(serializers.ModelSerializer):
     class Meta:
         model = Indicators
         fields = ['ticker_symbol', 'date_populated', 'rs', 'bband_gap', 'will_r', 'er', 'grade', 'events', 'c', 'v']
+
+class TrendSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Trend
+        fields = ['ticker_symbol', 'date_populated', 'first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth']
+
+class TrendWideSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TrendWide
+        fields = ['ticker_symbol', 'date_populated', 'first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh']
+
+class PowerPlaySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PowerPlay
+        fields = ['ticker_symbol', 'date_populated', 'first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth']

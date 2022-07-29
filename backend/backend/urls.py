@@ -22,6 +22,9 @@ urlpatterns = [
     re_path(r'^api/screenoption/$', screenlist.ScreenoptionViewSet.screen_option, name="screenoption"),
     re_path(r'^api/screenoption/add/$', screenlist.ScreenoptionViewSet.screen_option, name="screenoption"),
     re_path(r'^api/screenresult/$', screenlist.ScreenresultViewSet.screen_result, name="screenresult"),
+    re_path(r'^api/screenresult/trend/$', screenlist.TrendViewSet.trend, name="trend"),
+    re_path(r'^api/screenresult/trendwide/$', screenlist.TrendWideViewSet.trend_wide, name="trendwide"),
+    re_path(r'^api/screenresult/powerplay/$', screenlist.PowerPlayViewSet.power_play, name="powerplay"),
     re_path(r'', frontend.front, name="front"),
     # path('', include('core.urls'), name='index')
 ]

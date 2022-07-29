@@ -31,11 +31,11 @@ export const InsertScreenListData = (data) => async dispatch => {
     } 
 }
 
-export const AddNewStock = (newStocks) => async dispatch => {
+export const SetTreeViewType = (type) => async dispatch => {
     try {
         await dispatch({
-            type : ActionTypes.AddNewStock,
-            payload : newStocks
+            type : ActionTypes.SetTreeViewType,
+            payload : type
         }) ;
         return true ;
     } catch(err){
@@ -44,3 +44,5 @@ export const AddNewStock = (newStocks) => async dispatch => {
         return false ;
     } 
 }
+
+

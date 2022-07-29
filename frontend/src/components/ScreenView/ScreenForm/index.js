@@ -13,6 +13,9 @@ import {
 import ScreenOption from "./ScreenOption";
 
 import { makeStyles } from "@mui/styles";
+import TrendTemplate from "./TrendTemplate";
+import TrendTemplateWide from "./TrendTemplateWide";
+import PowerPlay from "./PowerPlay";
 
 const useStyles = makeStyles((theme) => ({
     root : {
@@ -36,6 +39,7 @@ const ScreenForm = (props) => {
         currentCategory,
         stockList,
         selectedScreenList,
+        treeViewId,
     } = props ;
 
     const [screenValue, setScreenValue] = useState('MM-loose 50');
@@ -73,12 +77,26 @@ const ScreenForm = (props) => {
                 </Box>
                 &nbsp; (7,969 stocks)
             </Box>
-
-            <Grid container>
-                <Grid item xs={12}>
-                    <ScreenOption selectedScreenList={selectedScreenList}/>
+            {
+                treeViewId === 1 &&
+                <Grid container>
+                    <Grid item xs={12}>
+                        <ScreenOption selectedScreenList={selectedScreenList}/>
+                    </Grid>
                 </Grid>
-            </Grid>
+            }
+            {
+                treeViewId === 2 &&
+                <TrendTemplate />
+            }
+            {
+                treeViewId === 3 &&
+                <TrendTemplateWide />
+            }
+            {
+                treeViewId === 4 &&
+                <PowerPlay />
+            }
         </Box>
     );
 }

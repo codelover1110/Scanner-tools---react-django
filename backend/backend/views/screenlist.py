@@ -9,9 +9,15 @@ from rest_framework.decorators import api_view
 from backend.models.screenlist import Screenlist
 from backend.models.screenlist import Screenoption
 from backend.models.models import Indicators
+from backend.models.models import Trend
+from backend.models.models import TrendWide
+from backend.models.models import PowerPlay
 from backend.serializers.screenlist import ScreenlistSerializer
 from backend.serializers.screenlist import ScreenoptionSerializer
 from backend.serializers.screenlist import ScreenresultSerializer
+from backend.serializers.screenlist import TrendSerializer
+from backend.serializers.screenlist import TrendWideSerializer
+from backend.serializers.screenlist import PowerPlaySerializer
 
 class ScreenlistViewSet(viewsets.ModelViewSet):
     queryset = Screenlist.objects.all()
@@ -344,6 +350,60 @@ class ScreenresultViewSet(viewsets.ModelViewSet):
             return Response(serializer.data)
         elif request.method == 'POST':
             serializer = ScreenresultSerializer(data=request.data)
+            if serializer.is_valid():
+                return Response(serializer.data,status=status.HTTP_201_CREATED)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+            
+class TrendViewSet(viewsets.ModelViewSet):                                                                                                                                                                                                                                                                                                                                                           
+    queryset = Trend.objects.all()
+
+    @api_view(['GET', 'POST'])
+    def trend(request):
+        if request.method == 'GET':
+
+            trend = Trend.objects.all()
+            serializer = TrendSerializer(trend, many=True)
+
+            return Response(serializer.data)
+        elif request.method == 'POST':
+            serializer = TrendSerializer(data=request.data)
+            if serializer.is_valid():
+                return Response(serializer.data,status=status.HTTP_201_CREATED)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class TrendWideViewSet(viewsets.ModelViewSet):                                                                                                                                                                                                                                                                                                                                                           
+    queryset = TrendWide.objects.all()
+
+    @api_view(['GET', 'POST'])
+    
+    def trend_wide(request):
+        if request.method == 'GET':
+
+            trend_wide = TrendWide.objects.all()
+            serializer = TrendWideSerializer(trend_wide, many=True)
+
+            return Response(serializer.data)
+        elif request.method == 'POST':
+            serializer = TrendWideSerializer(data=request.data)
+            if serializer.is_valid():
+                return Response(serializer.data,status=status.HTTP_201_CREATED)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            
+class PowerPlayViewSet(viewsets.ModelViewSet):                                                                                                                                                                                                                                                                                                                                                           
+    queryset = PowerPlay.objects.all()
+
+    @api_view(['GET', 'POST'])
+    
+    def power_play(request):
+        if request.method == 'GET':
+
+            power_play = PowerPlay.objects.all()
+            serializer = PowerPlaySerializer(power_play, many=True)
+
+            return Response(serializer.data)
+        elif request.method == 'POST':
+            serializer = PowerPlaySerializer(data=request.data)
             if serializer.is_valid():
                 return Response(serializer.data,status=status.HTTP_201_CREATED)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

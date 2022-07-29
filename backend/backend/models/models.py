@@ -106,21 +106,21 @@ class Indicators(models.Model):
         db_table = 'indicators'
 #
 #
-# class PowerPlay(models.Model):
-#     ticker_symbol = models.OneToOneField('Tickers', models.DO_NOTHING, db_column='ticker_symbol', primary_key=True)
-#     date_populated = models.DateField(blank=True, null=True)
-#     first = models.IntegerField()
-#     second = models.IntegerField()
-#     third = models.IntegerField()
-#     fourth = models.IntegerField()
-#     fifth = models.IntegerField()
-#     sixth = models.IntegerField()
-#     seventh = models.IntegerField()
-#     eighth = models.IntegerField()
-#
-#     class Meta:
-#         managed = False
-#         db_table = 'power_play'
+class PowerPlay(models.Model):
+    ticker_symbol = models.OneToOneField('Tickers', models.DO_NOTHING, db_column='ticker_symbol', primary_key=True)
+    date_populated = models.DateField(blank=True, null=True)
+    first = models.IntegerField()
+    second = models.IntegerField()
+    third = models.IntegerField()
+    fourth = models.IntegerField()
+    fifth = models.IntegerField()
+    sixth = models.IntegerField()
+    seventh = models.IntegerField()
+    eighth = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'power_play'
 #
 #
 # class Quotes(models.Model):
@@ -198,34 +198,34 @@ class Tickers(models.Model):
         unique_together = (('symbol', 'exchange'),)
 #
 #
-# class Trend(models.Model):
-#     ticker_symbol = models.OneToOneField(Tickers, models.DO_NOTHING, db_column='ticker_symbol', primary_key=True)
-#     date_populated = models.DateField(blank=True, null=True)
-#     first = models.IntegerField()
-#     second = models.IntegerField()
-#     third = models.IntegerField()
-#     fourth = models.IntegerField()
-#     fifth = models.IntegerField()
-#     sixth = models.IntegerField()
-#     seventh = models.IntegerField()
-#     eighth = models.IntegerField()
+class Trend(models.Model):
+    ticker_symbol = models.OneToOneField(Tickers, models.DO_NOTHING, db_column='ticker_symbol', primary_key=True)
+    date_populated = models.DateField(blank=True, null=True)
+    first = models.IntegerField()
+    second = models.IntegerField()
+    third = models.IntegerField()
+    fourth = models.IntegerField()
+    fifth = models.IntegerField()
+    sixth = models.IntegerField()
+    seventh = models.IntegerField()
+    eighth = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'trend'
 #
-#     class Meta:
-#         managed = False
-#         db_table = 'trend'
 #
-#
-# class TrendWide(models.Model):
-#     ticker_symbol = models.OneToOneField(Tickers, models.DO_NOTHING, db_column='ticker_symbol', primary_key=True)
-#     date_populated = models.DateField(blank=True, null=True)
-#     first = models.IntegerField()
-#     second = models.IntegerField()
-#     third = models.IntegerField()
-#     fourth = models.IntegerField()
-#     fifth = models.IntegerField()
-#     sixth = models.IntegerField()
-#     seventh = models.IntegerField()
-#
-#     class Meta:
-#         managed = False
-#         db_table = 'trend_wide'
+class TrendWide(models.Model):
+    ticker_symbol = models.OneToOneField(Tickers, models.DO_NOTHING, db_column='ticker_symbol', primary_key=True)
+    date_populated = models.DateField(blank=True, null=True)
+    first = models.IntegerField()
+    second = models.IntegerField()
+    third = models.IntegerField()
+    fourth = models.IntegerField()
+    fifth = models.IntegerField()
+    sixth = models.IntegerField()
+    seventh = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'trend_wide'
