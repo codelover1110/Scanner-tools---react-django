@@ -11,6 +11,7 @@ const INITIAL_STATE = {
 
     changeData : null,
     screenResultData : null,
+    stockCount : null,
 }
 
 export default (state = INITIAL_STATE , action) => {
@@ -63,6 +64,11 @@ export default (state = INITIAL_STATE , action) => {
             return ({
                 ...state,
                 screenResultData : action.payload
+            });
+        case ActionTypes.GetStockCount :
+            return ({
+                ...state,
+                stockCount : action.payload
             });
         default :
             return state ;

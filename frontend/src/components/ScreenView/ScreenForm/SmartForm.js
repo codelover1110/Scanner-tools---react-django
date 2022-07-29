@@ -43,7 +43,7 @@ const SmartForm = (props) => {
                         type={'number'}
                         placeholder={'Min'}
                         size={'small'}
-                        value = { formData.eps_rating_min ? formData.eps_rating_min : '' }
+                        value = {formData.eps_rating_min}
                         onChange={(e) => setFormData({...formData, eps_rating_min : e.target.value})}
                     />
                     <Box >to</Box>

@@ -1,6 +1,8 @@
 import React from 'react' ;
 
 import { Link } from 'react-router-dom';
+import { connect } from "react-redux";
+import { GetScreenListData } from "../../redux/actions/screen";
 
 import CreateNewFolderIcon from '@mui/icons-material/CreateNewFolder';
 
@@ -49,7 +51,8 @@ const NewPopOver = (props) => {
 
     const {
         open , anchorEl , handlePopOver,
-        handleAddNewStock
+        handleAddNewStock,
+        GetScreenListData
     } = props ;
 
     const [openNewStockModal, setOpenNewStockModal] = React.useState(false) ;
@@ -57,8 +60,9 @@ const NewPopOver = (props) => {
     const handleOpenNewStockModal = () => {
         setOpenNewStockModal(true) ;
     }
-    const handleCloseNewStockModal = () => {
+    const handleCloseNewStockModal = async () => {
         setOpenNewStockModal(false) ;
+        await GetScreenListData()
     }
 
     return (
@@ -102,4 +106,10 @@ const NewPopOver = (props) => {
     )
 }
 
-export default NewPopOver ;
+const mapStateToProps = state => ({
+})
+const mapDispatchToProps = {
+    GetScreenListData
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewPopOver) ;

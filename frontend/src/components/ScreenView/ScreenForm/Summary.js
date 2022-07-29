@@ -31,7 +31,8 @@ const Summary = (props) => {
         stateFormData,
         oldStateFormData,
         selectedScreenList,
-        SetChangeDataResult
+        SetChangeDataResult,
+        stockCount
     } = props ;
 
     const [ changeData, setChangeData ] = React.useState({});
@@ -154,7 +155,7 @@ const Summary = (props) => {
                                                                             }
                                                                         </>
                                                                 }
-                                                                <TableCell>164</TableCell>
+                                                                <TableCell>{stockCount}</TableCell>
                                                             </> 
                                                     }
                                                     {
@@ -166,7 +167,7 @@ const Summary = (props) => {
                                                                             <Box> { element[1] } </Box>
                                                                     }
                                                                 </TableCell>
-                                                            <TableCell>164</TableCell>
+                                                            <TableCell>{stockCount}</TableCell>
                                                         </>
                                                     }
                                                     {
@@ -178,7 +179,7 @@ const Summary = (props) => {
                                                                         <Box> { element[1].split(',') } </Box>
                                                                 }
                                                             </TableCell>
-                                                            <TableCell>164</TableCell>
+                                                            <TableCell>{stockCount}</TableCell>
                                                         </>
                                                     }
                                                     {
@@ -199,7 +200,7 @@ const Summary = (props) => {
                                                                     })
                                                                 }
                                                             </TableCell>
-                                                            <TableCell>164</TableCell>
+                                                            <TableCell>{stockCount}</TableCell>
                                                         </>
                                                     }
                                                 </>
@@ -229,6 +230,7 @@ const Summary = (props) => {
 }
 
 const mapStateToProps = state => ({
+    stockCount : state.result.stockCount
 })
 
 const mapDispatchToProps = {

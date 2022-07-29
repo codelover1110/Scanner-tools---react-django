@@ -40,7 +40,6 @@ const ListView = (props) => {
     }
 
     const handleScreenListBrowse = async () => {
-        await GetScreenListData()
     }
 
     const handleSelectScreenList = (stock, index) => {
