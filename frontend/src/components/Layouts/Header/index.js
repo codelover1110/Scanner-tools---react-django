@@ -47,23 +47,24 @@ const Header = (props) => {
     const classes = useStyles();
     
     return (
-        <Box className={classes.root}>
-            <select>
-                <option value="lvgo"> LVGO </option>
-            </select>
-            <Button variant='outlined'>
-                Daily
-            </Button>
-            <Button variant='outlined'>
-                Weekly
-            </Button>
-            <Button variant='outlined'>
-                Monthly
-            </Button>
-            <select>
-                <option value="5"> 5 Min </option>
-            </select>
-        </Box>
+        // <Box className={classes.root}>
+        //     <select>
+        //         <option value="lvgo"> LVGO </option>
+        //     </select>
+        //     <Button variant='outlined'>
+        //         Daily
+        //     </Button>
+        //     <Button variant='outlined'>
+        //         Weekly
+        //     </Button>
+        //     <Button variant='outlined'>
+        //         Monthly
+        //     </Button>
+        //     <select>
+        //         <option value="5"> 5 Min </option>
+        //     </select>
+        // </Box>
+        <></>
     );
 }
 

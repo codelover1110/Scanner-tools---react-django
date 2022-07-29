@@ -55,7 +55,7 @@ const ScreenForm = (props) => {
     
     return (
         <Box className={classes.root}>
-            <Select 
+            {/* <Select 
                 value={screenValue}
                 onChange={(e) => handleChange(e)}
             >
@@ -68,14 +68,14 @@ const ScreenForm = (props) => {
                         )
                     })
                 }
-            </Select>
+            </Select> */}
 
             <Box sx={{borderBottom: '1px solid lightgrey', color : 'black', mt : 2, mb : 5}}>
                 Screen from &nbsp;
                 <Box component={"span"} sx={{color : 'rgb(76,70,195)'}}>
-                    MarketSmith Database
+                    Database
                 </Box>
-                &nbsp; (7,969 stocks)
+                {/* &nbsp; (7,969 stocks) */}
             </Box>
             {
                 treeViewId === 1 &&

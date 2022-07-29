@@ -68,7 +68,7 @@ const ListView = (props) => {
     return (
         <>
             <Box className={classes.root}>
-                <Box className={classes.topList}>
+                {/* <Box className={classes.topList}>
                     <Button variant="outlined" 
                         className={classes.closeButtonCss}
                     >
@@ -77,7 +77,7 @@ const ListView = (props) => {
                     <Button variant="outlined" >
                         Close Edit
                     </Button>
-                </Box>
+                </Box> */}
                 <Box className={classes.actionList} >
                     <Button variant="outlined" 
                         ref={anchorRef}
@@ -85,11 +85,11 @@ const ListView = (props) => {
                     >
                         New Screen
                     </Button>
-                    <Button variant="outlined"
+                    {/* <Button variant="outlined"
                         onClick={handleScreenListBrowse}
                     >
                         Browse Screens
-                    </Button>
+                    </Button> */}
                 </Box>
                 
                 <TreeView

@@ -89,10 +89,10 @@ const NewPopOver = (props) => {
                     >
                         <Box className={classes.blackRectDiv} /><Box>New Stock Screen</Box>
                     </ListItemButton>
-                    <ListItemButton>
+                    {/* <ListItemButton>
                         <Box className={classes.greenRectDiv}/><Box>New Fund Screen</Box>
                     </ListItemButton>
-                    <ListItemButton><CreateNewFolderIcon sx={{fontSize : '15px', color : 'gray'}}/><Box>New Folder</Box></ListItemButton>
+                    <ListItemButton><CreateNewFolderIcon sx={{fontSize : '15px', color : 'gray'}}/><Box>New Folder</Box></ListItemButton> */}
                 </List>
             </Popover>
 

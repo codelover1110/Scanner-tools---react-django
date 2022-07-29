@@ -108,11 +108,11 @@ const Category = (props) => {
             text : 'General Stock Criteria',
             count : 12
         },
-        {
-            value : 'idb',
-            text : 'IBD Content',
-            count : 4
-        }
+        // {
+        //     value : 'idb',
+        //     text : 'IBD Content',
+        //     count : 4
+        // }
     ]
 
     return (
