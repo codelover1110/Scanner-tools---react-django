@@ -447,7 +447,8 @@ const CSVPopOver = (props) => {
     const {
         open , anchorEl , handleCsvPopOver, 
         customizeColumnHeader,
-        customizeColumnData
+        customizeColumnData,
+        screenResultData
     } = props ;
 
     useEffect(() => {
@@ -487,7 +488,7 @@ const CSVPopOver = (props) => {
             >
                 <List>
                     <ListItemButton>
-                        <CSVLink data={csvData.length === 0 ? csv : csvData}>Comma Demited(.csv)</CSVLink>
+                        <CSVLink data={screenResultData ? screenResultData : ''}>Comma Demited(.csv)</CSVLink>
                     </ListItemButton>
                     <ListItemButton>
                         <Box>Excel 97-2003(.xls)</Box>
@@ -507,7 +508,8 @@ const CSVPopOver = (props) => {
 
 const mapStateToProps = state => ({
     customizeColumnHeader : state.column.customizeColumnHeader,
-    customizeColumnData : state.column.customizeColumnData
+    customizeColumnData : state.column.customizeColumnData,
+    screenResultData : state.result.screenResultData
 }) ;
 const mapDispatchToProps = {
 } ;

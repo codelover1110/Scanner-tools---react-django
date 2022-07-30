@@ -36,6 +36,7 @@ const ListView = (props) => {
         selectedScreenList,
         setSelectedScreenList,
         stockList,
+        treeViewId,
         setTreeViewId,
         GetScreenListData,
         GetTrendWideData,
@@ -56,7 +57,8 @@ const ListView = (props) => {
 
     const handleSelectScreenList = (stock, index) => {
         handleSelectCategory(stock.text);
-        setSelectedScreenList(index + 1)
+        setSelectedScreenList(index + 1);
+        setTreeViewId(1);
     }
 
     React.useEffect(async () => {
@@ -103,7 +105,7 @@ const ListView = (props) => {
                                         <ListItem
                                             key={index}
                                             onClick={() => handleSelectScreenList(stock, index)}
-                                            className={selectedScreenList === index + 1 ? classes.selectScreen : ''}
+                                            className={(selectedScreenList === index + 1 && treeViewId === 1) ? classes.selectScreen : ''}
                                         >
                                             <Box className={classes.checkBox}/>
                                             <ListItemText primary={stock.title}/>
@@ -113,28 +115,28 @@ const ListView = (props) => {
                             }
                         </List>
                     </TreeItem>
-                    <TreeItem nodeId="2" label="Trend Template" onClick={() => setTreeViewId(2)}>
+                    <TreeItem
+                        nodeId="2"
+                        label="Trend Template"
+                        onClick={() => setTreeViewId(2)}
+                        sx={{background :  (treeViewId === 2 ? '#f7b147' : '')}}
+                    >
                         
                     </TreeItem>
-                    <TreeItem nodeId="3" label="Trend Template Wide" onClick={async() => 
-                        {
-                            setLoading(true);
-                            setTreeViewId(3);
-                            await InitialResultViewPoint(250) ;
-                            await GetTrendWideData()
-                            setLoading(false);
-                        }
-                    }>
+                    <TreeItem
+                        nodeId="3"
+                        label="Trend Template Wide"
+                        onClick={() => setTreeViewId(3)}
+                        sx={{background :  (treeViewId === 3 ? '#f7b147' : '')}}
+                    >
                         
                     </TreeItem>
-                    <TreeItem nodeId="4" label="Power Play" onClick={async() => 
-                        {
-                            setLoading(true);
-                            setTreeViewId(4);
-                            await GetPowerPlayData()
-                            setLoading(false);
-                        }
-                    }>
+                    <TreeItem
+                        nodeId="4"
+                        label="Power Play"
+                        onClick={() => setTreeViewId(4)}
+                        sx={{background :  (treeViewId === 4 ? '#f7b147' : '')}}
+                    >
                         
                     </TreeItem>
                 </TreeView>

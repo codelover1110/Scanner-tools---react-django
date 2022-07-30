@@ -34,7 +34,7 @@ export const useStyles = makeStyles((theme) => ({
             },
         },
         "& .MuiTreeItem-content" : {
-            background : 'white !important'
+            // background : 'white !important'
         },
         "& .MuiCollapse-root" : {
             marginLeft : '10px'

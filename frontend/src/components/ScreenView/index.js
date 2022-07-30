@@ -43,6 +43,7 @@ const ScreenView = () => {
                         handleSelectCategory={handleSelectCategory}
                         selectedScreenList={selectedScreenList}
                         setSelectedScreenList={setSelectedScreenList}
+                        treeViewId={treeViewId}
                         setTreeViewId={setTreeViewId}
                     />
                 </Grid>

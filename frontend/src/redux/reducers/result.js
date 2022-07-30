@@ -11,7 +11,6 @@ const INITIAL_STATE = {
 
     changeData : null,
     screenResultData : null,
-    templateData : null,
     stockCount : null,
 }
 
@@ -61,25 +60,10 @@ export default (state = INITIAL_STATE , action) => {
                 ...state,
                 changeData : action.payload
             });
-        case ActionTypes.GetMyScreenData :
+        case ActionTypes.GetScreenResultData :
             return ({
                 ...state,
                 screenResultData : action.payload
-            });
-        case ActionTypes.GetTrendData :
-            return ({
-                ...state,
-                templateData : action.payload
-            });
-        case ActionTypes.GetTrendWideData :
-            return ({
-                ...state,
-                templateData : action.payload
-            });
-        case ActionTypes.GetPowerPlayData :
-            return ({
-                ...state,
-                templateData : action.payload
             });
         case ActionTypes.GetStockCount :
             return ({

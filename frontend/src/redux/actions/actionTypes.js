@@ -29,10 +29,7 @@ const ActionTypes = {
     InsertScreenOptionData : "InsertScreenOptionData",
     
     SetChangeDataResult : "SetChangeDataResult",
-    GetMyScreenData : "GetMyScreenData",
-    GetTrendData : "GetTrendData",
-    GetTrendWideData : "GetTrendWideData",
-    GetPowerPlayData : "GetPowerPlayData",
+    GetScreenResultData : "GetScreenResultData",
     GetStockCount : "GetStockCount",
 }
 

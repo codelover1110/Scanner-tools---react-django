@@ -22,7 +22,6 @@ const ScreenResultsList = (props) => {
         customizeColumnData,
         changeData,
         screenResultData,
-        templateData,
         treeViewType,
         GetStockCount,
     } = props;
@@ -77,25 +76,21 @@ const ScreenResultsList = (props) => {
 
     useEffect(async () => {
         if(screenResultData){
-            let temp = [] ;
+            // if(treeViewType === "my screen"){
+            //     let temp = [] ;
 
-            await Promise.all(
-                screenResultData.map(async row => {
-                    let cond = await filterCond(row) ;
-                    if(cond) {
-                        temp.push(row) ;
-                    }
-                })
-            )
-            setFilterList([...temp]) ;
+            //     await Promise.all(
+            //         screenResultData.map(async row => {
+            //             let cond = await filterCond(row) ;
+            //             if(cond) {
+            //                 temp.push(row) ;
+            //             }
+            //         })
+            //     )
+            //     setFilterList([...temp]) ;
+            // }
         }
     }, [screenResultData , changeData])
-
-    useEffect(() => {
-        if(templateData){
-            setTempData(templateData);
-        }
-    }, [templateData])
 
     useEffect(() => {
         if(customizeColumnHeader) {
@@ -128,25 +123,24 @@ const ScreenResultsList = (props) => {
                             <TableCell>{"p"}</TableCell>
                             <TableCell sx={{minWidth : '30px'}}>{"#"}</TableCell>
                             {
-                                treeViewType === "my screen" && screenResultData &&
-                                Object.entries(screenResultData[0]).map((row,index) => {
+                                screenResultData && Object.entries(screenResultData[0]).map((row,index) => {
                                     return(
                                         <TableCell key={index} sx={{minWidth : '50px'}}>{row[0]}</TableCell>
                                     )
                                 })
                             }
-                            {
+                            {/* {
                                 treeViewType !== "my screen" && tempData &&
                                 Object.entries(tempData[0]).map((row,index) => {
                                     return(
                                         <TableCell key={index} sx={{minWidth : '50px'}}>{row[0]}</TableCell>
                                     )
                                 })
-                            }
+                            } */}
                         </TableRow>
                     </TableHead>
                     <TableBody >
-                            {
+                            {/* {
                                 
                                 treeViewType === "my screen" && screenResultData &&
                                 screenResultData.map((row, index) => {
@@ -165,10 +159,9 @@ const ScreenResultsList = (props) => {
                                                 <TableCell>{row.v}</TableCell>
                                             </TableRow>
                                         }) 
-                            }
+                            } */}
                             {
-                                treeViewType !== "my screen" && tempData &&
-                                tempData.map((row, index) => {
+                                screenResultData && screenResultData.map((row, index) => {
                                     return(
                                         <TableRow key={index}>
                                             <TableCell sx={{minWidth : '70px'}}></TableCell>
@@ -196,7 +189,6 @@ const mapStateToProps = state => ({
     customizeColumnData : state.column.customizeColumnData,
     changeData : state.result.changeData,
     screenResultData : state.result.screenResultData,
-    templateData : state.result.templateData,
     treeViewType : state.screen.treeViewType
 })
 const mapDispatchToProps = {

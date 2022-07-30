@@ -133,7 +133,7 @@ export const GetMyScreenData = () => async dispatch => {
 
         if(res.status === 200) {
             await dispatch({
-                type : ActionTypes.GetMyScreenData,
+                type : ActionTypes.GetScreenResultData,
                 payload : res.data
             });
         }
@@ -151,7 +151,7 @@ export const GetTrendData = () => async dispatch => {
 
         if(res.status === 200) {
             await dispatch({
-                type : ActionTypes.GetTrendData,
+                type : ActionTypes.GetScreenResultData,
                 payload : res.data
             });
         }
@@ -169,7 +169,7 @@ export const GetTrendWideData = () => async dispatch => {
 
         if(res.status === 200) {
             await dispatch({
-                type : ActionTypes.GetTrendWideData,
+                type : ActionTypes.GetScreenResultData,
                 payload : res.data
             });
         }
@@ -187,7 +187,7 @@ export const GetPowerPlayData = () => async dispatch => {
 
         if(res.status === 200) {
             await dispatch({
-                type : ActionTypes.GetPowerPlayData,
+                type : ActionTypes.GetScreenResultData,
                 payload : res.data
             });
         }
