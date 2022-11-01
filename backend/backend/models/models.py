@@ -103,7 +103,7 @@ class Indicators(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'indicators'
+        db_table = 'eod_indicators'
 #
 #
 class PowerPlay(models.Model):
@@ -120,7 +120,7 @@ class PowerPlay(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'power_play'
+        db_table = 'eod_power_play'
 #
 #
 # class Quotes(models.Model):
@@ -194,7 +194,7 @@ class Tickers(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'tickers'
+        db_table = 'eod_tickers'
         unique_together = (('symbol', 'exchange'),)
 #
 #
@@ -212,7 +212,7 @@ class Trend(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'trend'
+        db_table = 'eod_trend'
 #
 #
 class TrendWide(models.Model):
@@ -228,4 +228,4 @@ class TrendWide(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'trend_wide'
+        db_table = 'eod_trend_wide'
