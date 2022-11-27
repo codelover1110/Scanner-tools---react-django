@@ -13,7 +13,7 @@ import {
     TableRow,
     Table
 } from '@mui/material' ;
-
+import { DataGrid } from '@mui/x-data-grid';
 import { useStyles } from './StyledDiv/ScreenResult.styles';
 
 const ScreenResultsList = (props) => {
@@ -73,6 +73,59 @@ const ScreenResultsList = (props) => {
         }
         return cond ;
     }
+    //{"ticker_symbol":"0P00007K7V.AU","date_populated":"2022-11-07","first":0,"second":0,"third":0,"fourth":0,"fifth":0,"sixth":0,"seventh":0,"eighth":1}
+
+    const columns = [
+        {field: 'id', headerName: 'id', width: 80},
+        {field: 'ticker_symbol', headerName: 'ticker_symbol', width: 80},
+        {field: 'date_populated', headerName: 'date_populated', width: 80},
+        {field: 'first', headerName: 'first', width: 80},
+        {field: 'second', headerName: 'second', width: 80},
+        {field: 'third', headerName: 'third', width: 80},
+        {field: 'fourth', headerName: 'fourth', width: 80},
+        {field: 'fifth', headerName: 'fifth', width: 80},
+        {field: 'sixth', headerName: 'sixth', width: 80},
+        {field: 'seventh', headerName: 'seventh', width: 80},
+        {field: 'eighth', headerName: 'eighth', width: 80}
+    // screenResultData && Object.entries(screenResultData[0]).map((row,index) => {
+    //     // console.log(row[0])
+    //     // eslint-disable-next-line no-unused-expressions
+    //     return { field: row[0] , headerName: row[0] , width: 80 }
+    // })
+    ];
+    console.log(columns)
+    let rows = [
+            //      { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
+            screenResultData && Object.entries(screenResultData).map((row, index) => {
+                //         console.log(row)
+                // eslint-disable-next-line no-unused-expressions
+                //         //     first: row[1]['first'],
+                //         //     second: row[1]['second'],
+                //         //     third: row[1]['third'],
+                //         //     fourth: row[1]['fourth'],
+                //         //     fifth: row[1]['fifth'],
+                //         //     sixth: row[1]['sixth'],
+                //         //     seventh: row[1]['seventh'],
+                //         //     eighth: row[1]['eighth']
+                //
+                return {
+                    _id: parseInt(index)+1,
+                    id: parseInt(index)+1,
+                    ticker_symbol: row[1]['ticker_symbol'],
+                    date_populated: row[1]['date_populated'],
+                    first: row[1]['first'],
+                    second: row[1]['second'],
+                    third: row[1]['third'],
+                    fourth: row[1]['fourth'],
+                    fifth: row[1]['fifth'],
+                    sixth: row[1]['sixth'],
+                    seventh: row[1]['seventh'],
+                    eighth: row[1]['eighth']
+                }
+            })
+        ];
+
+        console.log(rows)
 
     useEffect(async () => {
         if(screenResultData){
@@ -114,22 +167,36 @@ const ScreenResultsList = (props) => {
         }
     }, [filterList])
 
-    return (
+    if(treeViewType === "trend template" || treeViewType === "trend template wide"){
+        return (
         <Box className={classes.root}>
-            <TableContainer >
-                <Table >
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>{"p"}</TableCell>
-                            <TableCell sx={{minWidth : '30px'}}>{"#"}</TableCell>
-                            {
-                                screenResultData && Object.entries(screenResultData[0]).map((row,index) => {
-                                    return(
-                                        <TableCell key={index} sx={{minWidth : '50px'}}>{row[0]}</TableCell>
-                                    )
-                                })
-                            }
-                            {/* {
+
+            <DataGrid
+                rows={rows[0]}
+                columns={columns}
+                pageSize={10}
+                rowsPerPageOptions={[100]}
+                checkboxSelection
+            />
+        </Box>)
+    } else {
+        return (
+            <Box className={classes.root}>
+
+                <TableContainer>
+                    <Table>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>{"p"}</TableCell>
+                                <TableCell sx={{minWidth: '30px'}}>{"#"}</TableCell>
+                                {
+                                    screenResultData && Object.entries(screenResultData[0]).map((row, index) => {
+                                        return (
+                                            <TableCell key={index} sx={{minWidth: '50px'}}>{row[0]}</TableCell>
+                                        )
+                                    })
+                                }
+                                {/* {
                                 treeViewType !== "my screen" && tempData &&
                                 Object.entries(tempData[0]).map((row,index) => {
                                     return(
@@ -137,9 +204,9 @@ const ScreenResultsList = (props) => {
                                     )
                                 })
                             } */}
-                        </TableRow>
-                    </TableHead>
-                    <TableBody >
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
                             {/* {
                                 
                                 treeViewType === "my screen" && screenResultData &&
@@ -162,13 +229,13 @@ const ScreenResultsList = (props) => {
                             } */}
                             {
                                 screenResultData && screenResultData.map((row, index) => {
-                                    return(
+                                    return (
                                         <TableRow key={index}>
-                                            <TableCell sx={{minWidth : '70px'}}></TableCell>
+                                            <TableCell sx={{minWidth: '70px'}}></TableCell>
                                             <TableCell>{index}</TableCell>
                                             {
                                                 Object.entries(row).map((element, i) => {
-                                                    return(
+                                                    return (
                                                         <TableCell key={i}> {element[1]}</TableCell>
                                                     )
                                                 })
@@ -177,11 +244,12 @@ const ScreenResultsList = (props) => {
                                     )
                                 })
                             }
-                    </TableBody>
-                </Table>
-            </TableContainer>
-        </Box>
-    )
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </Box>
+        )
+    }
 }
 
 const mapStateToProps = state => ({
