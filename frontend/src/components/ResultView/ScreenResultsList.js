@@ -77,8 +77,8 @@ const ScreenResultsList = (props) => {
 
     const columns = [
         {field: 'id', headerName: 'id', width: 80},
-        {field: 'ticker_symbol', headerName: 'ticker_symbol', width: 80},
-        {field: 'date_populated', headerName: 'date_populated', width: 80},
+        {field: 'ticker_symbol', headerName: 'ticker_symbol', width: 120},
+        {field: 'date_populated', headerName: 'date_populated', width: 120},
         {field: 'first', headerName: 'first', width: 80},
         {field: 'second', headerName: 'second', width: 80},
         {field: 'third', headerName: 'third', width: 80},
@@ -174,7 +174,7 @@ const ScreenResultsList = (props) => {
             <DataGrid
                 rows={rows[0]}
                 columns={columns}
-                pageSize={10}
+                pageSize={100}
                 rowsPerPageOptions={[100]}
                 checkboxSelection
             />
