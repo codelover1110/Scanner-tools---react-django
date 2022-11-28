@@ -77,8 +77,8 @@ const ScreenResultsList = (props) => {
 
     const columns = [
         {field: 'id', headerName: 'id', width: 80},
-        {field: 'ticker_symbol', headerName: 'ticker_symbol', width: 120},
-        {field: 'date_populated', headerName: 'date_populated', width: 120},
+        {field: 'ticker_symbol', headerName: 'ticker_symbol', width: 130},
+        {field: 'date_populated', headerName: 'date_populated', width: 130},
         {field: 'first', headerName: 'first', width: 80},
         {field: 'second', headerName: 'second', width: 80},
         {field: 'third', headerName: 'third', width: 80},
