@@ -186,7 +186,10 @@ const ScreenResultsList = (props) => {
     if(treeViewType === "trend template" || treeViewType === "trend template wide"){
         return (
         <Box className={classes.root}>
-        <MaterialReactTable columns={columns} data={rows[0]} enablePagination={true} />
+        <MaterialReactTable columns={columns} data={rows[0]}
+                            initialState={{ pagination: { pageSize: 100, pageIndex: 1 } }}
+                            muiTableContainerProps={{ sx: { maxHeight: '600px' } }}
+        />
         </Box>)
     } else {
         return (
