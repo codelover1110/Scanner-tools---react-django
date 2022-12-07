@@ -1,5 +1,5 @@
 import * as React from 'react' ;
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 import { connect } from 'react-redux';
 import {  GetStockCount } from '../../redux/actions/result';
@@ -13,8 +13,9 @@ import {
     TableRow,
     Table
 } from '@mui/material' ;
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGridPro, GridToolbar } from '@mui/x-data-grid-pro';
 import { useStyles } from './StyledDiv/ScreenResult.styles';
+import MaterialReactTable, { MRT_ColumnDef } from 'material-react-table';
 
 const ScreenResultsList = (props) => {
     const {
@@ -75,39 +76,54 @@ const ScreenResultsList = (props) => {
     }
     //{"ticker_symbol":"0P00007K7V.AU","date_populated":"2022-11-07","first":0,"second":0,"third":0,"fourth":0,"fifth":0,"sixth":0,"seventh":0,"eighth":1}
 
-    const columns = [
-        {field: 'id', headerName: 'id', width: 80},
-        {field: 'ticker_symbol', headerName: 'ticker_symbol', width: 130},
-        {field: 'date_populated', headerName: 'date_populated', width: 130},
-        {field: 'first', headerName: 'first', width: 80},
-        {field: 'second', headerName: 'second', width: 80},
-        {field: 'third', headerName: 'third', width: 80},
-        {field: 'fourth', headerName: 'fourth', width: 80},
-        {field: 'fifth', headerName: 'fifth', width: 80},
-        {field: 'sixth', headerName: 'sixth', width: 80},
-        {field: 'seventh', headerName: 'seventh', width: 80},
-        {field: 'eighth', headerName: 'eighth', width: 80}
-    // screenResultData && Object.entries(screenResultData[0]).map((row,index) => {
-    //     // console.log(row[0])
-    //     // eslint-disable-next-line no-unused-expressions
-    //     return { field: row[0] , headerName: row[0] , width: 80 }
-    // })
-    ];
-    console.log(columns)
+   const columns = useMemo(
+    () => [
+      {
+        accessorKey: 'ticker_symbol', //access nested data with dot notation
+        header: 'ticker_symbol',
+      },
+      {
+        accessorKey: 'date_populated',
+        header: 'date_populated',
+      },
+      {
+        accessorKey: 'first', //normal accessorKey
+        header: 'first',
+      },
+      {
+        accessorKey: 'second',
+        header: 'second',
+      },
+      {
+        accessorKey: 'third',
+        header: 'third',
+      },
+        {
+        accessorKey: 'fourth',
+        header: 'fourth',
+      },
+        {
+        accessorKey: 'fifth',
+        header: 'fifth',
+      },
+        {
+        accessorKey: 'sixth',
+        header: 'sixth',
+      },
+        {
+        accessorKey: 'seventh',
+        header: 'seventh',
+      },
+        {
+        accessorKey: 'eighth',
+        header: 'eighth',
+      },
+    ],
+    [],
+  );
     let rows = [
             //      { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
             screenResultData && Object.entries(screenResultData).map((row, index) => {
-                //         console.log(row)
-                // eslint-disable-next-line no-unused-expressions
-                //         //     first: row[1]['first'],
-                //         //     second: row[1]['second'],
-                //         //     third: row[1]['third'],
-                //         //     fourth: row[1]['fourth'],
-                //         //     fifth: row[1]['fifth'],
-                //         //     sixth: row[1]['sixth'],
-                //         //     seventh: row[1]['seventh'],
-                //         //     eighth: row[1]['eighth']
-                //
                 return {
                     _id: parseInt(index)+1,
                     id: parseInt(index)+1,
@@ -170,14 +186,7 @@ const ScreenResultsList = (props) => {
     if(treeViewType === "trend template" || treeViewType === "trend template wide"){
         return (
         <Box className={classes.root}>
-
-            <DataGrid
-                rows={rows[0]}
-                columns={columns}
-                pageSize={100}
-                rowsPerPageOptions={[100]}
-                checkboxSelection
-            />
+        <MaterialReactTable columns={columns} data={rows[0]} enablePagination={true} />
         </Box>)
     } else {
         return (
