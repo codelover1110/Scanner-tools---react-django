@@ -89,34 +89,42 @@ const ScreenResultsList = (props) => {
       {
         accessorKey: 'first', //normal accessorKey
         header: 'first',
+        muiTableHeadCellFilterTextFieldProps: { value: 1 },
       },
       {
         accessorKey: 'second',
         header: 'second',
+        muiTableHeadCellFilterTextFieldProps: { value: 1 },
       },
       {
         accessorKey: 'third',
         header: 'third',
+        muiTableHeadCellFilterTextFieldProps: { value: 1 },
       },
         {
         accessorKey: 'fourth',
         header: 'fourth',
+        muiTableHeadCellFilterTextFieldProps: { value: 1 },
       },
         {
         accessorKey: 'fifth',
         header: 'fifth',
+        muiTableHeadCellFilterTextFieldProps: { value: 1 },
       },
         {
         accessorKey: 'sixth',
         header: 'sixth',
+        muiTableHeadCellFilterTextFieldProps: { value: 1 },
       },
         {
         accessorKey: 'seventh',
         header: 'seventh',
+        muiTableHeadCellFilterTextFieldProps: { value: 1 },
       },
         {
         accessorKey: 'eighth',
         header: 'eighth',
+        muiTableHeadCellFilterTextFieldProps: { value: 1 },
       },
     ],
     [],
@@ -186,9 +194,13 @@ const ScreenResultsList = (props) => {
     if(treeViewType === "trend template" || treeViewType === "trend template wide"){
         return (
         <Box className={classes.root}>
-        <MaterialReactTable columns={columns} data={rows[0]}
-                            initialState={{ pagination: { pageSize: 100, pageIndex: 1 } }}
-                            muiTableContainerProps={{ sx: { maxHeight: '600px' } }}
+        <MaterialReactTable
+            enableColumnFilterModes
+            positionPagination={"top"}
+            columns={columns}
+            data={rows[0]}
+            initialState={{ pagination: { pageSize: 100, pageIndex: 1 }, showGlobalFilter: false, showColumnFilters: true }}
+            muiTableContainerProps={{ sx: { maxHeight: '600px' } }}
         />
         </Box>)
     } else {
