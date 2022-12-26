@@ -81,10 +81,12 @@ const ScreenResultsList = (props) => {
       {
         accessorKey: 'ticker_symbol', //access nested data with dot notation
         header: 'ticker_symbol',
+        muiTableHeadCellFilterTextFieldProps: {},
       },
       {
         accessorKey: 'date_populated',
         header: 'date_populated',
+        muiTableHeadCellFilterTextFieldProps: {},
       },
       {
         accessorKey: 'first', //normal accessorKey
@@ -199,12 +201,21 @@ const ScreenResultsList = (props) => {
         if(columnFilters!==null && columnFilters.length>0) {
             window.sessionStorage.setItem('abc', JSON.stringify(columnFilters))
         }
-
+        console.log("length", columnFilters.length)
         if(columnFilters.length==0){
             if(window.sessionStorage.getItem('abc')) {
-                setColumnFilters(JSON.parse(window.sessionStorage.getItem('abc')))
+                if (Object.keys(JSON.parse(window.sessionStorage.getItem('abc'))).length > 1) {
+                    setColumnFilters(JSON.parse(window.sessionStorage.getItem('abc')))
+                }
+                if (Object.keys(JSON.parse(window.sessionStorage.getItem('abc'))).length == 1) {
+                    console.log("EM Here")
+                    window.sessionStorage.setItem('abc', JSON.stringify(columnFilters))
+                    setColumnFilters(JSON.parse(window.sessionStorage.getItem('abc')))
+                }
             }
         }
+
+
     }, [columnFilters]);
 
 
@@ -220,7 +231,7 @@ const ScreenResultsList = (props) => {
             positionPagination={"top"}
             columns={columns}
             data={rows[0]}
-            initialState={{ pagination: { pageSize: 100, pageIndex: 1 }, showGlobalFilter: false, showColumnFilters: true, columnFilters: columnFilters }}
+            initialState={{ pagination: { pageSize: 100 }, showGlobalFilter: false, showColumnFilters: true, columnFilters: columnFilters }}
             muiTableContainerProps={{ sx: { maxHeight: '600px' } }}
 
 
