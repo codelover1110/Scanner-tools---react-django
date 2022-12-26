@@ -89,42 +89,42 @@ const ScreenResultsList = (props) => {
       {
         accessorKey: 'first', //normal accessorKey
         header: 'first',
-        muiTableHeadCellFilterTextFieldProps: { value: 1 },
+        muiTableHeadCellFilterTextFieldProps: {},
       },
       {
         accessorKey: 'second',
         header: 'second',
-        muiTableHeadCellFilterTextFieldProps: { value: 1 },
+        muiTableHeadCellFilterTextFieldProps: {},
       },
       {
         accessorKey: 'third',
         header: 'third',
-        muiTableHeadCellFilterTextFieldProps: { value: 1 },
+        muiTableHeadCellFilterTextFieldProps: {},
       },
         {
         accessorKey: 'fourth',
         header: 'fourth',
-        muiTableHeadCellFilterTextFieldProps: { value: 1 },
+        muiTableHeadCellFilterTextFieldProps: {},
       },
         {
         accessorKey: 'fifth',
         header: 'fifth',
-        muiTableHeadCellFilterTextFieldProps: { value: 1 },
+        muiTableHeadCellFilterTextFieldProps: {},
       },
         {
         accessorKey: 'sixth',
         header: 'sixth',
-        muiTableHeadCellFilterTextFieldProps: { value: 1 },
+        muiTableHeadCellFilterTextFieldProps: {},
       },
         {
         accessorKey: 'seventh',
         header: 'seventh',
-        muiTableHeadCellFilterTextFieldProps: { value: 1 },
+        muiTableHeadCellFilterTextFieldProps: {},
       },
         {
         accessorKey: 'eighth',
         header: 'eighth',
-        muiTableHeadCellFilterTextFieldProps: { value: 1 },
+        muiTableHeadCellFilterTextFieldProps: {},
       },
     ],
     [],
@@ -191,6 +191,25 @@ const ScreenResultsList = (props) => {
         }
     }, [filterList])
 
+
+    const [columnFilters, setColumnFilters] = useState([]);
+    const [data, setData] = useState([]); //data will get updated after re-fetching
+
+    useEffect(() => {
+        if(columnFilters!==null && columnFilters.length>0) {
+            window.sessionStorage.setItem('abc', JSON.stringify(columnFilters))
+        }
+
+        if(columnFilters.length==0){
+            setColumnFilters(JSON.parse(window.sessionStorage.getItem('abc')))
+        }
+    }, [columnFilters]);
+
+
+    console.log('column filter', columnFilters)
+    // console.log('data', data)
+
+
     if(treeViewType === "trend template" || treeViewType === "trend template wide"){
         return (
         <Box className={classes.root}>
@@ -199,8 +218,12 @@ const ScreenResultsList = (props) => {
             positionPagination={"top"}
             columns={columns}
             data={rows[0]}
-            initialState={{ pagination: { pageSize: 100, pageIndex: 1 }, showGlobalFilter: false, showColumnFilters: true }}
+            initialState={{ pagination: { pageSize: 100, pageIndex: 1 }, showGlobalFilter: false, showColumnFilters: true, columnFilters: columnFilters }}
             muiTableContainerProps={{ sx: { maxHeight: '600px' } }}
+
+
+            onColumnFiltersChange={setColumnFilters} //hoist internal columnFilters state to your state
+            state={{ columnFilters }} //pass in your own managed columnFilters state
         />
         </Box>)
     } else {
