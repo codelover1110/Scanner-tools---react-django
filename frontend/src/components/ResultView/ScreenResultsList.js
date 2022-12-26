@@ -201,7 +201,9 @@ const ScreenResultsList = (props) => {
         }
 
         if(columnFilters.length==0){
-            setColumnFilters(JSON.parse(window.sessionStorage.getItem('abc')))
+            if(window.sessionStorage.getItem('abc')) {
+                setColumnFilters(JSON.parse(window.sessionStorage.getItem('abc')))
+            }
         }
     }, [columnFilters]);
 
