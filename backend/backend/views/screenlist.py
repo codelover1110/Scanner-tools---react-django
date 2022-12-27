@@ -362,7 +362,7 @@ class TrendViewSet(viewsets.ModelViewSet):
     def trend(request):
         if request.method == 'GET':
 
-            trend = Trend.objects.all()
+            trend = Trend.objects.filter(first=1, second=1, third=1, fourth=1, fifth=1, sixth=1, seventh=1, eighth=1).all()
             serializer = TrendSerializer(trend, many=True)
 
             return Response(serializer.data)
@@ -380,7 +380,7 @@ class TrendWideViewSet(viewsets.ModelViewSet):
     def trend_wide(request):
         if request.method == 'GET':
 
-            trend_wide = TrendWide.objects.all()
+            trend_wide = TrendWide.objects.filter(first=1, second=1, third=1, fourth=1, fifth=1, sixth=1, seventh=1, eighth=1).all()
             serializer = TrendWideSerializer(trend_wide, many=True)
 
             return Response(serializer.data)
@@ -398,7 +398,7 @@ class PowerPlayViewSet(viewsets.ModelViewSet):
     def power_play(request):
         if request.method == 'GET':
 
-            power_play = PowerPlay.objects.all()
+            power_play = PowerPlay.objects.filter(first=1, second=1, third=1, fourth=1, fifth=1, sixth=1, seventh=1, eighth=1).all()
             serializer = PowerPlaySerializer(power_play, many=True)
 
             return Response(serializer.data)
